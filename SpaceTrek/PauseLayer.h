@@ -12,11 +12,8 @@
 @interface PauseLayer : CCLayerColor {
     
     CCMenuItemImage *resume;
-    CCLabelTTF *labelResume;
     CCMenuItemImage *restart;
-    CCLabelTTF *restartResume;
     CCMenuItemImage *main;
-    CCLabelTTF *mainResume;
     
 }
 

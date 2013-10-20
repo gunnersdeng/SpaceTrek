@@ -63,7 +63,7 @@
     
     b2FixtureDef playerShapeDef;
     playerShapeDef.shape = &circle;
-    playerShapeDef.density = 1.0f;
+    playerShapeDef.density = 100.0f;
     playerShapeDef.friction = 0.f;
     playerShapeDef.restitution = 1.0f;
     playerShapeDef.filter.categoryBits =  0x1;

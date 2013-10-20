@@ -226,6 +226,8 @@
 		F17B976517FCDCFC00BD6670 /* level-1-background-optional.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F17B976417FCDCFC00BD6670 /* level-1-background-optional.jpg */; };
 		F17B976817FCEC9900BD6670 /* ship-level-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F17B976717FCEC9900BD6670 /* ship-level-1.png */; };
 		F1801E1818028474002BDAF1 /* btn_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = F1801E1718028474002BDAF1 /* btn_pause.png */; };
+		F1CA5DEE1813DD2700A6BE77 /* GameOverScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */; };
+		F1CA5DF11813DEA900A6BE77 /* GameOverLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */; };
 		F1F975BE1801E669009B9148 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1F975BD1801E668009B9148 /* BackgroundLayer.mm */; };
 		F1F975C01801EAD5009B9148 /* background-v1.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F975BF1801EAD5009B9148 /* background-v1.png */; };
 		F1F975C2180200AE009B9148 /* space-background-upperlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F975C1180200AE009B9148 /* space-background-upperlayer.png */; };
@@ -658,6 +660,10 @@
 		F17B976417FCDCFC00BD6670 /* level-1-background-optional.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "level-1-background-optional.jpg"; sourceTree = "<group>"; };
 		F17B976717FCEC9900BD6670 /* ship-level-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ship-level-1.png"; sourceTree = "<group>"; };
 		F1801E1718028474002BDAF1 /* btn_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_pause.png; sourceTree = "<group>"; };
+		F1CA5DEC1813DD2700A6BE77 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = GameOverScene.mm; sourceTree = "<group>"; };
+		F1CA5DEF1813DEA900A6BE77 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = GameOverLayer.mm; sourceTree = "<group>"; };
 		F1F975BC1801E668009B9148 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		F1F975BD1801E668009B9148 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BackgroundLayer.mm; sourceTree = "<group>"; };
 		F1F975BF1801EAD5009B9148 /* background-v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-v1.png"; sourceTree = "<group>"; };
@@ -1332,6 +1338,8 @@
 				F17B975117FCCD3100BD6670 /* MainMenuScene.mm */,
 				F17B975E17FCDA0000BD6670 /* GameScene.h */,
 				F17B975F17FCDA0000BD6670 /* GameScene.mm */,
+				F1CA5DEC1813DD2700A6BE77 /* GameOverScene.h */,
+				F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1346,6 +1354,8 @@
 				F1F975BD1801E668009B9148 /* BackgroundLayer.mm */,
 				F14E4E6E181304B4005D8190 /* HUDLayer.h */,
 				F14E4E6F181304B4005D8190 /* HUDLayer.mm */,
+				F1CA5DEF1813DEA900A6BE77 /* GameOverLayer.h */,
+				F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -1599,6 +1609,7 @@
 				F17B963F17FCBB7E00BD6670 /* ccUtils.c in Sources */,
 				F17B964317FCBB7E00BD6670 /* CCVertex.m in Sources */,
 				F17B964617FCBB7E00BD6670 /* CGPointExtension.m in Sources */,
+				F1CA5DEE1813DD2700A6BE77 /* GameOverScene.mm in Sources */,
 				F17B964917FCBB7E00BD6670 /* NSThread+performBlock.m in Sources */,
 				F17B964D17FCBB7E00BD6670 /* TGAlib.m in Sources */,
 				F17B965017FCBB7E00BD6670 /* TransformUtils.m in Sources */,
@@ -1664,6 +1675,7 @@
 				F17B971917FCBB8000BD6670 /* b2MouseJoint.cpp in Sources */,
 				CF4B4ADD1813383D00912025 /* Player.mm in Sources */,
 				F17B971C17FCBB8000BD6670 /* b2PrismaticJoint.cpp in Sources */,
+				F1CA5DF11813DEA900A6BE77 /* GameOverLayer.mm in Sources */,
 				F17B971F17FCBB8000BD6670 /* b2PulleyJoint.cpp in Sources */,
 				F17B972217FCBB8000BD6670 /* b2RevoluteJoint.cpp in Sources */,
 				F17B972517FCBB8000BD6670 /* b2RopeJoint.cpp in Sources */,

@@ -59,10 +59,10 @@ static GameScene* instanceOfGameScene;
     
     switch (state)
     {
-        case 1:
+        case GAME_STATE_ONE:
         {
             BackgroundLayer *backgroundLayer = [[BackgroundLayer alloc] initWithLevel: 1];
-            [scene addChild:backgroundLayer z:-1];
+            [scene addChild:backgroundLayer z:-1 tag:BACKGROUND_LAYER_TAG];
             
             HUDLayer *hudLayer = [[HUDLayer node] init];
             // add layer as a child to scene

@@ -41,15 +41,15 @@ int backgroundLevel = 1;
 {
     
     switch (backgroundLevel) {
-        case 1:
+        case GAME_STATE_ONE:
             bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
             bgBottom = [CCSprite spriteWithFile:@"background-v1.png"];
             break;
-        case 2:
+        case GAME_STATE_TWO:
             bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
             bgBottom = [CCSprite spriteWithFile:@"background-v1.png"];
             break;
-        case 3:
+        case GAME_STATE_THREE:
             bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
             bgBottom = [CCSprite spriteWithFile:@"background-v1.png"];
             break;
@@ -65,12 +65,15 @@ int backgroundLevel = 1;
 
     CGPoint realDest = ccp(-3500, 0);
     CCAction *_bgTopMoveAction = [CCRepeatForever actionWithAction: [CCMoveTo actionWithDuration:BGTOPDURATION position:realDest]];
+    _bgTopMoveAction.tag = 1;
     [bgTop runAction:_bgTopMoveAction];
     
     [self schedule:@selector(updateMap:)];
     [self unschedule:@selector(updateMap:)];
     [self schedule:@selector(updateMap:) interval:15.0];
     
+//    [self stopActionByTag:1];
+//    [self reverseMap];
     
     
     
@@ -86,9 +89,6 @@ int backgroundLevel = 1;
 }
 
 - (void) addMap {
-    
-    
-
     bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
     [bgTops addObject:bgTop];
     
@@ -100,8 +100,16 @@ int backgroundLevel = 1;
     // Create the actions
     CGPoint realDest = ccp(-3500, 0);
     CCMoveTo * actionMove = [CCMoveTo actionWithDuration: BGTOPDURATION position:realDest];
-    
+    actionMove.tag = 0;
     [bgTop runAction:actionMove];
+    
+}
+
+-(void) reverseMap
+{
+    [self unschedule:@selector(addMap)];
+    [self unschedule:@selector(updateMap:)];
+    [self stopAllActions];
     
 }
 

@@ -14,6 +14,11 @@
 #define LEFTBOUNDARYSAVETREASURE 1024
 #define BGTOPDURATION 100
 
+#define GAME_STATE_ONE 1
+#define GAME_STATE_TWO 2
+#define GAME_STATE_THREE 3
+
+#define BACKGROUND_LAYER_TAG 0
 #define HUD_LAYER_TAG 1
 #define GAME_LAYER_TAG 2
 #define PAUSE_LAYER_TAG 3
@@ -22,6 +27,7 @@
 #define COLLECTOR_TAG 1
 #define TREASURE_TAG 2
 #define TREASURE_DESTROY_TAG 3
+#define SPACESTATION_TAG 4
 
 
 
@@ -30,7 +36,7 @@ typedef enum {
     gameObjectPlayer=1,
     gameObjectCollector=2,
     gameObjectTreasure1=3,
-    
+    gameObjectSpaceStation=4
 } GameObjectType;
 
 

@@ -11,6 +11,7 @@
 #import "GameScene.h"
 #import "GameObject.h"
 #import "GameLayer.h"
+#import "BackgroundLayer.h"
 
 ContactListener::ContactListener() {
 }
@@ -42,9 +43,10 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 CCScene* scene = [[CCDirector sharedDirector] runningScene];
                 GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
                 
+                BackgroundLayer* backgroundLayer = (BackgroundLayer*)[scene getChildByTag:BACKGROUND_LAYER_TAG];
                 
+                [backgroundLayer reverseMap];
                 
-                layer.score += 10;
                 
                 CCParticleSystem *collsion = [CCParticleExplosion node];
                 
@@ -63,18 +65,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 collsion.autoRemoveOnFinish = YES;
                 
                 
-//                [layer unschedule:@selector(treasureMovementLogic:)];
-//                [layer unschedule:@selector(playerMoveFinished:)];
-//                [layer unschedule:@selector(gameLogic:)];
-//                [layer unschedule:@selector(addTreasure:)];
-                
-//                layer.world->DestroyBody(bodyA);
-//                [layer removeChild:playerSprite cleanup:YES];
 
-//                playerSprite.visible = false;
-                
-//                playerSprite.tag = COLLECTOR_TAG;
-//                [playerSprite setTexture:[[CCSprite spriteWithFile:@"ship-level-1.png"]texture]];
 
                 layer->collision = true;
                 
@@ -83,7 +74,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 [layer unschedule:@selector(addTreasure:)];
 
                 
-                layer.treasureBack;
+                [layer treasureBack];
                 
                 
                 [playerSprite setType:gameObjectCollector];

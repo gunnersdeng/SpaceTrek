@@ -12,9 +12,11 @@
 #import "PauseLayer.h"
 #import "GameScene.h"
 #import "HUDLayer.h"
+#import "GameOverScene.h"
 
 @implementation GameLayer
 @synthesize distance;
+@synthesize score;
 @synthesize scale;
 @synthesize allBatchNode;
 
@@ -60,7 +62,7 @@ bool isMove;
         player.position = ccp(player.contentSize.width/2, winSize.height/2);
         player.tag = PLAYER_TAG;
         [player createBox2dObject:world];
-        
+        [self addSpaceStation];
         /*
         int actualDuration = winSize.width/5.0/TRAVEL_SPEED;
         // Create the actions
@@ -102,13 +104,7 @@ bool isMove;
         isReach=false;
         
         [self schedule:@selector(treasureMovementLogic:)];
-//        [self schedule:@selector(update:)];
-        
-        
-        
-//        [self addChild:player z:1];
-        /*gravity*/
-        //[self scheduleUpdate];
+
         
         pauseButton = [CCMenuItemImage itemWithNormalImage:@"Button-Pause-icon-modified.png" selectedImage:@"Button-Pause-icon-modified.png" target:self selector:@selector(pauseButtonSelected)];
         pauseButton.scale = 0.8;
@@ -178,7 +174,8 @@ bool isMove;
 }
 */
 -(void) playerMoveFinished: (id)sender{
-    
+    b2Vec2 force = b2Vec2(-TRAVEL_SPEED, 0);
+    spaceStationBody->SetLinearVelocity(force);
     [self schedule:@selector(gameLogic:) interval:1.0];
 }
 -(void) treasureMovementLogic:(ccTime)dt
@@ -203,13 +200,23 @@ bool isMove;
                 b->SetLinearVelocity(force);
                 isReach = true;
                 [self schedule:@selector(playerMoveFinished:)];
-                //                self.isAccelerometerEnabled=YES;
+//                self.isAccelerometerEnabled=YES;
             }
-            if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5*4)<=100 && isMove)
+            if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5*4)<=10 && isMove)
+            {
+                b2Vec2 force = b2Vec2(0, 0);
+                b->SetLinearVelocity(force);
+//                isMove = false;
+            }
+            if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-50)<=10 && isMove)
             {
                 b2Vec2 force = b2Vec2(0, 0);
                 b->SetLinearVelocity(force);
                 isMove = false;
+                
+                [self unscheduleAllSelectors];
+                [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+                
             }
                 
             treasureData.position = ccp(b->GetPosition().x,
@@ -239,10 +246,16 @@ bool isMove;
                 b->SetLinearVelocity(force);
                 isMove = true;
             }
+            if(treasureData.tag==SPACESTATION_TAG)
+            {
+                b2Vec2 force = b2Vec2(TRAVEL_SPEED, 0);
+                spaceStationBody->SetLinearVelocity(force);
+            }
         }
     }
     
 }
+
 
 
 -(void)gameLogic:(ccTime)dt {
@@ -400,6 +413,53 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     [self removeChild:sprite cleanup:YES];
 }
+
+-(void)addSpaceStation
+{
+    spaceStation = [[GameObject alloc] init];
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    spaceStation = [GameObject spriteWithFile:@"Restart.png"];
+    spaceStation.scale = 1.5;
+    
+    spaceStation.tag = SPACESTATION_TAG;
+    [spaceStation setType:gameObjectSpaceStation];
+    
+    
+    spaceStation.position = ccp(50, winSize.height/2);
+    
+    [self addChild:spaceStation];
+    
+    b2BodyDef spaceStationBodyDef;
+    spaceStationBodyDef.type = b2_dynamicBody;
+    spaceStationBodyDef.position.Set(50, winSize.height/2);
+    spaceStationBodyDef.userData = spaceStation;
+    
+    
+    
+    
+    spaceStationBodyDef.userData = (__bridge_retained void*) spaceStation;
+    
+    spaceStationBody = world->CreateBody(&spaceStationBodyDef);
+    
+    
+    b2CircleShape circle;
+    circle.m_radius = spaceStation.contentSize.width/2;
+    
+    b2FixtureDef spaceStationShapeDef;
+    spaceStationShapeDef.shape = &circle;
+    spaceStationShapeDef.density = 100.0f;
+    spaceStationShapeDef.friction = 0.f;
+    spaceStationShapeDef.restitution = 1.0f;
+    spaceStationShapeDef.filter.categoryBits = 0x3;
+    spaceStationShapeDef.filter.maskBits = 0xFFFF-0x2-0x1;
+    
+    spaceStationBody->CreateFixture(&spaceStationShapeDef);
+    
+    
+}
+
+
 
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
 //    shipSpeedY = -acceleration.x * 50;

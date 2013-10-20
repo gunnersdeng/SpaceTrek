@@ -38,6 +38,9 @@
     
     Player *player;
     
+    GameObject* spaceStation;
+    b2Body* spaceStationBody;
+    
     b2Body* playerBody;
     float shipSpeedY;
     float shipSpeedX;
