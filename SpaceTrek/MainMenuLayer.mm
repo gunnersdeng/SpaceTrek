@@ -6,9 +6,11 @@
 //  Copyright 2013年 huang yongke. All rights reserved.
 //
 
+#import "Constants.h"
 #import "MainMenuLayer.h"
 #import "GameScene.h"
 #import "SimpleAudioEngine.h"
+#import "LoadingScene.h"
 
 CCSprite *bg;
 
@@ -56,12 +58,13 @@ CCSprite *bg;
 }
 
 -(void) buttonPlayAction:(id)sender {
-    CCScene *gameScene = [GameScene sceneWithState:1];
+    //CCScene *gameScene = [GameScene sceneWithState:1];
 
 //    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:gameScene]];
     
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:gameScene]];
+    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:gameScene]];
+    [[CCDirector sharedDirector] replaceScene:[LoadingScene sceneWithTargetScene:GAME_STATE_ONE]];
 }
 
 -(void) buttonHelpAction

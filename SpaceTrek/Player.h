@@ -15,6 +15,10 @@
     @public b2Body          *playerBody;
     CCFiniteTimeAction *playerRunAction;
     CCAnimation *playerRunAnimation;
+    CCFiniteTimeAction *crashAction;
+    CCAnimation *crashAnimation;
+    CCFiniteTimeAction *spacemanAction;
+    CCAnimation *spacemanAnimation;
     
     
     BOOL collison;
@@ -22,6 +26,7 @@
 
 -(void) createBox2dObject:(b2World*)world;
 -(void) initAnimation:(CCSpriteBatchNode*)batchNode;
+-(void) crashTransformAction;
 //-(void) afterUpAction:(Joker *) sprite;
 //-(void) afterDownAction:(Joker *) sprite;
 //-(void) jump:(float)charge;

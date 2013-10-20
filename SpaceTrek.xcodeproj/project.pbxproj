@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		757BA83F181491B6006645AA /* runway.png in Resources */ = {isa = PBXBuildFile; fileRef = 757BA83E181491B6006645AA /* runway.png */; };
+		757BA84118149DBF006645AA /* loadingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 757BA84018149DBF006645AA /* loadingBackground.png */; };
+		757BA8441814A2B7006645AA /* Character.plist in Resources */ = {isa = PBXBuildFile; fileRef = 757BA8421814A2B7006645AA /* Character.plist */; };
+		757BA8451814A2B7006645AA /* Character.png in Resources */ = {isa = PBXBuildFile; fileRef = 757BA8431814A2B7006645AA /* Character.png */; };
 		75954A2018023E0600597B3D /* GameSceneSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 75954A1F18023E0600597B3D /* GameSceneSound.mp3 */; };
 		75BB0DA918053E4D0076765A /* Menu_Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 75BB0DA818053E4D0076765A /* Menu_Music.mp3 */; };
 		75BB0DAB1805C6060076765A /* background-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BB0DAA1805C6060076765A /* background-menu.png */; };
@@ -238,6 +241,9 @@
 
 /* Begin PBXFileReference section */
 		757BA83E181491B6006645AA /* runway.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runway.png; sourceTree = "<group>"; };
+		757BA84018149DBF006645AA /* loadingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingBackground.png; sourceTree = "<group>"; };
+		757BA8421814A2B7006645AA /* Character.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Character.plist; sourceTree = "<group>"; };
+		757BA8431814A2B7006645AA /* Character.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Character.png; sourceTree = "<group>"; };
 		75954A1F18023E0600597B3D /* GameSceneSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameSceneSound.mp3; sourceTree = "<group>"; };
 		75BB0DA818053E4D0076765A /* Menu_Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Menu_Music.mp3; sourceTree = "<group>"; };
 		75BB0DAA1805C6060076765A /* background-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-menu.png"; sourceTree = "<group>"; };
@@ -1384,6 +1390,7 @@
 		F17B975817FCD5C500BD6670 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				757BA84018149DBF006645AA /* loadingBackground.png */,
 				757BA83E181491B6006645AA /* runway.png */,
 				75E592AC180F47CA002B088B /* spaceship-boom-step-2.png */,
 				75BB0DAA1805C6060076765A /* background-menu.png */,
@@ -1417,6 +1424,8 @@
 			isa = PBXGroup;
 			children = (
 				75E2846E180220B00003E344 /* fire.png */,
+				757BA8421814A2B7006645AA /* Character.plist */,
+				757BA8431814A2B7006645AA /* Character.png */,
 				CF4B4AE21813435200912025 /* SpaceShip2.plist */,
 				CF4B4AE31813435200912025 /* SpaceShip2.png */,
 				CF4B4AD9181332A100912025 /* LittleCat.png */,
@@ -1481,11 +1490,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				757BA84118149DBF006645AA /* loadingBackground.png in Resources */,
 				75E2847B180239780003E344 /* pauseButton.png in Resources */,
 				F17B951517FCBB7A00BD6670 /* Default.png in Resources */,
 				F17B951717FCBB7A00BD6670 /* Default@2x.png in Resources */,
 				757BA83F181491B6006645AA /* runway.png in Resources */,
 				F17B951917FCBB7A00BD6670 /* Default-568h@2x.png in Resources */,
+				757BA8441814A2B7006645AA /* Character.plist in Resources */,
 				75BB0DAB1805C6060076765A /* background-menu.png in Resources */,
 				F17B951B17FCBB7A00BD6670 /* Default-Landscape~ipad.png in Resources */,
 				75954A2018023E0600597B3D /* GameSceneSound.mp3 in Resources */,
@@ -1510,6 +1521,7 @@
 				F17B976517FCDCFC00BD6670 /* level-1-background-optional.jpg in Resources */,
 				75FBF9C21813258C0096B82A /* StatusBar.png in Resources */,
 				F17B976817FCEC9900BD6670 /* ship-level-1.png in Resources */,
+				757BA8451814A2B7006645AA /* Character.png in Resources */,
 				75BB0DAD1805C82C0076765A /* PlayMode_Music_New.mp3 in Resources */,
 				75E2846418021E250003E344 /* spaceship-level-2-2.png in Resources */,
 				F1F975C01801EAD5009B9148 /* background-v1.png in Resources */,

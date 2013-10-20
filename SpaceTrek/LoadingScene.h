@@ -10,7 +10,13 @@
 #import "cocos2d.h"
 
 @interface LoadingScene : CCLayer {
-    
+    int GameStage;
+    int count;
+    CCLabelTTF *loadingLabel;
 }
+
++( id ) sceneWithTargetScene:(int)gameStage;
+-( id ) initWithTargetScene:(int)gameStage;
+-( void ) update:(ccTime)delta;
 
 @end

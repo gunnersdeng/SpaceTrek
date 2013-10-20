@@ -47,8 +47,10 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 
                 [backgroundLayer reverseMap];
                 
+                [(Player *)playerSprite crashTransformAction];
                 
-                CCParticleSystem *collsion = [CCParticleExplosion node];
+                
+                /*CCParticleSystem *collsion = [CCParticleExplosion node];
                 
                 [layer addChild:collsion z:12];
                 collsion.texture = [[CCTextureCache sharedTextureCache] addImage:@"spaceship-boom-step-2.png"];
@@ -63,7 +65,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
 //                collsion.lifeVar = 2.0f;
                 collsion.totalParticles = 1.0f;
                 collsion.autoRemoveOnFinish = YES;
-                
+                */
                
                 
 

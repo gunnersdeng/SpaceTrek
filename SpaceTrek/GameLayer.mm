@@ -539,9 +539,9 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
 }
 
 - (void) initBatchNode {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"SpaceShip2.plist"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Character.plist"];
     
-    allBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"SpaceShip2.png"];
+    allBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"Character.png"];
     
     [self addChild:allBatchNode z:10];
     

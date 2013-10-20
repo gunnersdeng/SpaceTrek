@@ -72,4 +72,29 @@
     playerBody->CreateFixture(&playerShapeDef);
 }
 
+-(void) crashTransformAction
+{
+    [self stopAllActions];
+    NSMutableArray *crashAnimFrames = [NSMutableArray array];
+    for(int i = 1; i <= 3; ++i){
+        [crashAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"boom%d.png", i]]];
+    }
+    crashAnimation = [CCAnimation animationWithSpriteFrames:crashAnimFrames delay:0.09f];
+    crashAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: crashAnimation] times:1];
+    
+    
+    NSMutableArray *spacemanAnimFrames = [NSMutableArray array];
+    for(int i = 1; i <= 1; ++i){
+        [spacemanAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"spaceman%d.png", i]]];
+    }
+    spacemanAnimation = [CCAnimation animationWithSpriteFrames:spacemanAnimFrames delay:0.09f];
+    spacemanAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: spacemanAnimation] times:200];
+    
+    [self runAction: [CCSequence actions:crashAction,spacemanAction,nil]];
+}
+
 @end
