@@ -190,7 +190,13 @@ bool isMove;
             CCSprite *treasureData = (CCSprite *)b->GetUserData();
             
             
-         
+            if(treasureData.tag == TREASURE_DESTROY_TAG)
+            {
+                [self removeChild:treasureData cleanup:YES];
+                world->DestroyBody(b);
+                continue;
+            }
+            
             if(treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5)<=0.5 && !isReach)
             {
                 b2Vec2 force = b2Vec2(0, 0);

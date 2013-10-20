@@ -21,6 +21,7 @@
 #define PLAYER_TAG 0
 #define COLLECTOR_TAG 1
 #define TREASURE_TAG 2
+#define TREASURE_DESTROY_TAG 3
 
 
 

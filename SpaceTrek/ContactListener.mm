@@ -103,8 +103,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 
                 layer.score += 10;
                 
-                [layer removeChild:treasuerSprite cleanup:YES];
-                
+                treasuerSprite.tag = TREASURE_DESTROY_TAG;
             }
 
         }
