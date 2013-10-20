@@ -12,7 +12,7 @@
 #import "GameObject.h"
 
 @interface Player : GameObject {
-    b2Body          *playerBody;
+    @public b2Body          *playerBody;
     CCFiniteTimeAction *playerRunAction;
     CCAnimation *playerRunAnimation;
     

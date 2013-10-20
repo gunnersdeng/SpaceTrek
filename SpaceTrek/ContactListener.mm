@@ -38,7 +38,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
         {
             if(spriteB.type==gameObjectTreasure1)
             {
-//                GameObject *treasuerSprite=(spriteA.type==gameObjectPlayer)?spriteB:spriteA;
+                GameObject *treasuerSprite=(spriteA.type==gameObjectPlayer)?spriteB:spriteA;
                 GameObject* playerSprite =(spriteA.type==gameObjectPlayer)?spriteA:spriteB;
                 CCScene* scene = [[CCDirector sharedDirector] runningScene];
                 GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
@@ -64,19 +64,14 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 collsion.totalParticles = 1.0f;
                 collsion.autoRemoveOnFinish = YES;
                 
+               
                 
 
-
-                layer->collision = true;
                 
-                [layer unschedule:@selector(playerMoveFinished:)];
-                [layer unschedule:@selector(gameLogic:)];
-                [layer unschedule:@selector(addTreasure:)];
-
+                [layer playerBack];
+                [layer ChangeGoBackSound];
                 
-                [layer treasureBack];
-                
-                
+                treasuerSprite.tag = TREASURE_DESTROY_TAG;
                 [playerSprite setType:gameObjectCollector];
                 
             }

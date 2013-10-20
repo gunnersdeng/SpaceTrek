@@ -3,10 +3,16 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ContactListener::BeginContact(b2Contact*):ContactListener.mm">
+         contextName = "-[GameLayer treasureBack]:GameLayer.mm">
          <PersistentStrings>
             <PersistentString
-               value = "spriteA.type">
+               value = "b">
+            </PersistentString>
+            <PersistentString
+               value = "TRAVEL_SPEED*100">
+            </PersistentString>
+            <PersistentString
+               value = "TRAVEL_SPEED">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -14,16 +20,27 @@
          contextName = "-[GameLayer treasureMovementLogic:]:GameLayer.mm">
          <PersistentStrings>
             <PersistentString
-               value = "treasureData.tag">
+               value = "PLAYER_TAG">
             </PersistentString>
             <PersistentString
-               value = "PLAYER_TAG">
+               value = "isReach">
             </PersistentString>
             <PersistentString
                value = "world-&gt;GetBodyList()">
             </PersistentString>
             <PersistentString
-               value = "isReach">
+               value = "treasureData.tag">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[PauseLayer restartButtonSelected]:PauseLayer.mm">
+      </ContextState>
+      <ContextState
+         contextName = "ContactListener::BeginContact(b2Contact*):ContactListener.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "spriteA.type">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

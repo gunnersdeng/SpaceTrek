@@ -37,7 +37,7 @@
     }
     
     playerRunAnimation = [CCAnimation animationWithSpriteFrames:runAnimFrames delay:0.09f];
-    playerRunAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: playerRunAnimation] times:200];
+    playerRunAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: playerRunAnimation] times:2000];
     
     
     [self runAction:playerRunAction];

@@ -11,6 +11,7 @@
 #import "GameLayer.h"
 #import "GameScene.h"
 #import "MainMenuScene.h"
+#import "SimpleAudioEngine.h"
 
 int buttonSelected;
 
@@ -64,7 +65,6 @@ int pauseLevel;
     [[GameScene sharedGameScene] setShowingPausedMenu:NO];
     [[CCDirector sharedDirector] resume];
 
-    
     switch (pauseLevel) {
         case 1:
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameScene sceneWithState:1]]];

@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A52D188F-0079-48B2-B973-CAF4100762CF</string>
+	<string>C42E28F3-A2D0-472F-A516-3A0AA7A05F20</string>
 	<key>IDESourceControlProjectName</key>
 	<string>SpaceTrek</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>822DD3AD-A53C-4EE9-B41B-A80EFEF1E55B</key>
-		<string>https://github.com/gunnersdeng/SpaceTrek.git</string>
+		<key>4CD716BD-45CC-43C0-A69C-740D71F1FE8E</key>
+		<string>https://github.com/gunnersdeng/SpaceTrek</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>SpaceTrek.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>822DD3AD-A53C-4EE9-B41B-A80EFEF1E55B</key>
+		<key>4CD716BD-45CC-43C0-A69C-740D71F1FE8E</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/gunnersdeng/SpaceTrek.git</string>
+	<string>https://github.com/gunnersdeng/SpaceTrek</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>822DD3AD-A53C-4EE9-B41B-A80EFEF1E55B</string>
+	<string>4CD716BD-45CC-43C0-A69C-740D71F1FE8E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>822DD3AD-A53C-4EE9-B41B-A80EFEF1E55B</string>
+			<string>4CD716BD-45CC-43C0-A69C-740D71F1FE8E</string>
 			<key>IDESourceControlWCCName</key>
-			<string>SpaceTrek copy</string>
+			<string>SpaceTrek</string>
 		</dict>
 	</array>
 </dict>

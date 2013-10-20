@@ -8,7 +8,6 @@
 
 #import "GameLayer.h"
 #import "Constants.h"
-#import "SimpleAudioEngine.h"
 #import "PauseLayer.h"
 #import "GameScene.h"
 #import "HUDLayer.h"
@@ -21,7 +20,8 @@
 @synthesize allBatchNode;
 
 bool isReach;
-bool isMove;
+bool isPlayerMoveBack;
+bool isStationMoveBack;
 
 -(id) init{
     self = [super init];
@@ -33,7 +33,8 @@ bool isMove;
         */
         
         
-        isMove = false;
+        isPlayerMoveBack = false;
+        isStationMoveBack = false;
         self.tag = GAME_LAYER_TAG;
         
         
@@ -128,7 +129,23 @@ bool isMove;
 
 - (void)preLoadSoundFiles
 {
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"PlayMode_Music_New.mp3"];
+    //[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"PlayMode_Music_New.mp3"];
+    //[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"PlayMode_Music_back.mp3"];
+    //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"PlayMode_Music_New.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayMode_Music_back.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayMode_Music_New.mp3"];
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+        
+    firstBackgroundMusic = [[SimpleAudioEngine sharedEngine] playEffect:@"PlayMode_Music_New.mp3"];
+}
+
+- (void)ChangeGoBackSound
+{
+    //[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"PlayMode_Music_back.mp3"];
+    //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"PlayMode_Music_back.mp3"];
+    [[SimpleAudioEngine sharedEngine] stopEffect:firstBackgroundMusic];
+    secondBackgroundMusic = [[SimpleAudioEngine sharedEngine] playEffect:@"PlayMode_Music_back.mp3"];
+    //backgroundAmbience.backgroundMusicVolume = 1.0f;
 }
 
 -(void) setupPhysicsWorld {
@@ -200,19 +217,23 @@ bool isMove;
                 b->SetLinearVelocity(force);
                 isReach = true;
                 [self schedule:@selector(playerMoveFinished:)];
-//                self.isAccelerometerEnabled=YES;
+                self.isAccelerometerEnabled=YES;
             }
-            if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5*4)<=10 && isMove)
+            if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5*4)<=10 && isPlayerMoveBack)
             {
                 b2Vec2 force = b2Vec2(0, 0);
                 b->SetLinearVelocity(force);
-//                isMove = false;
+                [self unschedule:@selector(playerMoveFinished:)];
+                [self unschedule:@selector(gameLogic:)];
+                [self unschedule:@selector(addTreasure:)];
+                [self treasureBack];
+                isPlayerMoveBack = false;
             }
-            if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-50)<=10 && isMove)
+            if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-50)<=10 && isStationMoveBack)
             {
                 b2Vec2 force = b2Vec2(0, 0);
                 b->SetLinearVelocity(force);
-                isMove = false;
+                isStationMoveBack = false;
                 
                 [self unscheduleAllSelectors];
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
@@ -229,6 +250,37 @@ bool isMove;
 }
 
 
+-(void) playerBack
+{
+    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
+        if (b->GetUserData() != NULL) {
+            CCSprite *treasureData = (CCSprite *)b->GetUserData();
+            
+            /*if(treasureData.tag==TREASURE_TAG)
+            {
+                b2Vec2 force = b2Vec2(-b->GetLinearVelocity().x, -b->GetLinearVelocity().y);
+                b->SetLinearVelocity(force);
+            }*/
+            if(treasureData.tag==PLAYER_TAG)
+            {
+                
+                b2Vec2 force = b2Vec2(TRAVEL_SPEED, 0);
+                b->SetLinearVelocity(force);
+                
+//                
+//                b2Vec2 force = b2Vec2(10000000,0);
+//                b->ApplyForce(force, b->GetWorldCenter());
+                
+                
+                
+                isPlayerMoveBack = true;
+                isStationMoveBack = true;
+            }
+
+        }
+    }
+    
+}
 -(void) treasureBack
 {
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
@@ -236,16 +288,11 @@ bool isMove;
             CCSprite *treasureData = (CCSprite *)b->GetUserData();
             
             if(treasureData.tag==TREASURE_TAG)
-            {
-                b2Vec2 force = b2Vec2(-b->GetLinearVelocity().x, -b->GetLinearVelocity().y);
-                b->SetLinearVelocity(force);
-            }
-            if(treasureData.tag==PLAYER_TAG)
-            {
-                b2Vec2 force = b2Vec2(TRAVEL_SPEED, 0);
-                b->SetLinearVelocity(force);
-                isMove = true;
-            }
+             {
+             b2Vec2 force = b2Vec2(-b->GetLinearVelocity().x*2, -b->GetLinearVelocity().y*2);
+             b->SetLinearVelocity(force);
+             }
+             
             if(treasureData.tag==SPACESTATION_TAG)
             {
                 b2Vec2 force = b2Vec2(TRAVEL_SPEED, 0);
@@ -419,7 +466,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     spaceStation = [[GameObject alloc] init];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
-    spaceStation = [GameObject spriteWithFile:@"Restart.png"];
+    spaceStation = [GameObject spriteWithFile:@"runway.png"];
     spaceStation.scale = 1.5;
     
     spaceStation.tag = SPACESTATION_TAG;
@@ -462,25 +509,10 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
 
 
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
-//    shipSpeedY = -acceleration.x * 50;
-    //shipSpeedX = -acceleration.y * 10;
+    shipSpeedY = -acceleration.x * 50;
     
-//    static float prevX=0;
-//    static float prevY=0;
-    
-    float accelX = (float)acceleration.x * 50;
-//    float accelY = (float) acceleration.y * 50;
-    
-    // accelerometer values are in "Portrait" mode. Change them to Landscape left
-    // multiply the gravity by 10
-
-    b2Vec2 gravity(0, -accelX*50);
-    playerBody->SetLinearVelocity(gravity);
-
-    //playerBody->ApplyForce(gravity,playerBody->GetWorldCenter());
-    //playerBody->ApplyLinearImpulse(gravity, playerBody->GetWorldCenter());
 }
-/*-
+
 -(void)updateShip{
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -489,21 +521,10 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     float newY = player.position.y + shipSpeedY;
     newY = MIN(MAX(newY, minY), maxY);
     
-//    float maxX = winSize.width - player.contentSize.width/2;
-//    float minX = player.contentSize.width/2;
-//    float newX = player.position.x + shipSpeedX;
-//    newX = MIN(MAX(newX, minX), maxX);
-    
-    player.position = ccp(player.position.x, newY);
-    
-    
-    
+    b2Vec2 position1(player.position.x, newY);
+    player->playerBody->SetTransform(position1, 0.0);
 }
 
--(void)update:(ccTime)delta{
-    [self updateShip];
-}
-*/
 
 - (void)pauseButtonSelected {
     //    [self zoomPause];
@@ -533,6 +554,14 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     }
     distance += dt*100;
     [hudLayer updateDistanceCounter:distance];
+    [self updateShip];
+}
+
+- (void) dealloc
+{
+    [[SimpleAudioEngine sharedEngine] stopEffect:firstBackgroundMusic];
+    [[SimpleAudioEngine sharedEngine] stopEffect:secondBackgroundMusic];
+	[super dealloc];
 }
 
 @end

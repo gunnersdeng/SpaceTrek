@@ -12,6 +12,7 @@
 #import "GameObject.h"
 #import "ContactListener.h"
 #import "Player.h"
+#import "SimpleAudioEngine.h"
 
 @class HUDLayer;
 @interface GameLayer : CCLayer {
@@ -44,15 +45,26 @@
     b2Body* playerBody;
     float shipSpeedY;
     float shipSpeedX;
+    
+    SimpleAudioEngine * backgroundAmbience;
+    
+    ALuint firstBackgroundMusic;
+    ALuint secondBackgroundMusic;
+    
 @public
     bool collision;
 }
 
--(void) treasureBack;
+-(void) playerBack;
+-(void) ChangeGoBackSound;
+- (void) dealloc;
 
 @property  (nonatomic, readwrite) b2World* world;
 @property  (nonatomic, readwrite) int distance;
 @property  (nonatomic, readwrite) int score;
 @property (nonatomic, readwrite) CCSpriteBatchNode* allBatchNode;
+@property  (nonatomic, readwrite) ALuint firstBackgroundMusic;
+@property  (nonatomic, readwrite) ALuint secondBackgroundMusic;
+
 
 @end
