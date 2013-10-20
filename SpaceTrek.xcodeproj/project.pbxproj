@@ -32,6 +32,7 @@
 		CF4B4ADD1813383D00912025 /* Player.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF4B4ADC1813383D00912025 /* Player.mm */; };
 		CF4B4AE41813435200912025 /* SpaceShip2.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF4B4AE21813435200912025 /* SpaceShip2.plist */; };
 		CF4B4AE51813435200912025 /* SpaceShip2.png in Resources */ = {isa = PBXBuildFile; fileRef = CF4B4AE31813435200912025 /* SpaceShip2.png */; };
+		F121428D1814979F00C50904 /* LoadingScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = F121428C1814979F00C50904 /* LoadingScene.mm */; };
 		F14122BD1803AB4800C1B8AD /* Button-Pause-icon-modified.png in Resources */ = {isa = PBXBuildFile; fileRef = F14122BC1803AB4800C1B8AD /* Button-Pause-icon-modified.png */; };
 		F14E4E70181304B4005D8190 /* HUDLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E4E6F181304B4005D8190 /* HUDLayer.mm */; };
 		F14E4E7A18130ED0005D8190 /* MENU.png in Resources */ = {isa = PBXBuildFile; fileRef = F14E4E7718130ED0005D8190 /* MENU.png */; };
@@ -265,6 +266,8 @@
 		CF4B4ADC1813383D00912025 /* Player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Player.mm; sourceTree = "<group>"; };
 		CF4B4AE21813435200912025 /* SpaceShip2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SpaceShip2.plist; sourceTree = "<group>"; };
 		CF4B4AE31813435200912025 /* SpaceShip2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpaceShip2.png; sourceTree = "<group>"; };
+		F121428B1814979F00C50904 /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScene.h; sourceTree = "<group>"; };
+		F121428C1814979F00C50904 /* LoadingScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LoadingScene.mm; sourceTree = "<group>"; };
 		F14122BC1803AB4800C1B8AD /* Button-Pause-icon-modified.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Pause-icon-modified.png"; sourceTree = "<group>"; };
 		F14E4E6E181304B4005D8190 /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
 		F14E4E6F181304B4005D8190 /* HUDLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HUDLayer.mm; sourceTree = "<group>"; };
@@ -1345,6 +1348,8 @@
 				F17B975F17FCDA0000BD6670 /* GameScene.mm */,
 				F1CA5DEC1813DD2700A6BE77 /* GameOverScene.h */,
 				F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */,
+				F121428B1814979F00C50904 /* LoadingScene.h */,
+				F121428C1814979F00C50904 /* LoadingScene.mm */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1671,6 +1676,7 @@
 				F17B96F717FCBB8000BD6670 /* b2CircleContact.cpp in Sources */,
 				F17B96FA17FCBB8000BD6670 /* b2Contact.cpp in Sources */,
 				75E28477180238680003E344 /* PauseLayer.mm in Sources */,
+				F121428D1814979F00C50904 /* LoadingScene.mm in Sources */,
 				F17B96FD17FCBB8000BD6670 /* b2ContactSolver.cpp in Sources */,
 				F17B970017FCBB8000BD6670 /* b2EdgeAndCircleContact.cpp in Sources */,
 				F17B970317FCBB8000BD6670 /* b2EdgeAndPolygonContact.cpp in Sources */,
