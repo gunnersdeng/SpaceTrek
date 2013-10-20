@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ContactListener::BeginContact(b2Contact*):ContactListener.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "spriteA.type">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[GameLayer treasureMovementLogic:]:GameLayer.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "treasureData.tag">
+            </PersistentString>
+            <PersistentString
+               value = "PLAYER_TAG">
+            </PersistentString>
+            <PersistentString
+               value = "world-&gt;GetBodyList()">
+            </PersistentString>
+            <PersistentString
+               value = "isReach">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
