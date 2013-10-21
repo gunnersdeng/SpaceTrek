@@ -25,6 +25,7 @@
         GameStage = gameStage;
         
         CCSprite *bg = [CCSprite spriteWithFile:@"loadingBackground.png"];
+        //bg.rotation = 90;
         bg.anchorPoint = ccp(0, 0);
         [self addChild:bg];
 
