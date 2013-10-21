@@ -47,7 +47,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 
                 [backgroundLayer reverseMap];
                 
-                [(Player *)playerSprite crashTransformAction];
+//                [(Player *)playerSprite crashTransformAction];
                 
                 
                 /*CCParticleSystem *collsion = [CCParticleExplosion node];
@@ -69,6 +69,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
                
                 
 
+                [[SimpleAudioEngine sharedEngine]playEffect:@"CrashSong.mp3"];
                 
                 [layer playerBack];
                 [layer ChangeGoBackSound];
@@ -87,7 +88,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 CCScene* scene = [[CCDirector sharedDirector] runningScene];
                 GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
                 
-                
+                [[SimpleAudioEngine sharedEngine]playEffect:@"CollectTreasure.wav"];
                 
                 layer.score += 10;
                 

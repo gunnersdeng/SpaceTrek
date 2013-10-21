@@ -134,9 +134,12 @@ bool isStationMoveBack;
     //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"PlayMode_Music_New.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayMode_Music_back.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayMode_Music_New.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"CrashSong.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"LaunchSong.mp3"];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
         
-    firstBackgroundMusic = [[SimpleAudioEngine sharedEngine] playEffect:@"PlayMode_Music_New.mp3"];
+    firstBackgroundMusic = [[SimpleAudioEngine sharedEngine]playEffect:@"PlayMode_Music_New.mp3"];
+    [[SimpleAudioEngine sharedEngine]playEffect:@"LaunchSong.mp3"];
 }
 
 - (void)ChangeGoBackSound
@@ -219,6 +222,7 @@ bool isStationMoveBack;
                 [self schedule:@selector(playerMoveFinished:)];
                 self.isAccelerometerEnabled=YES;
             }
+            /*
             if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5*4)<=10 && isPlayerMoveBack)
             {
                 b2Vec2 force = b2Vec2(0, 0);
@@ -229,7 +233,8 @@ bool isStationMoveBack;
                 [self treasureBack];
                 isPlayerMoveBack = false;
             }
-            if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-50)<=10 && isStationMoveBack)
+             */
+            if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-winSize.width/2)<=10 && isStationMoveBack)
             {
                 b2Vec2 force = b2Vec2(0, 0);
                 b->SetLinearVelocity(force);
@@ -252,21 +257,21 @@ bool isStationMoveBack;
 
 -(void) playerBack
 {
-    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
-        if (b->GetUserData() != NULL) {
-            CCSprite *treasureData = (CCSprite *)b->GetUserData();
-            
-            /*if(treasureData.tag==TREASURE_TAG)
-            {
-                b2Vec2 force = b2Vec2(-b->GetLinearVelocity().x, -b->GetLinearVelocity().y);
-                b->SetLinearVelocity(force);
-            }*/
-            if(treasureData.tag==PLAYER_TAG)
-            {
-                
-                b2Vec2 force = b2Vec2(TRAVEL_SPEED, 0);
-                b->SetLinearVelocity(force);
-                
+//    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
+//        if (b->GetUserData() != NULL) {
+//            CCSprite *treasureData = (CCSprite *)b->GetUserData();
+//            
+//            /*if(treasureData.tag==TREASURE_TAG)
+//            {
+//                b2Vec2 force = b2Vec2(-b->GetLinearVelocity().x, -b->GetLinearVelocity().y);
+//                b->SetLinearVelocity(force);
+//            }*/
+//            if(treasureData.tag==PLAYER_TAG)
+//            {
+//                
+//                b2Vec2 force = b2Vec2(TRAVEL_SPEED, 0);
+//                b->SetLinearVelocity(force);
+    
 //                
 //                b2Vec2 force = b2Vec2(10000000,0);
 //                b->ApplyForce(force, b->GetWorldCenter());
@@ -275,10 +280,10 @@ bool isStationMoveBack;
                 
                 isPlayerMoveBack = true;
                 isStationMoveBack = true;
-            }
-
-        }
-    }
+//            }
+//
+//        }
+//    }
     
 }
 -(void) treasureBack
@@ -364,7 +369,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     b2FixtureDef treasureShapeDef;
     treasureShapeDef.shape = &circle;
-    treasureShapeDef.density = 1.0f;
+    treasureShapeDef.density = 0.1f;
     treasureShapeDef.friction = 0.f;
     treasureShapeDef.restitution = 1.0f;
     treasureShapeDef.filter.categoryBits = 0x2;
@@ -521,8 +526,24 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     float newY = player.position.y + shipSpeedY;
     newY = MIN(MAX(newY, minY), maxY);
     
-    b2Vec2 position1(player.position.x, newY);
-    player->playerBody->SetTransform(position1, 0.0);
+    if(isPlayerMoveBack)
+    {
+        [player crashTransformAction];
+        b2Vec2 position1(winSize.width/5*4, player.position.y);
+        player->playerBody->SetTransform(position1, 0.0);
+        [self unschedule:@selector(playerMoveFinished:)];
+        [self unschedule:@selector(gameLogic:)];
+        [self unschedule:@selector(addTreasure:)];
+        [self treasureBack];
+        isPlayerMoveBack=false;
+    }
+    else
+    {
+        b2Vec2 position1(player.position.x, newY);
+        player->playerBody->SetTransform(position1, 0.0);
+    }
+    
+    
 }
 
 

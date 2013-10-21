@@ -11,6 +11,9 @@
 		757BA8441814A2B7006645AA /* Character.plist in Resources */ = {isa = PBXBuildFile; fileRef = 757BA8421814A2B7006645AA /* Character.plist */; };
 		757BA8451814A2B7006645AA /* Character.png in Resources */ = {isa = PBXBuildFile; fileRef = 757BA8431814A2B7006645AA /* Character.png */; };
 		757BA84B1814A559006645AA /* loadingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 757BA84A1814A559006645AA /* loadingBackground.png */; };
+		757BA84F1814A7D4006645AA /* LaunchSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 757BA84D1814A7D4006645AA /* LaunchSong.mp3 */; };
+		757BA8531814B26C006645AA /* CollectTreasure.wav in Resources */ = {isa = PBXBuildFile; fileRef = 757BA8521814B26C006645AA /* CollectTreasure.wav */; };
+		757BA8551814B869006645AA /* CrashSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 757BA8541814B869006645AA /* CrashSong.mp3 */; };
 		75954A2018023E0600597B3D /* GameSceneSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 75954A1F18023E0600597B3D /* GameSceneSound.mp3 */; };
 		75BB0DA918053E4D0076765A /* Menu_Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 75BB0DA818053E4D0076765A /* Menu_Music.mp3 */; };
 		75BB0DAB1805C6060076765A /* background-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BB0DAA1805C6060076765A /* background-menu.png */; };
@@ -244,6 +247,9 @@
 		757BA8421814A2B7006645AA /* Character.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Character.plist; sourceTree = "<group>"; };
 		757BA8431814A2B7006645AA /* Character.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Character.png; sourceTree = "<group>"; };
 		757BA84A1814A559006645AA /* loadingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingBackground.png; sourceTree = "<group>"; };
+		757BA84D1814A7D4006645AA /* LaunchSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LaunchSong.mp3; sourceTree = "<group>"; };
+		757BA8521814B26C006645AA /* CollectTreasure.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CollectTreasure.wav; sourceTree = "<group>"; };
+		757BA8541814B869006645AA /* CrashSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CrashSong.mp3; sourceTree = "<group>"; };
 		75954A1F18023E0600597B3D /* GameSceneSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameSceneSound.mp3; sourceTree = "<group>"; };
 		75BB0DA818053E4D0076765A /* Menu_Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Menu_Music.mp3; sourceTree = "<group>"; };
 		75BB0DAA1805C6060076765A /* background-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-menu.png"; sourceTree = "<group>"; };
@@ -707,6 +713,9 @@
 		75E284701802218B0003E344 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				757BA8541814B869006645AA /* CrashSong.mp3 */,
+				757BA8521814B26C006645AA /* CollectTreasure.wav */,
+				757BA84D1814A7D4006645AA /* LaunchSong.mp3 */,
 				75BB0DAC1805C82C0076765A /* PlayMode_Music_New.mp3 */,
 				75BB0DA818053E4D0076765A /* Menu_Music.mp3 */,
 				75D9DEC9181451AA00CC87E7 /* PlayMode_Music_back.mp3 */,
@@ -1503,12 +1512,15 @@
 				F17B951F17FCBB7A00BD6670 /* Icon-Small-50.png in Resources */,
 				75E2846718021E810003E344 /* scroll.png in Resources */,
 				F14E4E7A18130ED0005D8190 /* MENU.png in Resources */,
+				757BA84F1814A7D4006645AA /* LaunchSong.mp3 in Resources */,
 				757BA84B1814A559006645AA /* loadingBackground.png in Resources */,
 				F17B952117FCBB7A00BD6670 /* Icon-Small.png in Resources */,
 				F17B952317FCBB7A00BD6670 /* Icon-Small@2x.png in Resources */,
 				75BB0DB81805D1FC0076765A /* PLAY.png in Resources */,
 				F17B952517FCBB7A00BD6670 /* Icon.png in Resources */,
+				757BA8551814B869006645AA /* CrashSong.mp3 in Resources */,
 				75E2846918021F200003E344 /* treasure_type_1_y.png in Resources */,
+				757BA8531814B26C006645AA /* CollectTreasure.wav in Resources */,
 				F17B952717FCBB7A00BD6670 /* Icon@2x.png in Resources */,
 				F17B952A17FCBB7B00BD6670 /* iTunesArtwork in Resources */,
 				F17B968317FCBB7F00BD6670 /* ChangeLog in Resources */,
