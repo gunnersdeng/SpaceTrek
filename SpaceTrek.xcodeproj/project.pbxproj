@@ -235,6 +235,8 @@
 		F17B976517FCDCFC00BD6670 /* level-1-background-optional.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F17B976417FCDCFC00BD6670 /* level-1-background-optional.jpg */; };
 		F17B976817FCEC9900BD6670 /* ship-level-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F17B976717FCEC9900BD6670 /* ship-level-1.png */; };
 		F1801E1818028474002BDAF1 /* btn_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = F1801E1718028474002BDAF1 /* btn_pause.png */; };
+		F192F3DA1817984F008D4DC0 /* StoreLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F192F3D91817984F008D4DC0 /* StoreLayer.mm */; };
+		F192F3DC18179A18008D4DC0 /* storeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F192F3DB18179A18008D4DC0 /* storeBackground.png */; };
 		F1CA5DEE1813DD2700A6BE77 /* GameOverScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */; };
 		F1CA5DF11813DEA900A6BE77 /* GameOverLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */; };
 		F1F975BE1801E669009B9148 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1F975BD1801E668009B9148 /* BackgroundLayer.mm */; };
@@ -679,6 +681,9 @@
 		F17B976417FCDCFC00BD6670 /* level-1-background-optional.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "level-1-background-optional.jpg"; sourceTree = "<group>"; };
 		F17B976717FCEC9900BD6670 /* ship-level-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ship-level-1.png"; sourceTree = "<group>"; };
 		F1801E1718028474002BDAF1 /* btn_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_pause.png; sourceTree = "<group>"; };
+		F192F3D81817984F008D4DC0 /* StoreLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreLayer.h; sourceTree = "<group>"; };
+		F192F3D91817984F008D4DC0 /* StoreLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StoreLayer.mm; sourceTree = "<group>"; };
+		F192F3DB18179A18008D4DC0 /* storeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = storeBackground.png; sourceTree = "<group>"; };
 		F1CA5DEC1813DD2700A6BE77 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = GameOverScene.mm; sourceTree = "<group>"; };
 		F1CA5DEF1813DEA900A6BE77 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
@@ -1381,6 +1386,8 @@
 				F14E4E6F181304B4005D8190 /* HUDLayer.mm */,
 				F1CA5DEF1813DEA900A6BE77 /* GameOverLayer.h */,
 				F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */,
+				F192F3D81817984F008D4DC0 /* StoreLayer.h */,
+				F192F3D91817984F008D4DC0 /* StoreLayer.mm */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -1399,6 +1406,7 @@
 		F17B975817FCD5C500BD6670 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				F192F3DB18179A18008D4DC0 /* storeBackground.png */,
 				757BA8561814B9E6006645AA /* runway.png */,
 				757BA84A1814A559006645AA /* loadingBackground.png */,
 				75E592AC180F47CA002B088B /* spaceship-boom-step-2.png */,
@@ -1519,6 +1527,7 @@
 				75BB0DB81805D1FC0076765A /* PLAY.png in Resources */,
 				F17B952517FCBB7A00BD6670 /* Icon.png in Resources */,
 				757BA8551814B869006645AA /* CrashSong.mp3 in Resources */,
+				F192F3DC18179A18008D4DC0 /* storeBackground.png in Resources */,
 				75E2846918021F200003E344 /* treasure_type_1_y.png in Resources */,
 				757BA8531814B26C006645AA /* CollectTreasure.wav in Resources */,
 				F17B952717FCBB7A00BD6670 /* Icon@2x.png in Resources */,
@@ -1632,6 +1641,7 @@
 				F17B961217FCBB7E00BD6670 /* CCDirectorIOS.m in Sources */,
 				F17B961517FCBB7E00BD6670 /* CCES2Renderer.m in Sources */,
 				F17B961917FCBB7E00BD6670 /* CCGLView.m in Sources */,
+				F192F3DA1817984F008D4DC0 /* StoreLayer.mm in Sources */,
 				F17B961D17FCBB7E00BD6670 /* CCTouchDispatcher.m in Sources */,
 				F17B962017FCBB7E00BD6670 /* CCTouchHandler.m in Sources */,
 				F17B962417FCBB7E00BD6670 /* CCDirectorMac.m in Sources */,

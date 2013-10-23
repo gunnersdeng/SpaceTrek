@@ -22,6 +22,7 @@
 #define HUD_LAYER_TAG 1
 #define GAME_LAYER_TAG 2
 #define PAUSE_LAYER_TAG 3
+#define STORE_LAYER_TAG 4
 
 #define PLAYER_TAG 0
 #define COLLECTOR_TAG 1

@@ -7,7 +7,7 @@
 //
 
 #import "Player.h"
-
+#import "GameLayer.h"
 
 @implementation Player
 
@@ -55,6 +55,7 @@
     
     
     
+    
     b2Vec2 force = b2Vec2(100, 0);
     playerBody->ApplyLinearImpulse(force, playerBodyDef.position);
     
@@ -92,9 +93,20 @@
           [NSString stringWithFormat:@"spaceman%d.png", i]]];
     }
     spacemanAnimation = [CCAnimation animationWithSpriteFrames:spacemanAnimFrames delay:0.09f];
-    spacemanAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: spacemanAnimation] times:200];
+    spacemanAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: spacemanAnimation] times:2];
     
-    [self runAction: [CCSequence actions:crashAction,spacemanAction,nil]];
+    id actionMoveDone = [CCCallFuncN actionWithTarget:self
+                                             selector:@selector(crashTransformActionFinished:)];
+    CCSequence *seq = nil;
+    seq = [CCSequence actions:crashAction,spacemanAction,nil];
+
+    [self runAction:[CCSequence actions:seq, actionMoveDone, nil]];
 }
 
+-(void) crashTransformActionFinished:(id)sender
+{
+    CCScene* scene = [[CCDirector sharedDirector] runningScene];
+    GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
+    [layer resumeSchedulerAndActions];
+}
 @end

@@ -22,6 +22,7 @@
 bool isReach;
 bool isPlayerMoveBack;
 bool isStationMoveBack;
+bool isPlayerBacktoStation;
 
 -(id) init{
     self = [super init];
@@ -35,6 +36,7 @@ bool isStationMoveBack;
         
         isPlayerMoveBack = false;
         isStationMoveBack = false;
+        isPlayerBacktoStation = false;
         self.tag = GAME_LAYER_TAG;
         
         
@@ -53,7 +55,7 @@ bool isStationMoveBack;
         player = [Player spriteWithSpriteFrameName:@"spaceship1.png"];
         [player setType:(gameObjectPlayer)];
         [player initAnimation:allBatchNode];
-        
+
         /*
         player = [GameObject spriteWithFile:@"spaceship-level-2.png"];
         [player setType:gameObjectPlayer];
@@ -227,24 +229,29 @@ bool isStationMoveBack;
             {
                 b2Vec2 force = b2Vec2(0, 0);
                 b->SetLinearVelocity(force);
-                [self unschedule:@selector(playerMoveFinished:)];
-                [self unschedule:@selector(gameLogic:)];
-                [self unschedule:@selector(addTreasure:)];
-                [self treasureBack];
                 isPlayerMoveBack = false;
             }
-             */
+            */
             if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-winSize.width/2)<=10 && isStationMoveBack)
             {
                 b2Vec2 force = b2Vec2(0, 0);
                 b->SetLinearVelocity(force);
                 isStationMoveBack = false;
                 
-                [self unscheduleAllSelectors];
-                [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+                isPlayerBacktoStation = true;
+                b2Vec2 forcePlayer = b2Vec2(-TRAVEL_SPEED, 0);
+                player->playerBody->SetLinearVelocity(forcePlayer);
                 
             }
+            if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-treasureData.contentSize.width)<=10 && isPlayerBacktoStation)
+            {
+                b2Vec2 force = b2Vec2(0, 0);
+                b->SetLinearVelocity(force);
+                isPlayerBacktoStation = false;
                 
+                [self collectTreasure];
+                
+            }
             treasureData.position = ccp(b->GetPosition().x,
                                             b->GetPosition().y);
             treasureData.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
@@ -254,6 +261,14 @@ bool isStationMoveBack;
     }
 }
 
+-(void) collectTreasure
+{
+    
+    
+    [self unscheduleAllSelectors];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+    
+}
 
 -(void) playerBack
 {
@@ -528,9 +543,12 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     if(isPlayerMoveBack)
     {
+        [self pauseSchedulerAndActions];
         [player crashTransformAction];
+        
         b2Vec2 position1(winSize.width/5*4, player.position.y);
         player->playerBody->SetTransform(position1, 0.0);
+        
         [self unschedule:@selector(playerMoveFinished:)];
         [self unschedule:@selector(gameLogic:)];
         [self unschedule:@selector(addTreasure:)];

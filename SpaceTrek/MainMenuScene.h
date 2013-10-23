@@ -13,6 +13,13 @@
     
 }
 
+@property (nonatomic, getter = isShowingStore, setter = setShowingStore:) BOOL showingStore;
+
+
 +(CCScene *) scene;
+
++(MainMenuScene*) sharedMainMenuScene;
+
+- (void)showStore;
 
 @end

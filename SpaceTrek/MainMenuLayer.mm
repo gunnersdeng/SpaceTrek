@@ -11,6 +11,7 @@
 #import "GameScene.h"
 #import "SimpleAudioEngine.h"
 #import "LoadingScene.h"
+#import "MainMenuScene.h"
 
 CCSprite *bg;
 
@@ -32,7 +33,7 @@ CCSprite *bg;
         
         CCMenuItemSprite *playButton = [CCMenuItemImage itemWithNormalImage:@"PLAY.png" selectedImage:@"PLAY.png" target:self selector:@selector(buttonPlayAction:)];
         
-        CCMenuItemSprite *helpButton = [CCMenuItemImage itemWithNormalImage:@"HELP.png" selectedImage:@"HELP.png" target:self selector:@selector(buttonHelpAction)];
+        CCMenuItemSprite *helpButton = [CCMenuItemImage itemWithNormalImage:@"HELP.png" selectedImage:@"HELP.png" target:self selector:@selector(buttonHelpAction:)];
         
         CCMenuItemSprite *storeButton = [CCMenuItemImage itemWithNormalImage:@"STORE.png" selectedImage:@"STORE.png" target:self selector:@selector(buttonStoreAction)];
         
@@ -43,10 +44,19 @@ CCSprite *bg;
         Menu.position=ccp(768/5*2,1024/5*2);
         [Menu alignItemsHorizontallyWithPadding:15];
         
-        [self addChild:Menu z:100];
+        [self addChild:Menu z:1];
         
         
-        
+        //fake
+        storeBackground = [CCMenuItemImage itemWithNormalImage:@"storeBackground.png" selectedImage:@"storeBackground.png" target:self selector:@selector(storeMenuAction)];
+        storeBackground.visible = false;
+        storeBackground.anchorPoint = ccp(0, 0);
+        CCMenu *Menu3 = [CCMenu menuWithItems:storeBackground, nil];
+        Menu3.anchorPoint = ccp(0, 0);
+        Menu3.position=ccp(0, 0);
+
+        [self addChild:Menu3 z:20];
+        //
     }
     
     return self;
@@ -58,23 +68,30 @@ CCSprite *bg;
 }
 
 -(void) buttonPlayAction:(id)sender {
-    //CCScene *gameScene = [GameScene sceneWithState:1];
-
-//    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:gameScene]];
-    
-    
-    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:gameScene]];
     [[CCDirector sharedDirector] replaceScene:[LoadingScene sceneWithTargetScene:GAME_STATE_ONE]];
 }
 
--(void) buttonHelpAction
+-(void) buttonHelpAction:(id)sender
 {
     
 }
 
 -(void) buttonStoreAction
 {
-    
+    storeBackground.visible = true;
+    /*
+    if (![[MainMenuScene sharedMainMenuScene] isShowingStore])
+    {
+        [[MainMenuScene sharedMainMenuScene] setShowingStore:YES];
+        [[MainMenuScene sharedMainMenuScene] showStore];
+        [[CCDirector sharedDirector] pause];
+    }
+     */
+}
+
+-(void) storeMenuAction
+{
+    storeBackground.visible = false;
 }
 
 @end
