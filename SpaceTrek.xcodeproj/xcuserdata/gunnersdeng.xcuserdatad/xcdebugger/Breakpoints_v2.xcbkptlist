@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpaceTrek/GameLayer.h"
-            timestampString = "403987010.511003"
+            timestampString = "404258058.679879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "@interface GameLayer"
             landmarkType = "2">
          </BreakpointContent>
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpaceTrek/GameLayer.mm"
-            timestampString = "404009610.828406"
+            timestampString = "404269017.521077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
-            landmarkName = "@implementation GameLayer"
-            landmarkType = "3">
+            startingLineNumber = "445"
+            endingLineNumber = "445"
+            landmarkName = "-addTreasure"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

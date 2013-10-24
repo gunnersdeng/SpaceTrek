@@ -13,6 +13,7 @@
 #import "ContactListener.h"
 #import "Player.h"
 #import "SimpleAudioEngine.h"
+#import <vector>
 
 @class HUDLayer;
 @interface GameLayer : CCLayer {
@@ -50,6 +51,8 @@
     
     ALuint firstBackgroundMusic;
     ALuint secondBackgroundMusic;
+    
+    std::vector<b2Body*> collectedTreasure;
     
 @public
     bool collision;

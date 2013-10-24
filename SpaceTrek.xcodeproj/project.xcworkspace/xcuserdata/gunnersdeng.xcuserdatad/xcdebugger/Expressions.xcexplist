@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[GameLayer collectTreasure]:GameLayer.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "collectedTreasure">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[GameLayer treasureBack]:GameLayer.mm">
          <PersistentStrings>
             <PersistentString
@@ -23,13 +31,13 @@
                value = "PLAYER_TAG">
             </PersistentString>
             <PersistentString
-               value = "isReach">
+               value = "treasureData.tag">
             </PersistentString>
             <PersistentString
                value = "world-&gt;GetBodyList()">
             </PersistentString>
             <PersistentString
-               value = "treasureData.tag">
+               value = "isReach">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

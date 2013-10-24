@@ -88,7 +88,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 CCScene* scene = [[CCDirector sharedDirector] runningScene];
                 GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
                 
-                [[SimpleAudioEngine sharedEngine]playEffect:@"CollectTreasure.wav"];
+                
                 
                 layer.score += 10;
                 

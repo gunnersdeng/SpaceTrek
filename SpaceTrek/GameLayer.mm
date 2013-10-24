@@ -33,6 +33,7 @@ bool isPlayerBacktoStation;
         [self addChild: bg z:-10];
         */
         
+        collectedTreasure.clear();
         
         isPlayerMoveBack = false;
         isStationMoveBack = false;
@@ -211,9 +212,14 @@ bool isPlayerBacktoStation;
             
             if(treasureData.tag == TREASURE_DESTROY_TAG)
             {
-                [self removeChild:treasureData cleanup:YES];
-                world->DestroyBody(b);
-                continue;
+                //[self removeChild:treasureData cleanup:YES];
+                //world->DestroyBody(b);
+                if ( treasureData.visible ){
+                    treasureData.visible = false;
+                    collectedTreasure.push_back(b);
+                    [[SimpleAudioEngine sharedEngine]playEffect:@"CollectTreasure.wav"];
+                    continue;
+                }
             }
             
             if(treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5)<=0.5 && !isReach)
@@ -264,10 +270,54 @@ bool isPlayerBacktoStation;
 -(void) collectTreasure
 {
     
+//    b2Vec2 playPosition = b2Vec2(player->playerBody->GetPosition().x, player->playerBody->GetPosition().y);
+    [self unscheduleAllSelectors];
+
+    b2Vec2 playPosition = player->playerBody->GetPosition();
     
+    
+    for (int i=0; i<collectedTreasure.size(); i++)
+    {
+        b2Body *b = collectedTreasure[i];
+        CCSprite *treasureData = (CCSprite *)b->GetUserData();
+        b->SetTransform(playPosition, 0.0);
+        treasureData.position =  ccp(b->GetPosition().x,
+            b->GetPosition().y);
+        b->SetLinearVelocity(b2Vec2(100000+rand()%300000, -10000+rand()%20000));
+        treasureData.visible = true;
+    }
+    world->DestroyBody(player->playerBody);
+    [self schedule:@selector(treasureCollectMovementLogic:)];
+    world->SetGravity(b2Vec2(-30.0f, 0.0f));
+   //[self unschedule:@selector(treasureMovementLogic:)];
+
+    //[self unscheduleAllSelectors];
+   //[self schedule:@selector(JumpToGameOverScene:) interval:3.0f];
+}
+
+-(void) treasureCollectMovementLogic:(ccTime)dt
+{
+
+    world->Step(dt, 10, 10);
+    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
+        if (b->GetUserData() != NULL) {
+            CCSprite *treasureData = (CCSprite *)b->GetUserData();
+            
+            treasureData.position = ccp(b->GetPosition().x,
+                                        b->GetPosition().y);
+            treasureData.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+            
+            
+        }
+    }
+}
+
+
+
+-(void)JumpToGameOverScene:(ccTime)delta
+{
     [self unscheduleAllSelectors];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
-    
 }
 
 -(void) playerBack
@@ -384,7 +434,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     b2FixtureDef treasureShapeDef;
     treasureShapeDef.shape = &circle;
-    treasureShapeDef.density = 0.1f;
+    treasureShapeDef.density = 1.0f;
     treasureShapeDef.friction = 0.f;
     treasureShapeDef.restitution = 1.0f;
     treasureShapeDef.filter.categoryBits = 0x2;
