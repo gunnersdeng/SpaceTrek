@@ -309,13 +309,13 @@ bool isCollect;
         b->SetTransform(playPosition, 0.0);
         treasureData.position =  ccp(b->GetPosition().x,
             b->GetPosition().y);
-        b->SetLinearVelocity(b2Vec2(100000+rand()%300000, -10000+rand()%20000));
+        b->SetLinearVelocity(b2Vec2(rand()%30000, -10000+rand()%20000));
         treasureData.visible = true;
     }
     isCollect = true;
     world->DestroyBody(player->playerBody);
     [self schedule:@selector(treasureCollectMovementLogic:)];
-    world->SetGravity(b2Vec2(-30.0f, 0.0f));
+    world->SetGravity(b2Vec2(-3.0f, 0.0f));
    //[self unschedule:@selector(treasureMovementLogic:)];
 
     //[self unscheduleAllSelectors];
@@ -330,7 +330,7 @@ bool isCollect;
         if (b->GetUserData() != NULL) {
             CCSprite *treasureData = (CCSprite *)b->GetUserData();
             
-            if(treasureData.tag == TREASURE_COLLECT_TAG)
+            if(treasureData.tag == TREASURE_COLLECT_TAG || treasureData.tag == TREASURE_TAG)
             {
                 [self removeChild:treasureData cleanup:YES];
                 world->DestroyBody(b);
@@ -459,8 +459,9 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     b2Body* treasureBody = world->CreateBody(&treasureBodyDef);
     
-    b2Vec2 force = b2Vec2(-TRAVEL_SPEED, (treasureDestinationY-treasureStartY)/(winSize.width/TRAVEL_SPEED));
-    treasureBody->ApplyLinearImpulse(force, treasureBodyDef.position);
+    b2Vec2 force = b2Vec2(-TRAVEL_SPEED*20, (treasureDestinationY-treasureStartY)/(winSize.width/TRAVEL_SPEED)*10);
+//    treasureBody->ApplyLinearImpulse(force, treasureBodyDef.position);
+    treasureBody->SetLinearVelocity(force);
     
     b2CircleShape circle;
     circle.m_radius = treasure.contentSize.width/2;
@@ -468,7 +469,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     b2FixtureDef treasureShapeDef;
     treasureShapeDef.shape = &circle;
     treasureShapeDef.density = 1.0f;
-    treasureShapeDef.friction = 0.f;
+    treasureShapeDef.friction = 0.2f;
     treasureShapeDef.restitution = 1.0f;
     treasureShapeDef.filter.categoryBits = 0x2;
     treasureShapeDef.filter.maskBits = 0xFFFF-0x2;

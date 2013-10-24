@@ -9,6 +9,8 @@
 #ifndef SpaceTrek_Constants_h
 #define SpaceTrek_Constants_h
 
+#define PTM_RATIO 32
+
 #define TRAVEL_SPEED 150
 #define MINTREASURE_DES_X 250
 #define LEFTBOUNDARYSAVETREASURE 1024
