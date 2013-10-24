@@ -23,12 +23,14 @@
 #define GAME_LAYER_TAG 2
 #define PAUSE_LAYER_TAG 3
 #define STORE_LAYER_TAG 4
+#define BACKGROUND_TREASURE_TAG 5
 
 #define PLAYER_TAG 0
 #define COLLECTOR_TAG 1
 #define TREASURE_TAG 2
 #define TREASURE_DESTROY_TAG 3
 #define SPACESTATION_TAG 4
+#define TREASURE_COLLECT_TAG 5
 
 
 
@@ -37,7 +39,8 @@ typedef enum {
     gameObjectPlayer=1,
     gameObjectCollector=2,
     gameObjectTreasure1=3,
-    gameObjectSpaceStation=4
+    gameObjectSpaceStation=4,
+    gameObjectBackgroundTreasure=5
 } GameObjectType;
 
 

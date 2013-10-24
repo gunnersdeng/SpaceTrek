@@ -23,6 +23,7 @@ bool isReach;
 bool isPlayerMoveBack;
 bool isStationMoveBack;
 bool isPlayerBacktoStation;
+bool isCollect;
 
 -(id) init{
     self = [super init];
@@ -38,6 +39,7 @@ bool isPlayerBacktoStation;
         isPlayerMoveBack = false;
         isStationMoveBack = false;
         isPlayerBacktoStation = false;
+        isCollect = false;
         self.tag = GAME_LAYER_TAG;
         
         
@@ -229,6 +231,8 @@ bool isPlayerBacktoStation;
                 isReach = true;
                 [self schedule:@selector(playerMoveFinished:)];
                 self.isAccelerometerEnabled=YES;
+                
+                self.isTouchEnabled = YES;
             }
             /*
             if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5*4)<=10 && isPlayerMoveBack)
@@ -267,10 +271,32 @@ bool isPlayerBacktoStation;
     }
 }
 
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if(isCollect)
+    {
+        UITouch *touch = [touches anyObject];
+        CGPoint location = [touch locationInView: [touch view]];
+        location = [[CCDirector sharedDirector] convertToGL: location];
+        b2Vec2 position = b2Vec2(location.x, location.y);
+        for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
+            if (b->GetUserData() != NULL) {
+                b2Fixture *f = b->GetFixtureList();
+                CCSprite *treasureData = (CCSprite *)b->GetUserData();
+                if(treasureData.tag!=SPACESTATION_TAG && f->TestPoint(position))
+                {
+                    CCLOG(@"here 0");
+                    treasureData.tag = TREASURE_COLLECT_TAG;
+                }
+            
+            }
+        }
+    }
+}
+
 -(void) collectTreasure
 {
     
-//    b2Vec2 playPosition = b2Vec2(player->playerBody->GetPosition().x, player->playerBody->GetPosition().y);
     [self unscheduleAllSelectors];
 
     b2Vec2 playPosition = player->playerBody->GetPosition();
@@ -286,6 +312,7 @@ bool isPlayerBacktoStation;
         b->SetLinearVelocity(b2Vec2(100000+rand()%300000, -10000+rand()%20000));
         treasureData.visible = true;
     }
+    isCollect = true;
     world->DestroyBody(player->playerBody);
     [self schedule:@selector(treasureCollectMovementLogic:)];
     world->SetGravity(b2Vec2(-30.0f, 0.0f));
@@ -303,6 +330,12 @@ bool isPlayerBacktoStation;
         if (b->GetUserData() != NULL) {
             CCSprite *treasureData = (CCSprite *)b->GetUserData();
             
+            if(treasureData.tag == TREASURE_COLLECT_TAG)
+            {
+                [self removeChild:treasureData cleanup:YES];
+                world->DestroyBody(b);
+                continue;
+            }
             treasureData.position = ccp(b->GetPosition().x,
                                         b->GetPosition().y);
             treasureData.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
@@ -444,6 +477,58 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
 
 }
+-(void)addBackgroundTreasure
+{
+    GameObject *treasure;
+    treasure = [[GameObject alloc] init];
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    if ( arc4random()%2==0 ){
+        treasure = [GameObject spriteWithFile:@""];
+        treasure.scale = 1.5;
+    }else{
+        treasure = [GameObject spriteWithFile:@""];
+        treasure.scale = 2;
+    }
+    treasure.tag = BACKGROUND_TREASURE_TAG;
+    [treasure setType:gameObjectBackgroundTreasure];
+    int treasureStartY = GetRandom( treasure.contentSize.height/2, winSize.height - treasure.contentSize.height/2 );
+    int treasureDestinationY = GetRandomGaussian( treasureStartY-winSize.height, treasureStartY+winSize.height );
+    
+    treasure.position = ccp(winSize.width - treasure.contentSize.width/2, treasureStartY);
+    
+    [self addChild:treasure];
+    
+    b2BodyDef treasureBodyDef;
+    treasureBodyDef.type = b2_dynamicBody;
+    treasureBodyDef.position.Set(winSize.width - treasure.contentSize.width/2, treasureStartY);
+    treasureBodyDef.userData = treasure;
+    
+    
+    
+    
+    treasureBodyDef.userData = (__bridge_retained void*) treasure;
+    
+    b2Body* treasureBody = world->CreateBody(&treasureBodyDef);
+    
+    b2Vec2 force = b2Vec2(-TRAVEL_SPEED/10, (treasureDestinationY-treasureStartY)/(winSize.width/TRAVEL_SPEED));
+    treasureBody->ApplyLinearImpulse(force, treasureBodyDef.position);
+    
+    b2CircleShape circle;
+    circle.m_radius = treasure.contentSize.width/2;
+    
+    b2FixtureDef treasureShapeDef;
+    treasureShapeDef.shape = &circle;
+    treasureShapeDef.density = 1.0f;
+    treasureShapeDef.friction = 0.f;
+    treasureShapeDef.restitution = 1.0f;
+    treasureShapeDef.filter.categoryBits = 0x2;
+    treasureShapeDef.filter.maskBits = 0xFFFF-0x2-0x1-0x3;
+    
+    treasureBody->CreateFixture(&treasureShapeDef);
+    
+    
+}
+
 /*
 -(void)addTreasure {
     
