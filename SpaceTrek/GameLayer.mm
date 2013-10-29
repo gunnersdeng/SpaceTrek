@@ -315,11 +315,11 @@ bool isCollect;
     isCollect = true;
     world->DestroyBody(player->playerBody);
     [self schedule:@selector(treasureCollectMovementLogic:)];
-    world->SetGravity(b2Vec2(-3.0f, 0.0f));
+    world->SetGravity(b2Vec2(-10.0f, 0.0f));
    //[self unschedule:@selector(treasureMovementLogic:)];
 
     //[self unscheduleAllSelectors];
-   //[self schedule:@selector(JumpToGameOverScene:) interval:3.0f];
+   [self schedule:@selector(JumpToGameOverScene:) interval:10.0f];
 }
 
 -(void) treasureCollectMovementLogic:(ccTime)dt
@@ -431,13 +431,14 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     GameObject *treasure;
     treasure = [[GameObject alloc] init];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    if ( arc4random()%2==0 ){
-        treasure = [GameObject spriteWithFile:@"treasure_type_2_blk.png"];
-        treasure.scale = 1.5;
-    }else{
-        treasure = [GameObject spriteWithFile:@"treasure_type_1_y.png"];
+    int treasureIndex = arc4random()%7+1;
+    treasure = [GameObject spriteWithFile: [NSString stringWithFormat:@"treasure_type_%d.png", treasureIndex] ];
+    if ( treasureIndex == 1 ){
         treasure.scale = 2;
+    }else{
+        treasure.scale = 1.5;
     }
+    
     treasure.tag = TREASURE_TAG;
     [treasure setType:gameObjectTreasure1];
     int treasureStartY = GetRandom( treasure.contentSize.height/2, winSize.height - treasure.contentSize.height/2 );
@@ -468,7 +469,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     b2FixtureDef treasureShapeDef;
     treasureShapeDef.shape = &circle;
-    treasureShapeDef.density = 1.0f;
+    treasureShapeDef.density = 3.0f;
     treasureShapeDef.friction = 0.2f;
     treasureShapeDef.restitution = 1.0f;
     treasureShapeDef.filter.categoryBits = 0x2;
