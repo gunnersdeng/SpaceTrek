@@ -61,6 +61,7 @@
 
 -(void) playerBack;
 -(void) ChangeGoBackSound;
+-(void) propertyListener: (int)propertyTag;
 - (void) dealloc;
 
 @property  (nonatomic, readwrite) b2World* world;

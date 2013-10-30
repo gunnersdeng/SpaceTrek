@@ -53,8 +53,6 @@ bool isCollect;
         [self setupPhysicsWorld];
         [self initBatchNode];
         
-        [self addProperty];
-        
         [self addBeginStone: winSize.width/3*2 yy:winSize.height/2];
         [self addBeginStone: winSize.width/5*4 yy:winSize.height/4];
         
@@ -228,7 +226,7 @@ bool isCollect;
     }
 }
 
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 
     UITouch *touch = [touches anyObject];
@@ -245,18 +243,10 @@ bool isCollect;
                 self.score += 10;
                 treasureData.tag = TREASURE_COLLECT_TAG;
             }
-            if(treasureData.tag == PROPERTY_TYPE_1_TAG)
-            {
-                CCLOG(@"here 1");
-                [self removeChild:treasureData cleanup:YES];
-                world->DestroyBody(b);
-                player.numOfAffordCollsion = 1;
-                player.scale = 2.0;
-            }
+            
             
         }
     }
-    
 }
 
 -(void) collectTreasure
@@ -570,56 +560,6 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     
 }
--(void)addProperty
-{
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    if ( hudLayer==nil ){
-        CCScene* scene = [[CCDirector sharedDirector] runningScene];
-        hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
-    }
-    
-    GameObject *property;
-    property = [[GameObject alloc] init];
-    
-    property = [GameObject spriteWithFile: [NSString stringWithFormat:@"TOOLBAR_SHIELD_2TIMES.png"]];
-    
-    
-    property.tag = PROPERTY_TYPE_1_TAG;
-    [property setType:gameObjectProperty1];
-    
-//    property.position = ccp(45, winSize.height/5*3);
-    property.position = ccp(120, winSize.height/2);
-
-    [self addChild:property z:4];
-    
-    b2BodyDef propertyBodyDef;
-    propertyBodyDef.type = b2_staticBody;
-    propertyBodyDef.position.Set(120, winSize.height/2);
-//    propertyBodyDef.position.Set(winSize.width/2, winSize.height/2);
-    propertyBodyDef.userData = property;
-    
-    
-    
-    
-    propertyBodyDef.userData = (__bridge_retained void*) property;
-    
-    b2Body* propertyBody = world->CreateBody(&propertyBodyDef);
-    
-    
-    b2CircleShape circle;
-    circle.m_radius = property.contentSize.width/2;
-    
-    b2FixtureDef propertyShapeDef;
-    propertyShapeDef.shape = &circle;
-    propertyShapeDef.density = 3.0f;
-    propertyShapeDef.friction = 0.2f;
-    propertyShapeDef.restitution = 1.0f;
-    propertyShapeDef.filter.categoryBits = 0x5;
-    propertyShapeDef.filter.maskBits = 0x0;
-    
-    propertyBody->CreateFixture(&propertyShapeDef);
-}
-
 
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
     shipSpeedY = -acceleration.x * 50;
@@ -685,6 +625,35 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     distance += dt*100;
     [hudLayer updateDistanceCounter:distance];
     [self updateShip];
+}
+
+-(void) propertyListener: (int)propertyTag
+{
+    if(propertyTag == TREASURE_PROPERTY_TYPE_1_TAG)
+    {
+        player.numOfAffordCollsion += 1;
+        player.scale = 2.0;
+    }
+    else if (propertyTag == TREASURE_PROPERTY_TYPE_2_TAG)
+    {
+        for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
+            if (b->GetUserData() != NULL) {
+                CCSprite *treasureData = (CCSprite *)b->GetUserData();
+                
+                if(treasureData.tag==TREASURE_TAG)
+                {
+                    b2Vec2 force = b2Vec2(b->GetLinearVelocity().x*2, b->GetLinearVelocity().y*2);
+                    b->SetLinearVelocity(force);
+                }
+                
+            }
+        }
+        
+    }
+    else if (propertyTag == TREASURE_PROPERTY_TYPE_3_TAG)
+    {
+        
+    }
 }
 
 - (void) dealloc
