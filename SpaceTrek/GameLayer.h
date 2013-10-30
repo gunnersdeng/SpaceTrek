@@ -20,6 +20,7 @@
     
     int score;
     int distance;
+    int treasureNumber;
     
     b2World* world;
     b2Body* _groundBody;

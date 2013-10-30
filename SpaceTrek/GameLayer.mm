@@ -242,6 +242,12 @@ bool isCollect;
                 CCLOG(@"here 0");
                 self.score += 10;
                 treasureData.tag = TREASURE_COLLECT_TAG;
+                
+                treasureNumber--;
+                if ( treasureNumber==0 ){
+                    [self unscheduleAllSelectors];
+                    [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+                }
             }
             
             
@@ -255,7 +261,7 @@ bool isCollect;
     [self unscheduleAllSelectors];
 
     b2Vec2 playPosition = player->playerBody->GetPosition();
-    
+    treasureNumber = collectedTreasure.size();
     
     for (int i=0; i<collectedTreasure.size(); i++)
     {
