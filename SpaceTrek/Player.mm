@@ -77,7 +77,7 @@
 {
     [self stopAllActions];
     NSMutableArray *crashAnimFrames = [NSMutableArray array];
-    for(int i = 1; i <= 3; ++i){
+    for(int i = 1; i <= 6; ++i){
         [crashAnimFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
           [NSString stringWithFormat:@"boom%d.png", i]]];
@@ -94,6 +94,16 @@
     }
     spacemanAnimation = [CCAnimation animationWithSpriteFrames:spacemanAnimFrames delay:0.09f];
     spacemanAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: spacemanAnimation] times:2];
+    
+    
+    NSMutableArray *exlosionAnimFrames = [NSMutableArray array];
+    for(int i = 1; i <= 2; ++i){
+        [exlosionAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"exlosion_bg%d.png", i]]];
+    }
+    exlosionAnimation = [CCAnimation animationWithSpriteFrames:exlosionAnimFrames delay:0.09f];
+    exlosionAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: exlosionAnimation] times:1];
     
     id actionMoveDone = [CCCallFuncN actionWithTarget:self
                                              selector:@selector(crashTransformActionFinished:)];

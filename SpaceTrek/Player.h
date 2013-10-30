@@ -19,7 +19,8 @@
     CCAnimation *crashAnimation;
     CCFiniteTimeAction *spacemanAction;
     CCAnimation *spacemanAnimation;
-    
+    CCFiniteTimeAction *exlosionAction;
+    CCAnimation *exlosionAnimation;
     
     BOOL collison;
 }

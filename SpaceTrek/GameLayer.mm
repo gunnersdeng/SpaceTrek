@@ -460,7 +460,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     b2Body* treasureBody = world->CreateBody(&treasureBodyDef);
     
-    b2Vec2 force = b2Vec2(-TRAVEL_SPEED*20, (treasureDestinationY-treasureStartY)/(winSize.width/TRAVEL_SPEED)*10);
+    b2Vec2 force = b2Vec2(-TRAVEL_SPEED*10, (treasureDestinationY-treasureStartY)/(winSize.width/TRAVEL_SPEED)*10);
 //    treasureBody->ApplyLinearImpulse(force, treasureBodyDef.position);
     treasureBody->SetLinearVelocity(force);
     
@@ -470,7 +470,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     b2FixtureDef treasureShapeDef;
     treasureShapeDef.shape = &circle;
     treasureShapeDef.density = 3.0f;
-    treasureShapeDef.friction = 0.2f;
+    treasureShapeDef.friction = 0.0f;
     treasureShapeDef.restitution = 1.0f;
     treasureShapeDef.filter.categoryBits = 0x2;
     treasureShapeDef.filter.maskBits = 0xFFFF-0x2;
@@ -531,82 +531,6 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
 }
 
-/*
--(void)addTreasure {
-    
-    CCSprite *treasure;
-    if ( arc4random()%2==0 ){
-        treasure = [CCSprite spriteWithFile:@"treasure_type_2_blk.png"];
-        treasure.scale = 1.5;
-    }else{
-        treasure = [CCSprite spriteWithFile:@"treasure_type_1_y.png"];
-        treasure.scale = 2;
-    }
-    
-    
-    // Determine where to spawn the target along the Y axis
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    
-    [self addChild:treasure];
-    
-    int treasureStartY = GetRandom( treasure.contentSize.height/2, winSize.height - treasure.contentSize.height/2 );
-    int treasureDestinationY = GetRandomGaussian( treasureStartY-winSize.height, treasureStartY+winSize.height );
-    
-    treasure.position = ccp(winSize.width - treasure.contentSize.width/2, treasureStartY);
-    
-    int x = winSize.width - treasure.contentSize.width/2+LEFTBOUNDARYSAVETREASURE;
-    int y = treasureStartY;
-    int destY = treasureDestinationY;
-    
-    CCSequence *seq = nil;
-    
-    while ( x>0 ){
-        int dx=0, dy=0;
-        if ( 0<=destY && destY<=winSize.height ){
-            dx = 0; dy = destY;
-        }
-        else if ( destY<0 ){
-            destY = -destY;
-            dx = (int)( (double)x/(y+destY)*destY );
-            dy = 0;
-        }
-        else if ( destY>winSize.height ){
-            dx = (int)( (double)x/((winSize.height-y)+(destY-winSize.height))*(destY-winSize.height) );
-            dy = winSize.height;
-            destY = winSize.height*2-destY;
-        }
-        
-        // Create the actions
-        int actualDuration = (x-dx) / TRAVEL_SPEED;
-        id actionMove = [CCMoveTo actionWithDuration:actualDuration
-                                            position:ccp(dx-LEFTBOUNDARYSAVETREASURE, dy)];
-        
-        if (!seq)
-        {
-            seq = (CCSequence *)actionMove;
-        }
-        else
-        {
-            seq = [CCSequence actionOne:seq two:actionMove];
-        }
-        x = dx; y = dy;
-    }
-    
-    id actionMoveDone = [CCCallFuncN actionWithTarget:self
-                                             selector:@selector(treasureMoveFinished:)];
-    
-    
-    
-    CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:10 angle:360];
-    
-    [treasure runAction:[CCSequence actions:seq, actionMoveDone, nil]];
-    [treasure runAction:rotateAction];
-    
-    treasure.tag =1;
-    [_treasures addObject:treasure];
-}
-
-*/
 -(void)treasureMoveFinished:(id)sender {
     
     CCSprite *sprite = (CCSprite *)sender;
@@ -716,11 +640,8 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
 
 - (void) initBatchNode {
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Character.plist"];
-    
     allBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"Character.png"];
-    
     [self addChild:allBatchNode z:10];
-    
 }
 
 - (void)update:(ccTime)dt {

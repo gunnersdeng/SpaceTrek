@@ -46,27 +46,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 BackgroundLayer* backgroundLayer = (BackgroundLayer*)[scene getChildByTag:BACKGROUND_LAYER_TAG];
                 
                 [backgroundLayer reverseMap];
-                
-//                [(Player *)playerSprite crashTransformAction];
-                
-                
-                /*CCParticleSystem *collsion = [CCParticleExplosion node];
-                
-                [layer addChild:collsion z:12];
-                collsion.texture = [[CCTextureCache sharedTextureCache] addImage:@"spaceship-boom-step-2.png"];
-
-                
-                collsion.position = playerSprite.position;
-//                collsion.blendAdditive = YES;
-                collsion.endSize = 200.0f;
-                collsion.life = 2.0f;
-                collsion.speed = 1.0f;
-                collsion.opacityModifyRGB = false;
-//                collsion.lifeVar = 2.0f;
-                collsion.totalParticles = 1.0f;
-                collsion.autoRemoveOnFinish = YES;
-                */
-               
+                               
                 
 
                 [[SimpleAudioEngine sharedEngine]playEffect:@"CrashSong.mp3"];

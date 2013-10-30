@@ -34,6 +34,7 @@
     HUDLayer *hudLayer;
     
     CCSpriteBatchNode* allBatchNode;
+    CCSpriteBatchNode* ExlosionBatchNode;
     
     ContactListener *contactListener;
     
@@ -68,6 +69,7 @@
 @property (nonatomic, readwrite) CCSpriteBatchNode* allBatchNode;
 @property  (nonatomic, readwrite) ALuint firstBackgroundMusic;
 @property  (nonatomic, readwrite) ALuint secondBackgroundMusic;
+@property (nonatomic, readwrite) CCSpriteBatchNode *ExlosionBatchNode;
 
 
 @end
