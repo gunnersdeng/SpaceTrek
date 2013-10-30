@@ -40,22 +40,29 @@ void ContactListener::BeginContact(b2Contact *contact) {
             {
                 GameObject *treasuerSprite=(spriteA.type==gameObjectPlayer)?spriteB:spriteA;
                 GameObject* playerSprite =(spriteA.type==gameObjectPlayer)?spriteA:spriteB;
+                Player* player = (Player*)playerSprite;
                 CCScene* scene = [[CCDirector sharedDirector] runningScene];
                 GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
                 
-                BackgroundLayer* backgroundLayer = (BackgroundLayer*)[scene getChildByTag:BACKGROUND_LAYER_TAG];
+//                BackgroundLayer* backgroundLayer = (BackgroundLayer*)[scene getChildByTag:BACKGROUND_LAYER_TAG];
+//                [backgroundLayer reverseMap];
                 
-                [backgroundLayer reverseMap];
-                               
+                if(player.numOfAffordCollsion > player.numOfCollsion)
+                {
+                    treasuerSprite.tag = TREASURE_PROPERTY_TYPE_1_TAG;
+                    player.numOfCollsion++;
+                    player.scale = 1.0;
+                }
+                else
+                {
+                    [[SimpleAudioEngine sharedEngine]playEffect:@"CrashSong.mp3"];
                 
-
-                [[SimpleAudioEngine sharedEngine]playEffect:@"CrashSong.mp3"];
+                    [layer playerBack];
+                    [layer ChangeGoBackSound];
                 
-                [layer playerBack];
-                [layer ChangeGoBackSound];
-                
-                treasuerSprite.tag = TREASURE_DESTROY_TAG;
-                [playerSprite setType:gameObjectCollector];
+                    treasuerSprite.tag = TREASURE_DESTROY_TAG;
+                    [playerSprite setType:gameObjectCollector];
+                }
                 
             }
         }

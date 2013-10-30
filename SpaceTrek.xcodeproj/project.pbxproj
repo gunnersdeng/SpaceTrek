@@ -246,6 +246,8 @@
 		F192F3DC18179A18008D4DC0 /* storeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F192F3DB18179A18008D4DC0 /* storeBackground.png */; };
 		F1CA5DEE1813DD2700A6BE77 /* GameOverScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */; };
 		F1CA5DF11813DEA900A6BE77 /* GameOverLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */; };
+		F1D9FE0E1820CA1900A27113 /* TOOLBAR_SHIELD_2TIMES.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D9FE0D1820CA1900A27113 /* TOOLBAR_SHIELD_2TIMES.png */; };
+		F1D9FE101820D27500A27113 /* TOOLBAR_Magnet.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D9FE0F1820D27500A27113 /* TOOLBAR_Magnet.png */; };
 		F1F975BE1801E669009B9148 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1F975BD1801E668009B9148 /* BackgroundLayer.mm */; };
 		F1F975C01801EAD5009B9148 /* background-v1.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F975BF1801EAD5009B9148 /* background-v1.png */; };
 		F1F975C2180200AE009B9148 /* space-background-upperlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F975C1180200AE009B9148 /* space-background-upperlayer.png */; };
@@ -702,6 +704,8 @@
 		F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = GameOverScene.mm; sourceTree = "<group>"; };
 		F1CA5DEF1813DEA900A6BE77 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
 		F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = GameOverLayer.mm; sourceTree = "<group>"; };
+		F1D9FE0D1820CA1900A27113 /* TOOLBAR_SHIELD_2TIMES.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TOOLBAR_SHIELD_2TIMES.png; sourceTree = "<group>"; };
+		F1D9FE0F1820D27500A27113 /* TOOLBAR_Magnet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TOOLBAR_Magnet.png; sourceTree = "<group>"; };
 		F1F975BC1801E668009B9148 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		F1F975BD1801E668009B9148 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BackgroundLayer.mm; sourceTree = "<group>"; };
 		F1F975BF1801EAD5009B9148 /* background-v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-v1.png"; sourceTree = "<group>"; };
@@ -1454,6 +1458,7 @@
 		F17B976617FCEC8800BD6670 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				F1D9FE0C1820C9E200A27113 /* Property */,
 				75E9EFF518208B51006A633D /* Character.plist */,
 				75E9EFF618208B51006A633D /* Character.png */,
 				75E2846E180220B00003E344 /* fire.png */,
@@ -1475,6 +1480,15 @@
 				F17B976717FCEC9900BD6670 /* ship-level-1.png */,
 			);
 			name = Object;
+			sourceTree = "<group>";
+		};
+		F1D9FE0C1820C9E200A27113 /* Property */ = {
+			isa = PBXGroup;
+			children = (
+				F1D9FE0F1820D27500A27113 /* TOOLBAR_Magnet.png */,
+				F1D9FE0D1820CA1900A27113 /* TOOLBAR_SHIELD_2TIMES.png */,
+			);
+			name = Property;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1530,10 +1544,12 @@
 			files = (
 				75E9EFE4182009DA006A633D /* treasure_type_3.png in Resources */,
 				75E2847B180239780003E344 /* pauseButton.png in Resources */,
+				F1D9FE0E1820CA1900A27113 /* TOOLBAR_SHIELD_2TIMES.png in Resources */,
 				F17B951517FCBB7A00BD6670 /* Default.png in Resources */,
 				F17B951717FCBB7A00BD6670 /* Default@2x.png in Resources */,
 				F17B951917FCBB7A00BD6670 /* Default-568h@2x.png in Resources */,
 				75BB0DAB1805C6060076765A /* background-menu.png in Resources */,
+				F1D9FE101820D27500A27113 /* TOOLBAR_Magnet.png in Resources */,
 				F17B951B17FCBB7A00BD6670 /* Default-Landscape~ipad.png in Resources */,
 				75954A2018023E0600597B3D /* GameSceneSound.mp3 in Resources */,
 				F17B951D17FCBB7A00BD6670 /* Icon-72.png in Resources */,

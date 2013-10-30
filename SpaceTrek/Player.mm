@@ -23,6 +23,8 @@
 -(id) init{
     if((self = [super init])){
         type = gameObjectPlayer;
+        numOfAffordCollsion = 1;
+        numOfCollsion = 0;
     }
     return self;
 }

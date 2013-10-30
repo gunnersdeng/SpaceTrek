@@ -23,6 +23,9 @@
     CCAnimation *exlosionAnimation;
     
     BOOL collison;
+    
+    int numOfAffordCollsion;
+    int numOfCollsion;
 }
 
 -(void) createBox2dObject:(b2World*)world;
@@ -42,6 +45,8 @@
 
 @property (nonatomic, readwrite) b2Body *jokerBody;
 @property (nonatomic, readwrite) BOOL collison;
+@property (nonatomic, readwrite) int numOfAffordCollsion;
+@property (nonatomic, readwrite) int numOfCollsion;
 
 
 @end

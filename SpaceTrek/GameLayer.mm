@@ -53,6 +53,8 @@ bool isCollect;
         [self setupPhysicsWorld];
         [self initBatchNode];
         
+        [self addProperty];
+        
         [self addBeginStone: winSize.width/3*2 yy:winSize.height/2];
         [self addBeginStone: winSize.width/5*4 yy:winSize.height/4];
         
@@ -162,7 +164,12 @@ bool isCollect;
         if (b->GetUserData() != NULL) {
             CCSprite *treasureData = (CCSprite *)b->GetUserData();
             
-            
+            if(treasureData.tag == TREASURE_PROPERTY_TYPE_1_TAG)
+            {
+                [self removeChild:treasureData cleanup:YES];
+                world->DestroyBody(b);
+                continue;
+            }
             if(treasureData.tag == TREASURE_DESTROY_TAG)
             {
                 //[self removeChild:treasureData cleanup:YES];
@@ -174,7 +181,6 @@ bool isCollect;
                     continue;
                 }
             }
-            
             if(treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5)<=0.5 && !isReach)
             {
                 b2Vec2 force = b2Vec2(0, 0);
@@ -224,26 +230,33 @@ bool isCollect;
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(isCollect)
-    {
-        UITouch *touch = [touches anyObject];
-        CGPoint location = [touch locationInView: [touch view]];
-        location = [[CCDirector sharedDirector] convertToGL: location];
-        b2Vec2 position = b2Vec2(location.x, location.y);
-        for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
-            if (b->GetUserData() != NULL) {
-                b2Fixture *f = b->GetFixtureList();
-                CCSprite *treasureData = (CCSprite *)b->GetUserData();
-                if(treasureData.tag!=SPACESTATION_TAG && f->TestPoint(position))
-                {
-                    CCLOG(@"here 0");
-                    self.score += 10;
-                    treasureData.tag = TREASURE_COLLECT_TAG;
-                }
-            
+
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView: [touch view]];
+    location = [[CCDirector sharedDirector] convertToGL: location];
+    b2Vec2 position = b2Vec2(location.x, location.y);
+    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
+        if (b->GetUserData() != NULL) {
+            b2Fixture *f = b->GetFixtureList();
+            CCSprite *treasureData = (CCSprite *)b->GetUserData();
+            if(treasureData.tag!=SPACESTATION_TAG && f->TestPoint(position)&&isCollect)
+            {
+                CCLOG(@"here 0");
+                self.score += 10;
+                treasureData.tag = TREASURE_COLLECT_TAG;
             }
+            if(treasureData.tag == PROPERTY_TYPE_1_TAG)
+            {
+                CCLOG(@"here 1");
+                [self removeChild:treasureData cleanup:YES];
+                world->DestroyBody(b);
+                player.numOfAffordCollsion = 1;
+                player.scale = 2.0;
+            }
+            
         }
     }
+    
 }
 
 -(void) collectTreasure
@@ -557,7 +570,55 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     
 }
+-(void)addProperty
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    if ( hudLayer==nil ){
+        CCScene* scene = [[CCDirector sharedDirector] runningScene];
+        hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
+    }
+    
+    GameObject *property;
+    property = [[GameObject alloc] init];
+    
+    property = [GameObject spriteWithFile: [NSString stringWithFormat:@"TOOLBAR_SHIELD_2TIMES.png"]];
+    
+    
+    property.tag = PROPERTY_TYPE_1_TAG;
+    [property setType:gameObjectProperty1];
+    
+//    property.position = ccp(45, winSize.height/5*3);
+    property.position = ccp(120, winSize.height/2);
 
+    [self addChild:property z:4];
+    
+    b2BodyDef propertyBodyDef;
+    propertyBodyDef.type = b2_staticBody;
+    propertyBodyDef.position.Set(120, winSize.height/2);
+//    propertyBodyDef.position.Set(winSize.width/2, winSize.height/2);
+    propertyBodyDef.userData = property;
+    
+    
+    
+    
+    propertyBodyDef.userData = (__bridge_retained void*) property;
+    
+    b2Body* propertyBody = world->CreateBody(&propertyBodyDef);
+    
+    
+    b2CircleShape circle;
+    circle.m_radius = property.contentSize.width/2;
+    
+    b2FixtureDef propertyShapeDef;
+    propertyShapeDef.shape = &circle;
+    propertyShapeDef.density = 3.0f;
+    propertyShapeDef.friction = 0.2f;
+    propertyShapeDef.restitution = 1.0f;
+    propertyShapeDef.filter.categoryBits = 0x5;
+    propertyShapeDef.filter.maskBits = 0x0;
+    
+    propertyBody->CreateFixture(&propertyShapeDef);
+}
 
 
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
