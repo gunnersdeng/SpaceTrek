@@ -70,7 +70,6 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 
                 
                 
-                layer.score += 10;
                 
                 treasuerSprite.tag = TREASURE_DESTROY_TAG;
             }

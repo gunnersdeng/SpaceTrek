@@ -42,15 +42,15 @@ int backgroundLevel = 1;
     
     switch (backgroundLevel) {
         case GAME_STATE_ONE:
-            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
+//            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
             bgBottom = [CCSprite spriteWithFile:@"background-v1.png"];
             break;
         case GAME_STATE_TWO:
-            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
+//            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
             bgBottom = [CCSprite spriteWithFile:@"background-v1.png"];
             break;
         case GAME_STATE_THREE:
-            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
+//            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
             bgBottom = [CCSprite spriteWithFile:@"background-v1.png"];
             break;
             
@@ -58,7 +58,7 @@ int backgroundLevel = 1;
             break;
     }
     
-
+/*
     bgTop.position = ccp(0, 0);
     bgTop.anchorPoint = ccp(0, 0);
     [self addChild:bgTop z: 1];
@@ -71,7 +71,7 @@ int backgroundLevel = 1;
     [self schedule:@selector(updateMap:)];
     [self unschedule:@selector(updateMap:)];
     [self schedule:@selector(updateMap:) interval:15.0];
-    
+*/
 //    [self stopActionByTag:1];
 //    [self reverseMap];
     

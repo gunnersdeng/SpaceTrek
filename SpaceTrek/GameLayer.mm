@@ -33,7 +33,8 @@ bool isCollect;
         bg.anchorPoint = ccp(0, 0);
         [self addChild: bg z:-10];
         */
-        
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+
         collectedTreasure.clear();
         
         isPlayerMoveBack = false;
@@ -51,61 +52,21 @@ bool isCollect;
         [self preLoadSoundFiles];
         [self setupPhysicsWorld];
         [self initBatchNode];
-        _treasures = [[NSMutableArray alloc] init];
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
         
-        //player = [[GameObject alloc] init];
+        [self addBeginStone: winSize.width/3*2 yy:winSize.height/2];
+        [self addBeginStone: winSize.width/5*4 yy:winSize.height/4];
+        
+        _treasures = [[NSMutableArray alloc] init];
+        
         player = [Player spriteWithSpriteFrameName:@"spaceship1.png"];
         [player setType:(gameObjectPlayer)];
         [player initAnimation:allBatchNode];
 
-        /*
-        player = [GameObject spriteWithFile:@"spaceship-level-2.png"];
-        [player setType:gameObjectPlayer];
-        [self schedule:@selector(updateShip_1:) interval:0.2];
-        [self schedule:@selector(updateShip_2:) interval:0.4];
-        */
+        
         player.position = ccp(player.contentSize.width/2, winSize.height/2);
         player.tag = PLAYER_TAG;
         [player createBox2dObject:world];
         [self addSpaceStation];
-        /*
-        int actualDuration = winSize.width/5.0/TRAVEL_SPEED;
-        // Create the actions
-        id actionMove = [CCMoveTo actionWithDuration:actualDuration
-                                            position:ccp(winSize.width/5, winSize.height/2)];
-        
-        id actionMoveDone = [CCCallFuncN actionWithTarget:self
-                                                 selector:@selector(playerMoveFinished:)];
-        
-        [player runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
-        */
-       
-        
-        /*b2BodyDef playerBodyDef;
-        playerBodyDef.type = b2_dynamicBody;
-        playerBodyDef.position.Set(player.contentSize.width/2, winSize.height/2);
-        playerBodyDef.userData = player;
-        playerBody = world->CreateBody(&playerBodyDef);
-        
-        
-        
-        b2Vec2 force = b2Vec2(100, 0);
-        playerBody->ApplyLinearImpulse(force, playerBodyDef.position);
-        
-        b2CircleShape circle;
-        circle.m_radius = player.contentSize.height/2;
-        
-        b2FixtureDef playerShapeDef;
-        playerShapeDef.shape = &circle;
-        playerShapeDef.density = 1.0f;
-        playerShapeDef.friction = 0.f;
-        playerShapeDef.restitution = 1.0f;
-        playerShapeDef.filter.categoryBits =  0x1;
-        playerShapeDef.filter.maskBits =  0xFFFF;
-        
-        playerBody->CreateFixture(&playerShapeDef);
-        */
         
         isReach=false;
         
@@ -186,22 +147,12 @@ bool isCollect;
     
 
 }
-/*
-- (void)updateShip_1:(ccTime)dt{
-    if(!collision)[player setTexture:[[CCTextureCache sharedTextureCache] addImage:@"spaceship-level-2.png"]];
-    else[player setTexture:[[CCTextureCache sharedTextureCache] addImage:@"LittleCat.png"]];
-}
 
-- (void)updateShip_2:(ccTime)dt{
-    if(!collision)[player setTexture:[[CCTextureCache sharedTextureCache] addImage:@"spaceship-level-2-2.png"]];
-    else [player setTexture:[[CCTextureCache sharedTextureCache] addImage:@"LittleCat.png"]];
-    
-}
-*/
 -(void) playerMoveFinished: (id)sender{
     b2Vec2 force = b2Vec2(-TRAVEL_SPEED, 0);
     spaceStationBody->SetLinearVelocity(force);
     [self schedule:@selector(gameLogic:) interval:1.0];
+    [self schedule:@selector(gameStoneLogic:) interval:3.0];
 }
 -(void) treasureMovementLogic:(ccTime)dt
 {
@@ -242,7 +193,7 @@ bool isCollect;
                 isPlayerMoveBack = false;
             }
             */
-            if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-winSize.width/2)<=10 && isStationMoveBack)
+            if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-winSize.width/2)<=100 && isStationMoveBack)
             {
                 b2Vec2 force = b2Vec2(0, 0);
                 b->SetLinearVelocity(force);
@@ -286,6 +237,7 @@ bool isCollect;
                 if(treasureData.tag!=SPACESTATION_TAG && f->TestPoint(position))
                 {
                     CCLOG(@"here 0");
+                    self.score += 10;
                     treasureData.tag = TREASURE_COLLECT_TAG;
                 }
             
@@ -355,34 +307,8 @@ bool isCollect;
 
 -(void) playerBack
 {
-//    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
-//        if (b->GetUserData() != NULL) {
-//            CCSprite *treasureData = (CCSprite *)b->GetUserData();
-//            
-//            /*if(treasureData.tag==TREASURE_TAG)
-//            {
-//                b2Vec2 force = b2Vec2(-b->GetLinearVelocity().x, -b->GetLinearVelocity().y);
-//                b->SetLinearVelocity(force);
-//            }*/
-//            if(treasureData.tag==PLAYER_TAG)
-//            {
-//                
-//                b2Vec2 force = b2Vec2(TRAVEL_SPEED, 0);
-//                b->SetLinearVelocity(force);
-    
-//                
-//                b2Vec2 force = b2Vec2(10000000,0);
-//                b->ApplyForce(force, b->GetWorldCenter());
-                
-                
-                
-                isPlayerMoveBack = true;
-                isStationMoveBack = true;
-//            }
-//
-//        }
-//    }
-    
+    isPlayerMoveBack = true;
+    isStationMoveBack = true;
 }
 -(void) treasureBack
 {
@@ -401,6 +327,11 @@ bool isCollect;
                 b2Vec2 force = b2Vec2(TRAVEL_SPEED, 0);
                 spaceStationBody->SetLinearVelocity(force);
             }
+            if(treasureData.tag==STONE_TAG)
+            {
+                b2Vec2 force = b2Vec2(-b->GetLinearVelocity().x, -b->GetLinearVelocity().y);
+                b->SetLinearVelocity(force);
+            }
         }
     }
     
@@ -411,7 +342,10 @@ bool isCollect;
 -(void)gameLogic:(ccTime)dt {
     [self addTreasure];
 }
-
+-(void) gameStoneLogic:(ccTime)dt
+{
+    [self addStone];
+}
 int GetRandom(int lowerbound, int upperbound){
     return lowerbound + arc4random() % ( upperbound - lowerbound + 1 );
 }
@@ -479,58 +413,95 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
 
 }
--(void)addBackgroundTreasure
+-(void)addStone
 {
-    GameObject *treasure;
-    treasure = [[GameObject alloc] init];
+    GameObject *stone;
+    stone = [[GameObject alloc] init];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    if ( arc4random()%2==0 ){
-        treasure = [GameObject spriteWithFile:@""];
-        treasure.scale = 1.5;
-    }else{
-        treasure = [GameObject spriteWithFile:@""];
-        treasure.scale = 2;
-    }
-    treasure.tag = BACKGROUND_TREASURE_TAG;
-    [treasure setType:gameObjectBackgroundTreasure];
-    int treasureStartY = GetRandom( treasure.contentSize.height/2, winSize.height - treasure.contentSize.height/2 );
-    int treasureDestinationY = GetRandomGaussian( treasureStartY-winSize.height, treasureStartY+winSize.height );
+    int stoneIndex = arc4random()%6+1;
+    stone = [GameObject spriteWithFile: [NSString stringWithFormat:@"Stone_type_%d.png", stoneIndex] ];
     
-    treasure.position = ccp(winSize.width - treasure.contentSize.width/2, treasureStartY);
+    stone.tag = STONE_TAG;
+    [stone setType:gameObjectStone];
+    int stoneStartY = GetRandom(-30, winSize.height - stone.contentSize.height/2 );
     
-    [self addChild:treasure];
+    stone.position = ccp(winSize.width+stone.contentSize.width, stoneStartY);
     
-    b2BodyDef treasureBodyDef;
-    treasureBodyDef.type = b2_dynamicBody;
-    treasureBodyDef.position.Set(winSize.width - treasure.contentSize.width/2, treasureStartY);
-    treasureBodyDef.userData = treasure;
+    [self addChild:stone z:-1];
+    
+    b2BodyDef stoneBodyDef;
+    stoneBodyDef.type = b2_dynamicBody;
+    stoneBodyDef.position.Set(winSize.width+stone.contentSize.width, stoneStartY);
+    stoneBodyDef.userData = stone;
     
     
     
     
-    treasureBodyDef.userData = (__bridge_retained void*) treasure;
+    stoneBodyDef.userData = (__bridge_retained void*) stone;
     
-    b2Body* treasureBody = world->CreateBody(&treasureBodyDef);
+    b2Body* stoneBody = world->CreateBody(&stoneBodyDef);
     
-    b2Vec2 force = b2Vec2(-TRAVEL_SPEED/10, (treasureDestinationY-treasureStartY)/(winSize.width/TRAVEL_SPEED));
-    treasureBody->ApplyLinearImpulse(force, treasureBodyDef.position);
+    b2Vec2 force = b2Vec2(-TRAVEL_SPEED/10, 0);
+    //    treasureBody->ApplyLinearImpulse(force, treasureBodyDef.position);
+    stoneBody->SetLinearVelocity(force);
     
     b2CircleShape circle;
-    circle.m_radius = treasure.contentSize.width/2;
+    circle.m_radius = stone.contentSize.width/2;
     
-    b2FixtureDef treasureShapeDef;
-    treasureShapeDef.shape = &circle;
-    treasureShapeDef.density = 1.0f;
-    treasureShapeDef.friction = 0.f;
-    treasureShapeDef.restitution = 1.0f;
-    treasureShapeDef.filter.categoryBits = 0x2;
-    treasureShapeDef.filter.maskBits = 0xFFFF-0x2-0x1-0x3;
+    b2FixtureDef stoneShapeDef;
+    stoneShapeDef.shape = &circle;
+    stoneShapeDef.density = 3.0f;
+    stoneShapeDef.friction = 0.2f;
+    stoneShapeDef.restitution = 1.0f;
+    stoneShapeDef.filter.categoryBits = 0x5;
+    stoneShapeDef.filter.maskBits = 0x0;
     
-    treasureBody->CreateFixture(&treasureShapeDef);
-    
-    
+    stoneBody->CreateFixture(&stoneShapeDef);
 }
-
+-(void) addBeginStone:(int) x yy:(int) y
+{
+    GameObject *stone;
+    stone = [[GameObject alloc] init];
+    
+    stone = [GameObject spriteWithFile: [NSString stringWithFormat:@"Stone_type_2.png"]];
+    
+    
+    stone.tag = STONE_TAG;
+    [stone setType:gameObjectStone];
+    
+    stone.position = ccp(x, y);
+    
+    [self addChild:stone z:-1];
+    
+    b2BodyDef stoneBodyDef;
+    stoneBodyDef.type = b2_dynamicBody;
+    stoneBodyDef.position.Set(x, y);
+    stoneBodyDef.userData = stone;
+    
+    
+    
+    
+    stoneBodyDef.userData = (__bridge_retained void*) stone;
+    
+    b2Body* stoneBody = world->CreateBody(&stoneBodyDef);
+    
+    b2Vec2 force = b2Vec2(-TRAVEL_SPEED/10, 0);
+    //    treasureBody->ApplyLinearImpulse(force, treasureBodyDef.position);
+    stoneBody->SetLinearVelocity(force);
+    
+    b2CircleShape circle;
+    circle.m_radius = stone.contentSize.width/2;
+    
+    b2FixtureDef stoneShapeDef;
+    stoneShapeDef.shape = &circle;
+    stoneShapeDef.density = 3.0f;
+    stoneShapeDef.friction = 0.2f;
+    stoneShapeDef.restitution = 1.0f;
+    stoneShapeDef.filter.categoryBits = 0x5;
+    stoneShapeDef.filter.maskBits = 0x0;
+    
+    stoneBody->CreateFixture(&stoneShapeDef);
+}
 -(void)treasureMoveFinished:(id)sender {
     
     CCSprite *sprite = (CCSprite *)sender;
@@ -612,6 +583,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
         
         [self unschedule:@selector(playerMoveFinished:)];
         [self unschedule:@selector(gameLogic:)];
+        [self unschedule:@selector(gameStoneLogic:)];
         [self unschedule:@selector(addTreasure:)];
         [self treasureBack];
         isPlayerMoveBack=false;

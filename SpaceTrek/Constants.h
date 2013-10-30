@@ -25,7 +25,7 @@
 #define GAME_LAYER_TAG 2
 #define PAUSE_LAYER_TAG 3
 #define STORE_LAYER_TAG 4
-#define BACKGROUND_TREASURE_TAG 5
+#define STONE_TAG 5
 
 #define PLAYER_TAG 0
 #define COLLECTOR_TAG 1
@@ -42,7 +42,7 @@ typedef enum {
     gameObjectCollector=2,
     gameObjectTreasure1=3,
     gameObjectSpaceStation=4,
-    gameObjectBackgroundTreasure=5
+    gameObjectStone=5
 } GameObjectType;
 
 
