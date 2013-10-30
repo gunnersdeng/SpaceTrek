@@ -248,6 +248,12 @@
 		F1CA5DF11813DEA900A6BE77 /* GameOverLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */; };
 		F1D9FE0E1820CA1900A27113 /* TOOLBAR_SHIELD_2TIMES.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D9FE0D1820CA1900A27113 /* TOOLBAR_SHIELD_2TIMES.png */; };
 		F1D9FE101820D27500A27113 /* TOOLBAR_Magnet.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D9FE0F1820D27500A27113 /* TOOLBAR_Magnet.png */; };
+		F1F5F1221821B2D60084BB33 /* Stone_type_1.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F5F11C1821B2D60084BB33 /* Stone_type_1.png */; };
+		F1F5F1231821B2D60084BB33 /* Stone_type_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F5F11D1821B2D60084BB33 /* Stone_type_2.png */; };
+		F1F5F1241821B2D60084BB33 /* Stone_type_3.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F5F11E1821B2D60084BB33 /* Stone_type_3.png */; };
+		F1F5F1251821B2D60084BB33 /* Stone_type_4.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F5F11F1821B2D60084BB33 /* Stone_type_4.png */; };
+		F1F5F1261821B2D60084BB33 /* Stone_type_5.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F5F1201821B2D60084BB33 /* Stone_type_5.png */; };
+		F1F5F1271821B2D60084BB33 /* Stone_type_6.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F5F1211821B2D60084BB33 /* Stone_type_6.png */; };
 		F1F975BE1801E669009B9148 /* BackgroundLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1F975BD1801E668009B9148 /* BackgroundLayer.mm */; };
 		F1F975C01801EAD5009B9148 /* background-v1.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F975BF1801EAD5009B9148 /* background-v1.png */; };
 		F1F975C2180200AE009B9148 /* space-background-upperlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F975C1180200AE009B9148 /* space-background-upperlayer.png */; };
@@ -706,6 +712,12 @@
 		F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = GameOverLayer.mm; sourceTree = "<group>"; };
 		F1D9FE0D1820CA1900A27113 /* TOOLBAR_SHIELD_2TIMES.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TOOLBAR_SHIELD_2TIMES.png; sourceTree = "<group>"; };
 		F1D9FE0F1820D27500A27113 /* TOOLBAR_Magnet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TOOLBAR_Magnet.png; sourceTree = "<group>"; };
+		F1F5F11C1821B2D60084BB33 /* Stone_type_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_type_1.png; sourceTree = "<group>"; };
+		F1F5F11D1821B2D60084BB33 /* Stone_type_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_type_2.png; sourceTree = "<group>"; };
+		F1F5F11E1821B2D60084BB33 /* Stone_type_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_type_3.png; sourceTree = "<group>"; };
+		F1F5F11F1821B2D60084BB33 /* Stone_type_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_type_4.png; sourceTree = "<group>"; };
+		F1F5F1201821B2D60084BB33 /* Stone_type_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_type_5.png; sourceTree = "<group>"; };
+		F1F5F1211821B2D60084BB33 /* Stone_type_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_type_6.png; sourceTree = "<group>"; };
 		F1F975BC1801E668009B9148 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		F1F975BD1801E668009B9148 /* BackgroundLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BackgroundLayer.mm; sourceTree = "<group>"; };
 		F1F975BF1801EAD5009B9148 /* background-v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-v1.png"; sourceTree = "<group>"; };
@@ -1458,6 +1470,12 @@
 		F17B976617FCEC8800BD6670 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				F1F5F11C1821B2D60084BB33 /* Stone_type_1.png */,
+				F1F5F11D1821B2D60084BB33 /* Stone_type_2.png */,
+				F1F5F11E1821B2D60084BB33 /* Stone_type_3.png */,
+				F1F5F11F1821B2D60084BB33 /* Stone_type_4.png */,
+				F1F5F1201821B2D60084BB33 /* Stone_type_5.png */,
+				F1F5F1211821B2D60084BB33 /* Stone_type_6.png */,
 				F1D9FE0C1820C9E200A27113 /* Property */,
 				75E9EFF518208B51006A633D /* Character.plist */,
 				75E9EFF618208B51006A633D /* Character.png */,
@@ -1548,6 +1566,7 @@
 				F17B951517FCBB7A00BD6670 /* Default.png in Resources */,
 				F17B951717FCBB7A00BD6670 /* Default@2x.png in Resources */,
 				F17B951917FCBB7A00BD6670 /* Default-568h@2x.png in Resources */,
+				F1F5F1241821B2D60084BB33 /* Stone_type_3.png in Resources */,
 				75BB0DAB1805C6060076765A /* background-menu.png in Resources */,
 				F1D9FE101820D27500A27113 /* TOOLBAR_Magnet.png in Resources */,
 				F17B951B17FCBB7A00BD6670 /* Default-Landscape~ipad.png in Resources */,
@@ -1563,6 +1582,7 @@
 				F17B952317FCBB7A00BD6670 /* Icon-Small@2x.png in Resources */,
 				75BB0DB81805D1FC0076765A /* PLAY.png in Resources */,
 				F17B952517FCBB7A00BD6670 /* Icon.png in Resources */,
+				F1F5F1261821B2D60084BB33 /* Stone_type_5.png in Resources */,
 				757BA8551814B869006645AA /* CrashSong.mp3 in Resources */,
 				F192F3DC18179A18008D4DC0 /* storeBackground.png in Resources */,
 				75E2846918021F200003E344 /* treasure_type_1.png in Resources */,
@@ -1590,6 +1610,7 @@
 				CF4B4AE51813435200912025 /* SpaceShip2.png in Resources */,
 				F1F975C2180200AE009B9148 /* space-background-upperlayer.png in Resources */,
 				75E9EFF818208B51006A633D /* Character.png in Resources */,
+				F1F5F1271821B2D60084BB33 /* Stone_type_6.png in Resources */,
 				75E592AD180F47CA002B088B /* spaceship-boom-step-2.png in Resources */,
 				75BB0DB71805D1FC0076765A /* HELP.png in Resources */,
 				75E2846B18021F370003E344 /* treasure_type_2.png in Resources */,
@@ -1599,10 +1620,13 @@
 				75E9EFF41820806A006A633D /* exlosion_bg.png in Resources */,
 				75BB0DB91805D1FC0076765A /* STORE.png in Resources */,
 				CF4B4AE41813435200912025 /* SpaceShip2.plist in Resources */,
+				F1F5F1221821B2D60084BB33 /* Stone_type_1.png in Resources */,
 				75E9EFF31820806A006A633D /* exlosion_bg.plist in Resources */,
+				F1F5F1251821B2D60084BB33 /* Stone_type_4.png in Resources */,
 				F1801E1818028474002BDAF1 /* btn_pause.png in Resources */,
 				F14E4E7C18130ED0005D8190 /* RESUME.png in Resources */,
 				75D9DECA181451AA00CC87E7 /* PlayMode_Music_back.mp3 in Resources */,
+				F1F5F1231821B2D60084BB33 /* Stone_type_2.png in Resources */,
 				F14122BD1803AB4800C1B8AD /* Button-Pause-icon-modified.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
