@@ -76,6 +76,40 @@ static GameScene* instanceOfGameScene;
             
             break;
         }
+        case GAME_STATE_TWO:
+        {
+            BackgroundLayer *backgroundLayer = [[BackgroundLayer alloc] initWithLevel: 1];
+            [scene addChild:backgroundLayer z:-1 tag:BACKGROUND_LAYER_TAG];
+            
+            HUDLayer *hudLayer = [[HUDLayer node] init];
+            // add layer as a child to scene
+            [scene addChild: hudLayer z:3 tag:HUD_LAYER_TAG];
+            
+            // 'layer' is an autorelease object.
+            GameLayer *gameLayer = [GameLayer node];
+            // add layer as a child to scene
+            [scene addChild: gameLayer z:1];
+            
+            
+            break;
+        }
+        case GAME_STATE_THREE:
+        {
+            BackgroundLayer *backgroundLayer = [[BackgroundLayer alloc] initWithLevel: 1];
+            [scene addChild:backgroundLayer z:-1 tag:BACKGROUND_LAYER_TAG];
+            
+            HUDLayer *hudLayer = [[HUDLayer node] init];
+            // add layer as a child to scene
+            [scene addChild: hudLayer z:3 tag:HUD_LAYER_TAG];
+            
+            // 'layer' is an autorelease object.
+            GameLayer *gameLayer = [GameLayer node];
+            // add layer as a child to scene
+            [scene addChild: gameLayer z:1];
+            
+            
+            break;
+        }
         default:
             
             break;

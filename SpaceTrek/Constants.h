@@ -9,9 +9,10 @@
 #ifndef SpaceTrek_Constants_h
 #define SpaceTrek_Constants_h
 
+#define sqr(x) ((x)*(x))
 #define PTM_RATIO 32
 
-#define TRAVEL_SPEED 150
+#define TRAVEL_SPEED 8
 #define MINTREASURE_DES_X 250
 #define LEFTBOUNDARYSAVETREASURE 1024
 #define BGTOPDURATION 100
@@ -39,7 +40,19 @@
 #define TREASURE_PROPERTY_TYPE_1_TAG 8
 #define TREASURE_PROPERTY_TYPE_2_TAG 9
 #define TREASURE_PROPERTY_TYPE_3_TAG 10
+#define TREASURE_PROPERTY_TYPE_4_TAG 11
 
+
+#define TREASURE_TAG_1 21
+#define TREASURE_TAG_2 22
+#define TREASURE_TAG_3 23
+#define TREASURE_TAG_4 24
+#define TREASURE_TAG_5 25
+#define TREASURE_TAG_6 26
+
+
+#define playerLocationX 45
+#define playerLocationY 384
 
 typedef enum {
     gameObjectGeneral=0,

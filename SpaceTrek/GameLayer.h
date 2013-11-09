@@ -27,6 +27,7 @@
     b2Fixture *_playerFixture;
     b2Fixture *_treasureFixture;
     b2Fixture *_bottomFixture;
+    b2Fixture *_topFixture;
     
     CCMenuItemSprite *pauseButton;
     CCMenu *pauseMenu;
@@ -39,17 +40,20 @@
     
     ContactListener *contactListener;
     
+    int treasureSpeedMultiplier;
+    int numOfAffordCollsionTEMP;
     
     Player *player;
     
     GameObject* spaceStation;
     b2Body* spaceStationBody;
     
-    b2Body* playerBody;
     float shipSpeedY;
     float shipSpeedX;
     
     SimpleAudioEngine * backgroundAmbience;
+    
+    bool gamePart2;
     
     ALuint firstBackgroundMusic;
     ALuint secondBackgroundMusic;
@@ -62,7 +66,7 @@
 
 -(void) playerBack;
 -(void) ChangeGoBackSound;
--(void) propertyListener: (int)propertyTag;
+-(bool) propertyListener: (int)propertyTag;
 - (void) dealloc;
 
 @property  (nonatomic, readwrite) b2World* world;

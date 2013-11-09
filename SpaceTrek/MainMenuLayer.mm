@@ -12,7 +12,8 @@
 #import "SimpleAudioEngine.h"
 #import "LoadingScene.h"
 #import "MainMenuScene.h"
-
+#import "LevelScrollScene.h"
+#import "StoreScene.h"
 CCSprite *bg;
 
 @implementation MainMenuLayer
@@ -40,13 +41,12 @@ CCSprite *bg;
         
         CCMenu *Menu = [CCMenu menuWithItems:storeButton,helpButton,playButton, nil];
         Menu.anchorPoint =ccp(0.0f, 0.0f);
-//        Menu.position=ccp(winSize.width/5*2,winSize.height/5*2);
         Menu.position=ccp(768/5*2,1024/5*2);
         [Menu alignItemsHorizontallyWithPadding:15];
         
         [self addChild:Menu z:1];
         
-        
+        /*
         //fake
         storeBackground = [CCMenuItemImage itemWithNormalImage:@"storeBackground.png" selectedImage:@"storeBackground.png" target:self selector:@selector(storeMenuAction)];
         storeBackground.visible = false;
@@ -56,7 +56,8 @@ CCSprite *bg;
         Menu3.position=ccp(0, 0);
 
         [self addChild:Menu3 z:20];
-        //
+         */
+        
     }
     
     return self;
@@ -68,7 +69,9 @@ CCSprite *bg;
 }
 
 -(void) buttonPlayAction:(id)sender {
-    [[CCDirector sharedDirector] replaceScene:[LoadingScene sceneWithTargetScene:GAME_STATE_ONE]];
+//    [[CCDirector sharedDirector] replaceScene:[LoadingScene sceneWithTargetScene:GAME_STATE_ONE]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelScrollScene scene]]];
+
 }
 
 -(void) buttonHelpAction:(id)sender
@@ -78,20 +81,8 @@ CCSprite *bg;
 
 -(void) buttonStoreAction
 {
-    storeBackground.visible = true;
-    /*
-    if (![[MainMenuScene sharedMainMenuScene] isShowingStore])
-    {
-        [[MainMenuScene sharedMainMenuScene] setShowingStore:YES];
-        [[MainMenuScene sharedMainMenuScene] showStore];
-        [[CCDirector sharedDirector] pause];
-    }
-     */
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[StoreScene scene]]];
 }
 
--(void) storeMenuAction
-{
-    storeBackground.visible = false;
-}
 
 @end

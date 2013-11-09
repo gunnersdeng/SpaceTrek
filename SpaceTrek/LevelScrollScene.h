@@ -1,5 +1,5 @@
 //
-//  StoreScene.h
+//  LevelScrollScene.h
 //  SpaceTrek
 //
 //  Created by huang yongke on 13-11-5.
@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface StoreScene : CCScene {
+@interface LevelScrollScene : CCLayer {
     
 }
+
 +(CCScene *) scene;
+
 @end

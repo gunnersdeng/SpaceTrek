@@ -15,12 +15,11 @@
     CCLabelTTF *distanceLabel;
     CCSprite *statusBar;
     GameLayer *gameLayer;
-    CCMenuItemImage* times2;
+    CCMenuItemImage* property1, *property2, *property3, *property4, *property5;
     CCMenu *PropertyMenu;
 }
 -(void) updateDistanceCounter:(int)amount;
 
 +(HUDLayer*) getHUDLayer;
--(void) times2Selected;
 
 @end

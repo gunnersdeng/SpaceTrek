@@ -47,32 +47,34 @@
 }
 
 -(void) createBox2dObject:(b2World *)world{
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     b2BodyDef playerBodyDef;
     playerBodyDef.type = b2_dynamicBody;
-    playerBodyDef.position.Set(self.contentSize.width/2, winSize.height/2);
+    playerBodyDef.position.Set(self.position.x/PTM_RATIO, self.position.y/PTM_RATIO);
+    playerBodyDef.userData = self;
     playerBodyDef.userData = (__bridge void*) self;
     playerBody = world->CreateBody(&playerBodyDef);
+    playerBody->SetUserData(self);
     
     
-    
-    
-    b2Vec2 force = b2Vec2(100, 0);
-    playerBody->ApplyLinearImpulse(force, playerBodyDef.position);
+    b2Vec2 force = b2Vec2(10, 0.0f);
+    playerBody->SetLinearVelocity(force);
     
     b2CircleShape circle;
-    circle.m_radius = self.contentSize.height/2;
+    circle.m_radius = self.contentSize.height/2/PTM_RATIO;
     
     b2FixtureDef playerShapeDef;
     playerShapeDef.shape = &circle;
     playerShapeDef.density = 1000.0f;
-    playerShapeDef.friction = 0.f;
+    playerShapeDef.friction = 0.5f;
     playerShapeDef.restitution = 1.0f;
     playerShapeDef.filter.categoryBits =  0x1;
     playerShapeDef.filter.maskBits =  0xFFFF;
     
     playerBody->CreateFixture(&playerShapeDef);
+    
+    
+    
 }
 
 -(void) crashTransformAction
@@ -121,4 +123,27 @@
     GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
     [layer resumeSchedulerAndActions];
 }
+
+- (void) adjust {
+    if(playerBody->GetLinearVelocity().x<8)
+    {
+        [self accelerate];
+    }
+    else if(playerBody->GetLinearVelocity().x>10)
+    {
+        [self decelerate];
+    }
+}
+
+- (void) accelerate {
+    b2Vec2 impulse = b2Vec2(8, playerBody->GetLinearVelocity().y);
+    playerBody->SetLinearVelocity(impulse);
+}
+
+- (void) decelerate {
+    b2Vec2 impulse = b2Vec2(10,  playerBody->GetLinearVelocity().y);
+    playerBody->SetLinearVelocity(impulse);
+}
+
+
 @end

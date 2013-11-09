@@ -8,9 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-
+#import <vector>
+#import "Global.h"
 @interface StoreLayer : CCLayerColor {
-    CCMenuItem *storeBackground;
+    CCSprite *storeBackground;
+    CCMenuItem *closesStoreBackground;
+    CCMenuItemImage* property1, *property2, *property3, *property4, *property5;
+    CCMenu *PropertyMenu;
+    
+   
+    
+    
 }
-- (id) initWithLevel:(int)level;
+
+
 @end

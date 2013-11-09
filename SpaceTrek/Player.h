@@ -12,7 +12,7 @@
 #import "GameObject.h"
 
 @interface Player : GameObject {
-    @public b2Body          *playerBody;
+    @public b2Body *playerBody;
     CCFiniteTimeAction *playerRunAction;
     CCAnimation *playerRunAnimation;
     CCFiniteTimeAction *crashAction;
@@ -27,23 +27,14 @@
     int numOfAffordCollsion;
     int numOfCollsion;
 }
-
+-(void) adjust;
 -(void) createBox2dObject:(b2World*)world;
 -(void) initAnimation:(CCSpriteBatchNode*)batchNode;
 -(void) crashTransformAction;
-//-(void) afterUpAction:(Joker *) sprite;
-//-(void) afterDownAction:(Joker *) sprite;
-//-(void) jump:(float)charge;
-//-(void) run;
-//-(void) fall;
-//-(void) accelerate;
-//-(void) decelerate;
-//-(void) flip;
-//-(void) adjust;
-//+(Joker*) getJoker;
-//-(b2Body*) getBody;
++(Player*) getPlayer;
+-(b2Body*) getBody;
 
-@property (nonatomic, readwrite) b2Body *jokerBody;
+//@property (nonatomic, readwrite) b2Body *playerBody;
 @property (nonatomic, readwrite) BOOL collison;
 @property (nonatomic, readwrite) int numOfAffordCollsion;
 @property (nonatomic, readwrite) int numOfCollsion;
