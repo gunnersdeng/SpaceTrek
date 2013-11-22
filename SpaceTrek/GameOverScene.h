@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Player.h"
 
 @interface GameOverScene : CCLayer {
     CCLabelTTF *labelScore;

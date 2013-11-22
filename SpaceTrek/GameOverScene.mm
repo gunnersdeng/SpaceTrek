@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "MainMenuScene.h"
 #import "Constants.h"
+#import "Global.h"
 
 int stageLevel;
 int scoreNum;
@@ -17,9 +18,12 @@ int distanceNum;
 
 @implementation GameOverScene
 
-+(CCScene *) sceneWithLevel:(int)level Score:(int)score Distance:(int)distance {
++(CCScene *) sceneWithLevel:(int)level Score:(int)score Distance:(int)distance{
     stageLevel = level;
     scoreNum = score;
+    
+    gold += score;
+    
     distanceNum = distance;
     
     // 'scene' is an autorelease object.

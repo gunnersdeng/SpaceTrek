@@ -14,6 +14,7 @@
 #import "MainMenuScene.h"
 #import "LevelScrollScene.h"
 #import "StoreScene.h"
+#import "HelpScene.h"
 CCSprite *bg;
 
 @implementation MainMenuLayer
@@ -76,7 +77,7 @@ CCSprite *bg;
 
 -(void) buttonHelpAction:(id)sender
 {
-    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[HelpScene scene]]];
 }
 
 -(void) buttonStoreAction

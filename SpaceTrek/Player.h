@@ -21,16 +21,33 @@
     CCAnimation *spacemanAnimation;
     CCFiniteTimeAction *exlosionAction;
     CCAnimation *exlosionAnimation;
+    CCFiniteTimeAction *magnet1Action;
+    CCAnimation *magnet1Animation;
+    CCFiniteTimeAction *magnet2Action;
+    CCAnimation *magnet2Animation;
+    CCFiniteTimeAction *invincibleAction;
+    CCAnimation *invincibleAnimation;
+    CCFiniteTimeAction *shield1Action;
+    CCAnimation *shield1Animation;
+    CCFiniteTimeAction *shield2Action;
+    CCAnimation *shield2Animation;
     
     BOOL collison;
     
     int numOfAffordCollsion;
     int numOfCollsion;
+    
 }
 -(void) adjust;
 -(void) createBox2dObject:(b2World*)world;
 -(void) initAnimation:(CCSpriteBatchNode*)batchNode;
 -(void) crashTransformAction;
+-(void) magnetAction;
+-(void) invincible;
+-(void) shield1;
+-(void) shield2;
+-(void) noshield;
+
 +(Player*) getPlayer;
 -(b2Body*) getBody;
 

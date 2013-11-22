@@ -12,5 +12,7 @@
 #import <set>
 
 extern std::set<int> purcharsedProperty;
+extern int gold;
+extern bool firstTime;
 
 #endif

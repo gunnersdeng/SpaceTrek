@@ -14,7 +14,7 @@
     CCMenuItemImage *resume;
     CCMenuItemImage *restart;
     CCMenuItemImage *main;
-    
+    int pauseLevel;
 }
 
 - (id) initWithLevel:(int)level;

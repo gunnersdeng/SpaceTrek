@@ -47,11 +47,11 @@ int backgroundLevel = 1;
             break;
         case GAME_STATE_TWO:
 //            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
-            bgBottom = [CCSprite spriteWithFile:@"background-v1.png"];
+            bgBottom = [CCSprite spriteWithFile:@"level2-background.png"];
             break;
         case GAME_STATE_THREE:
 //            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
-            bgBottom = [CCSprite spriteWithFile:@"background-v1.png"];
+            bgBottom = [CCSprite spriteWithFile:@"level3-background.png"];
             break;
             
         default:

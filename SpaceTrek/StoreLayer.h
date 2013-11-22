@@ -13,8 +13,11 @@
 @interface StoreLayer : CCLayerColor {
     CCSprite *storeBackground;
     CCMenuItem *closesStoreBackground;
-    CCMenuItemImage* property1, *property2, *property3, *property4, *property5;
+    CCMenuItemImage* property1, *property2, *property3, *property4, *property5, *property6;
     CCMenu *PropertyMenu;
+    CCMenu *PropertyMenu2;
+    
+    CCLabelTTF *goldLabel;
     
    
     

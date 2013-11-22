@@ -3,6 +3,68 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[HUDLayer setShadow:]:HUDLayer.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "shadow4">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[StoreLayer ccTouchesBegan:withEvent:]:StoreLayer.mm">
+      </ContextState>
+      <ContextState
+         contextName = "-[GameLayer addObstacle]:GameLayer.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "obstacle.contentSize.height">
+            </PersistentString>
+            <PersistentString
+               value = "obstacle.contentSize.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[GameLayer ccTouchesBegan:withEvent:]:GameLayer.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "b-&gt;GetPosition().x-position.x">
+            </PersistentString>
+            <PersistentString
+               value = "ccpDistance(center, treasureData.position)">
+            </PersistentString>
+            <PersistentString
+               value = "treasureData.tag">
+            </PersistentString>
+            <PersistentString
+               value = "b-&gt;GetPosition().y-position.y">
+            </PersistentString>
+            <PersistentString
+               value = "isCollect">
+            </PersistentString>
+            <PersistentString
+               value = "treasureData.position">
+            </PersistentString>
+            <PersistentString
+               value = "(sqrt(sqr(b-&gt;GetPosition().x-position.x)+sqr(b-&gt;GetPosition().y-position.y))">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[GameLayer treasureMovementLogic:]:GameLayer.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "treasureData.tag">
+            </PersistentString>
+            <PersistentString
+               value = "player-&gt;playerBody-&gt;GetLinearVelocity()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContactListener::EndContact(b2Contact*):ContactListener.mm">
+      </ContextState>
+      <ContextState
          contextName = "-[HUDLayer addProperty]:HUDLayer.mm">
          <PersistentStrings>
             <PersistentString
@@ -12,9 +74,6 @@
                value = "purcharsedProperty.size()">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[StoreLayer ccTouchesBegan:withEvent:]:StoreLayer.mm">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

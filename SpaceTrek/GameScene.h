@@ -21,6 +21,5 @@
 
 +(GameScene*) sharedGameScene;
 
-- (void)showPausedMenu;
-
+-(void)showPausedMenu:(int)state;
 @end

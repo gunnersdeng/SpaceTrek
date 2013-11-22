@@ -82,49 +82,257 @@
                 <key>sourceSize</key>
                 <string>{640,800}</string>
             </dict>
-            <key>exlosion_bg1.png</key>
+            <key>invincible1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1874,2},{2048,1536}}</string>
+                <string>{{2,768},{271,298}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{3,1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{2048,1536}}</string>
+                <string>{{11,0},{271,298}}</string>
                 <key>sourceSize</key>
-                <string>{2048,1536}</string>
+                <string>{287,300}</string>
             </dict>
-            <key>exlosion_bg2.png</key>
+            <key>invincible2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,1540},{2048,1536}}</string>
+                <string>{{275,768},{271,298}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{3,1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{2048,1536}}</string>
+                <string>{{11,0},{271,298}}</string>
                 <key>sourceSize</key>
-                <string>{2048,1536}</string>
+                <string>{287,300}</string>
             </dict>
-            <key>spaceman1.png</key>
+            <key>spaceman-0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2052,1540},{214,130}}</string>
+                <string>{{548,768},{221,136}}</string>
+                <key>offset</key>
+                <string>{0,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,22},{221,136}}</string>
+                <key>sourceSize</key>
+                <string>{221,174}</string>
+            </dict>
+            <key>spaceman-1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{771,768},{221,136}}</string>
+                <key>offset</key>
+                <string>{0,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,22},{221,136}}</string>
+                <key>sourceSize</key>
+                <string>{221,174}</string>
+            </dict>
+            <key>spaceman-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{994,768},{221,138}}</string>
+                <key>offset</key>
+                <string>{0,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,20},{221,138}}</string>
+                <key>sourceSize</key>
+                <string>{221,174}</string>
+            </dict>
+            <key>spaceman-3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1217,768},{221,158}}</string>
+                <key>offset</key>
+                <string>{0,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,10},{221,158}}</string>
+                <key>sourceSize</key>
+                <string>{221,174}</string>
+            </dict>
+            <key>spaceman-4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1440,768},{221,168}}</string>
+                <key>offset</key>
+                <string>{0,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,6},{221,168}}</string>
+                <key>sourceSize</key>
+                <string>{221,174}</string>
+            </dict>
+            <key>spaceman-5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1217,768},{221,158}}</string>
+                <key>offset</key>
+                <string>{0,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,10},{221,158}}</string>
+                <key>sourceSize</key>
+                <string>{221,174}</string>
+            </dict>
+            <key>spaceman-6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{994,768},{221,138}}</string>
+                <key>offset</key>
+                <string>{0,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,20},{221,138}}</string>
+                <key>sourceSize</key>
+                <string>{221,174}</string>
+            </dict>
+            <key>spaceman-7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{771,768},{221,136}}</string>
+                <key>offset</key>
+                <string>{0,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,22},{221,136}}</string>
+                <key>sourceSize</key>
+                <string>{221,174}</string>
+            </dict>
+            <key>spaceman_magnet_0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1663,768},{221,180}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{214,130}}</string>
+                <string>{{0,0},{221,180}}</string>
                 <key>sourceSize</key>
-                <string>{214,130}</string>
+                <string>{221,180}</string>
+            </dict>
+            <key>spaceman_magnet_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,1068},{221,180}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{221,180}}</string>
+                <key>sourceSize</key>
+                <string>{221,180}</string>
+            </dict>
+            <key>spaceman_magnet_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{225,1068},{221,180}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{221,180}}</string>
+                <key>sourceSize</key>
+                <string>{221,180}</string>
+            </dict>
+            <key>spaceman_magnet_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{448,1068},{221,180}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{221,180}}</string>
+                <key>sourceSize</key>
+                <string>{221,180}</string>
+            </dict>
+            <key>spaceman_magnet_4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{671,1068},{221,180}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{221,180}}</string>
+                <key>sourceSize</key>
+                <string>{221,180}</string>
+            </dict>
+            <key>spaceship-shield-1-1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{894,1068},{258,178}}</string>
+                <key>offset</key>
+                <string>{-3,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{18,11},{258,178}}</string>
+                <key>sourceSize</key>
+                <string>{300,200}</string>
+            </dict>
+            <key>spaceship-shield-1-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1154,1068},{252,178}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{24,11},{252,178}}</string>
+                <key>sourceSize</key>
+                <string>{300,200}</string>
+            </dict>
+            <key>spaceship-shield-2-1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1408,1068},{258,178}}</string>
+                <key>offset</key>
+                <string>{-3,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{18,11},{258,178}}</string>
+                <key>sourceSize</key>
+                <string>{300,200}</string>
+            </dict>
+            <key>spaceship-shield-2-2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1668,1068},{252,178}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{24,11},{252,178}}</string>
+                <key>sourceSize</key>
+                <string>{300,200}</string>
             </dict>
             <key>spaceship1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2268,1540},{258,178}}</string>
+                <string>{{2,1250},{258,178}}</string>
                 <key>offset</key>
                 <string>{-3,0}</string>
                 <key>rotated</key>
@@ -137,7 +345,7 @@
             <key>spaceship2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2528,1540},{252,178}}</string>
+                <string>{{262,1250},{252,178}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -155,9 +363,9 @@
             <key>realTextureFileName</key>
             <string>Character.png</string>
             <key>size</key>
-            <string>{4096,4096}</string>
+            <string>{2048,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d17d28566b0b3fa9dea89c2e273753dd$</string>
+            <string>$TexturePacker:SmartUpdate:32518c5ef03e37af0b11dbc175d6a135$</string>
             <key>textureFileName</key>
             <string>Character.png</string>
         </dict>

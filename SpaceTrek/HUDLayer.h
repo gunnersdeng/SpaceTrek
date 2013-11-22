@@ -14,12 +14,30 @@
 @interface HUDLayer : CCLayer {
     CCLabelTTF *distanceLabel;
     CCSprite *statusBar;
+    CCSprite *pointer;
     GameLayer *gameLayer;
-    CCMenuItemImage* property1, *property2, *property3, *property4, *property5;
+    CCMenuItemImage* property1, *property2, *property3, *property4, *property5, *property6, *propertyNull;
     CCMenu *PropertyMenu;
+    CCMenuItemSprite *pauseButton;
+    CCMenu *pauseMenu;
+    
+    CCSprite * shadow;
+    CCSprite * shadow0;
+    CCSprite * shadow1;
+    CCSprite * shadow2;
+    CCSprite * shadow4;
+    
+    
+    bool isShowingPausedMenu;
 }
+- (id) initWithLevel:(int)level;
 -(void) updateDistanceCounter:(int)amount;
 
+-(void) setShadowPosition:(int) x yy:(int) y;
+-(void) setShadow: (int) index;
+
 +(HUDLayer*) getHUDLayer;
+
+-(void) disablePauseMenu;
 
 @end

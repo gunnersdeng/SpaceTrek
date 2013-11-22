@@ -53,24 +53,30 @@
     
     SimpleAudioEngine * backgroundAmbience;
     
-    bool gamePart2;
+    bool gamePart1, gamePart2, during_invincible;
     
     ALuint firstBackgroundMusic;
     ALuint secondBackgroundMusic;
     
     std::vector<b2Body*> collectedTreasure;
     
+    bool hitStop;
 @public
     bool collision;
+    int getLevel;
 }
 
 -(void) playerBack;
 -(void) ChangeGoBackSound;
 -(bool) propertyListener: (int)propertyTag;
 - (void) dealloc;
+-(void)setPlayerVelocity;
+-(void) setVolecity : (int)judge;
+
 
 @property  (nonatomic, readwrite) b2World* world;
 @property  (nonatomic, readwrite) int distance;
+@property  (nonatomic, readwrite) int power;
 @property  (nonatomic, readwrite) int score;
 @property (nonatomic, readwrite) CCSpriteBatchNode* allBatchNode;
 @property  (nonatomic, readwrite) ALuint firstBackgroundMusic;
