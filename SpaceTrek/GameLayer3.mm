@@ -807,7 +807,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     else
     {
         b2Vec2 position1;
-        if(teleport && !topLine && player.position.y >= winSize.height/3 && player.position.y <= winSize.height/3+50)
+        if(teleport && !topLine && player.position.y >= teleport_bottom_y && player.position.y <= teleport_bottom_y+50)
         {
             if(shipSpeedY>0)
                 position1 = b2Vec2(teleport_top_x/PTM_RATIO, (teleport_top_y+50)/PTM_RATIO);
@@ -815,7 +815,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
                 position1 = b2Vec2(teleport_top_x/PTM_RATIO, (teleport_top_y-50)/PTM_RATIO);
             topLine = true;
         }
-        else if(teleport && topLine && player.position.y >= winSize.height/3*2 && player.position.y <= winSize.height/3*2+50)
+        else if(teleport && topLine && player.position.y >= teleport_top_y && player.position.y <= teleport_top_y+50)
         {
             if(shipSpeedY>0)
                 position1 = b2Vec2(teleport_bottom_x/PTM_RATIO, (teleport_bottom_y+50)/PTM_RATIO);
@@ -826,7 +826,6 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         else
             position1 = b2Vec2(player.position.x/PTM_RATIO, newY/PTM_RATIO);
         player->playerBody->SetTransform(position1, 0.0);
-//        [hudLayer setShadowPosition:player.position.x yy:newY];
     }
 }
 
@@ -875,26 +874,36 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         }
         else if(distance == 500)
         {
-            teleport = true;
-            
-            CCSprite* blackhole_red = [CCSprite spriteWithFile:@"blackhole_red.png"];
-            [blackhole_red setAnchorPoint:ccp(0.0, 0.0)];
-            blackhole_red.position = ccp(winSize.width/5, winSize.height/3);
-            teleport_bottom_x = winSize.width/5;
-            teleport_bottom_y = winSize.height/3;
-            [self addChild:blackhole_red z:1 tag:BLACKHOLE_RED_TAG];
-            
-            CCSprite* blackhole_red_top = [CCSprite spriteWithFile:@"blackhole_red.png"];
-            [blackhole_red_top setAnchorPoint:ccp(0.0, 0.0)];
-            blackhole_red_top.position = ccp(winSize.width/5*2, winSize.height/3*2);
-            teleport_top_x = winSize.width/5*2;
-            teleport_top_y = winSize.height/3*2;
-            [self addChild:blackhole_red_top z:1 tag:BLACKHOLE_RED_TAG];
+            [self addTeleport:winSize.width/5*2 TOPY:winSize.height/3*2 BOTTOMX:winSize.width/5 BOTTOMY:winSize.height/3];
         }
     }
 
     [hudLayer updateDistanceCounter:distance];
     [self updateShip];
+}
+
+-(void) addTeleport:(int)top_x TOPY:(int)top_y BOTTOMX:(int)bottom_x BOTTOMY:(int)bottom_y
+{
+    teleport = true;
+
+    CCSprite* blackhole_red = [CCSprite spriteWithFile:@"blackhole_red.png"];
+    [blackhole_red setAnchorPoint:ccp(0.0, 0.0)];
+    blackhole_red.position = ccp(bottom_x, bottom_y);
+    teleport_bottom_x = bottom_x;
+    teleport_bottom_y = bottom_y;
+    [self addChild:blackhole_red z:1 tag:BLACKHOLE_RED_TAG];
+    
+    CCSprite* blackhole_red_top = [CCSprite spriteWithFile:@"blackhole_red.png"];
+    [blackhole_red_top setAnchorPoint:ccp(0.0, 0.0)];
+    blackhole_red_top.position = ccp(top_x, top_y);
+    teleport_top_x = top_x;
+    teleport_top_y = top_y;
+    [self addChild:blackhole_red_top z:1 tag:BLACKHOLE_RED_TAG];
+}
+
+-(void) removeTeleport
+{
+    [self removeChildByTag:BLACKHOLE_RED_TAG];
 }
 
 -(bool) propertyListener: (int)propertyTag
