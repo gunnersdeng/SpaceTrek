@@ -72,7 +72,7 @@ bool firstTime;
     property5 = [CCMenuItemImage itemWithNormalImage:@"STORE_Toucharea.png" selectedImage:@"STORE_Toucharea.png" target:self selector:@selector(storePropertySelected5)];
     property5.tag = STORE_PROPERTY_TYPE_5_TAG;
     
-    property6 = [CCMenuItemImage itemWithNormalImage:@"STORE_Toucharea.png" selectedImage:@"STORE_Toucharea.png" target:self selector:@selector(storePropertySelected6)];
+    property6 = [CCMenuItemImage itemWithNormalImage:@"STORE_flashlight.png" selectedImage:@"STORE_flashlight.png" target:self selector:@selector(storePropertySelected6)];
     property6.tag = STORE_PROPERTY_TYPE_6_TAG;
     
     PropertyMenu = [CCMenu menuWithItems:property1, property2, property3,property4,property5, nil];

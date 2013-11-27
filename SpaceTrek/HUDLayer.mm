@@ -151,7 +151,7 @@ int hudLevel;
             case 6:
                 if(hudLevel!=2)
                     break;
-                property6 = [CCMenuItemImage itemWithNormalImage:@"TOOLBAR_Toucharea.png" selectedImage:@"TOOLBAR_Toucharea.png" target:self selector:@selector(propertySelected6)];
+                property6 = [CCMenuItemImage itemWithNormalImage:@"TOOLBAR_flashlight.png" selectedImage:@"TOOLBAR_flashlight.png" target:self selector:@selector(propertySelected6)];
                 property6.tag = TREASURE_PROPERTY_TYPE_6_TAG;
                 [PropertyMenu addChild:property6];
                 num++;
@@ -168,10 +168,6 @@ int hudLevel;
         [PropertyMenu addChild:propertyNull];
     }
     
-    //[PropertyMenu setAnchorPoint: ccp(0.0f, 1.0f)];
-    //[PropertyMenu setPosition:ccp(46, 443)];
-    
-    //[PropertyMenu setAnchorPoint: ccp(-10.0f, 10.0f)];
     [PropertyMenu setPosition:ccp(37, 385)];
     
     [PropertyMenu alignItemsVerticallyWithPadding:8.5f];

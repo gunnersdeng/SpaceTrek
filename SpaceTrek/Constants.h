@@ -32,6 +32,7 @@
 #define Help_LAYER_TAG 5
 #define CIRCLE_TAG 100
 #define SHADOW_TAG 101
+#define BLACKHOLE_RED_TAG 102
 
 
 #define PLAYER_TAG 0

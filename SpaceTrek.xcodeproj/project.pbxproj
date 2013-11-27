@@ -71,6 +71,9 @@
 		F10D14A21833F844006A15C5 /* fireball_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F10D149F1833F844006A15C5 /* fireball_2.png */; };
 		F10D14A31833F844006A15C5 /* fireball_3.png in Resources */ = {isa = PBXBuildFile; fileRef = F10D14A01833F844006A15C5 /* fireball_3.png */; };
 		F121428D1814979F00C50904 /* LoadingScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = F121428C1814979F00C50904 /* LoadingScene.mm */; };
+		F13405FC18433146009588E6 /* blackhole_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F13405FB18433146009588E6 /* blackhole_red.png */; };
+		F13405FE18433C88009588E6 /* STORE_flashlight.png in Resources */ = {isa = PBXBuildFile; fileRef = F13405FD18433C88009588E6 /* STORE_flashlight.png */; };
+		F134060018433C97009588E6 /* TOOLBAR_flashlight.png in Resources */ = {isa = PBXBuildFile; fileRef = F13405FF18433C97009588E6 /* TOOLBAR_flashlight.png */; };
 		F14122BD1803AB4800C1B8AD /* Button-Pause-icon-modified.png in Resources */ = {isa = PBXBuildFile; fileRef = F14122BC1803AB4800C1B8AD /* Button-Pause-icon-modified.png */; };
 		F14E4E70181304B4005D8190 /* HUDLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E4E6F181304B4005D8190 /* HUDLayer.mm */; };
 		F14E4E7A18130ED0005D8190 /* MENU.png in Resources */ = {isa = PBXBuildFile; fileRef = F14E4E7718130ED0005D8190 /* MENU.png */; };
@@ -364,6 +367,9 @@
 		F10D14A01833F844006A15C5 /* fireball_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireball_3.png; sourceTree = "<group>"; };
 		F121428B1814979F00C50904 /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScene.h; sourceTree = "<group>"; };
 		F121428C1814979F00C50904 /* LoadingScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LoadingScene.mm; sourceTree = "<group>"; };
+		F13405FB18433146009588E6 /* blackhole_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackhole_red.png; sourceTree = "<group>"; };
+		F13405FD18433C88009588E6 /* STORE_flashlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STORE_flashlight.png; sourceTree = "<group>"; };
+		F13405FF18433C97009588E6 /* TOOLBAR_flashlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TOOLBAR_flashlight.png; sourceTree = "<group>"; };
 		F14122BC1803AB4800C1B8AD /* Button-Pause-icon-modified.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Pause-icon-modified.png"; sourceTree = "<group>"; };
 		F14E4E6E181304B4005D8190 /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
 		F14E4E6F181304B4005D8190 /* HUDLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HUDLayer.mm; sourceTree = "<group>"; };
@@ -1530,6 +1536,7 @@
 			isa = PBXGroup;
 			children = (
 				F1001234183D7C67002EE1C6 /* background-shadow-4.png */,
+				F13405FB18433146009588E6 /* blackhole_red.png */,
 				F100122E183D7312002EE1C6 /* background-shadow-0.png */,
 				F100122F183D7312002EE1C6 /* background-shadow-1.png */,
 				F1001230183D7312002EE1C6 /* background-shadow-2.png */,
@@ -1574,6 +1581,7 @@
 		F17B976617FCEC8800BD6670 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				F13405FD18433C88009588E6 /* STORE_flashlight.png */,
 				75CD3303183C48CE000D3D52 /* STORE_Bullet.png */,
 				75CD3305183C48D8000D3D52 /* STORE_Invincible15s.png */,
 				75CD3307183C48E1000D3D52 /* STORE_Magnet.png */,
@@ -1617,6 +1625,7 @@
 		F1D9FE0C1820C9E200A27113 /* Property */ = {
 			isa = PBXGroup;
 			children = (
+				F13405FF18433C97009588E6 /* TOOLBAR_flashlight.png */,
 				75EFB42F1832FDC7006B290A /* Bullet.png */,
 				75EFB41F1832DC15006B290A /* TOOLBAR_Invincible15s.png */,
 				75EFB41D1832D9DC006B290A /* TOOLBAR_empty.png */,
@@ -1715,11 +1724,13 @@
 				F1001235183D7C67002EE1C6 /* background-shadow-4.png in Resources */,
 				F17B952517FCBB7A00BD6670 /* Icon.png in Resources */,
 				F1F5F1261821B2D60084BB33 /* Stone_type_5.png in Resources */,
+				F134060018433C97009588E6 /* TOOLBAR_flashlight.png in Resources */,
 				757BA8551814B869006645AA /* CrashSong.mp3 in Resources */,
 				F192F3DC18179A18008D4DC0 /* storeBackground.png in Resources */,
 				75E9EFE8182009DA006A633D /* treasure_type_4.png in Resources */,
 				75E9EFE5182009DA006A633D /* treasure_type_5.png in Resources */,
 				75EFB4341832FDEE006B290A /* TOOLBAR_Bullet.png in Resources */,
+				F13405FE18433C88009588E6 /* STORE_flashlight.png in Resources */,
 				75CD3308183C48E1000D3D52 /* STORE_Magnet.png in Resources */,
 				757BA8531814B26C006645AA /* CollectTreasure.wav in Resources */,
 				F17B952717FCBB7A00BD6670 /* Icon@2x.png in Resources */,
@@ -1745,6 +1756,7 @@
 				75E2846418021E250003E344 /* spaceship-level-2-2.png in Resources */,
 				CF4B4AE51813435200912025 /* SpaceShip2.png in Resources */,
 				F1001231183D7312002EE1C6 /* background-shadow-0.png in Resources */,
+				F13405FC18433146009588E6 /* blackhole_red.png in Resources */,
 				75EFB4201832DC15006B290A /* TOOLBAR_Invincible15s.png in Resources */,
 				F1F975C2180200AE009B9148 /* space-background-upperlayer.png in Resources */,
 				75EFB43C183304C2006B290A /* background-v1.png in Resources */,

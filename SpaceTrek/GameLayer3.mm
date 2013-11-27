@@ -28,6 +28,12 @@ bool isCollect_3;
 bool isbullet_3;
 bool isCollectCircle_3;
 bool isSetPlayerVelocity_3;
+bool teleport;
+bool topLine;
+double teleport_top_x;
+double teleport_top_y;
+double teleport_bottom_x;
+double teleport_bottom_y;
 
 -(id) init{
     self = [super init];
@@ -51,6 +57,8 @@ bool isSetPlayerVelocity_3;
         isbullet_3 = false;
         isCollectCircle_3 = false;
         isSetPlayerVelocity_3 = false;
+        teleport = false;
+        topLine = false;
         self.tag = GAME_LAYER_TAG;
         
         
@@ -235,7 +243,7 @@ bool isSetPlayerVelocity_3;
                 [self schedule:@selector(playerMoveFinished:)];
                 self.isAccelerometerEnabled=YES;
                 self.isTouchEnabled = YES;
-                [self addBlackhole];
+//                [self addBlackhole];
                 
             }
             if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-winSize.width/2)<=100 && isStationMoveBack_3)
@@ -436,6 +444,7 @@ bool isSetPlayerVelocity_3;
     isPlayerMoveBack_3 = true;
     isStationMoveBack_3 = true;
     gamePart1 = false;
+    teleport = false;
 }
 -(void) treasureBack
 {
@@ -797,9 +806,27 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     }
     else
     {
-        b2Vec2 position1(player.position.x/PTM_RATIO, newY/PTM_RATIO);
+        b2Vec2 position1;
+        if(teleport && !topLine && player.position.y >= winSize.height/3 && player.position.y <= winSize.height/3+50)
+        {
+            if(shipSpeedY>0)
+                position1 = b2Vec2(teleport_top_x/PTM_RATIO, (teleport_top_y+50)/PTM_RATIO);
+            else
+                position1 = b2Vec2(teleport_top_x/PTM_RATIO, (teleport_top_y-50)/PTM_RATIO);
+            topLine = true;
+        }
+        else if(teleport && topLine && player.position.y >= winSize.height/3*2 && player.position.y <= winSize.height/3*2+50)
+        {
+            if(shipSpeedY>0)
+                position1 = b2Vec2(teleport_bottom_x/PTM_RATIO, (teleport_bottom_y+50)/PTM_RATIO);
+            else
+                position1 = b2Vec2(teleport_bottom_x/PTM_RATIO, (teleport_bottom_y-50)/PTM_RATIO);
+            topLine = false;
+        }
+        else
+            position1 = b2Vec2(player.position.x/PTM_RATIO, newY/PTM_RATIO);
         player->playerBody->SetTransform(position1, 0.0);
-        [hudLayer setShadowPosition:player.position.x yy:newY];
+//        [hudLayer setShadowPosition:player.position.x yy:newY];
     }
 }
 
@@ -817,6 +844,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
 }
 
 - (void)update:(ccTime)dt {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
     if ( hudLayer==nil ){
         CCScene* scene = [[CCDirector sharedDirector] runningScene];
         hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
@@ -844,6 +872,24 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
             [self ChangeGoBackSound];
             
             [player setType:gameObjectCollector];
+        }
+        else if(distance == 500)
+        {
+            teleport = true;
+            
+            CCSprite* blackhole_red = [CCSprite spriteWithFile:@"blackhole_red.png"];
+            [blackhole_red setAnchorPoint:ccp(0.0, 0.0)];
+            blackhole_red.position = ccp(winSize.width/5, winSize.height/3);
+            teleport_bottom_x = winSize.width/5;
+            teleport_bottom_y = winSize.height/3;
+            [self addChild:blackhole_red z:1 tag:BLACKHOLE_RED_TAG];
+            
+            CCSprite* blackhole_red_top = [CCSprite spriteWithFile:@"blackhole_red.png"];
+            [blackhole_red_top setAnchorPoint:ccp(0.0, 0.0)];
+            blackhole_red_top.position = ccp(winSize.width/5*2, winSize.height/3*2);
+            teleport_top_x = winSize.width/5*2;
+            teleport_top_y = winSize.height/3*2;
+            [self addChild:blackhole_red_top z:1 tag:BLACKHOLE_RED_TAG];
         }
     }
 

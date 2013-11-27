@@ -63,11 +63,14 @@
     b2CircleShape circle;
     circle.m_radius = self.contentSize.height/2/PTM_RATIO;
     
+    
+    
 //    b2PolygonShape polygon;
-//    polygon.SetAsBox(5, 10);
+//    polygon.SetAsBox(self.contentSize.height/4/PTM_RATIO, self.contentSize.width/4/PTM_RATIO);
     
     b2FixtureDef playerShapeDef;
     playerShapeDef.shape = &circle;
+//    playerShapeDef.shape = &polygon;
     playerShapeDef.density = 1000.0f;
     playerShapeDef.friction = 0.5f;
     playerShapeDef.restitution = 0.0f;
