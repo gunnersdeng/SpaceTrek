@@ -263,7 +263,7 @@ int hudLevel;
 
 -(void) updatePointer:(int)amount
 {
-    pointer.rotation = (amount/MAX_DISTANCE)*180-90;
+    pointer.rotation = -((amount/MAX_DISTANCE)*180-90);
 }
 
 @end
