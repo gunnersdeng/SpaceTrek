@@ -31,7 +31,7 @@ bool isSetPlayerVelocity;
 -(id) init{
     self = [super init];
     if(self){
-
+        
         getLevel = 1;
         during_invincible = false;
         hitStop = false;
@@ -264,9 +264,6 @@ bool isSetPlayerVelocity;
                                         b->GetPosition().y*PTM_RATIO);
             treasureData.rotation = 0 * CC_RADIANS_TO_DEGREES(b->GetAngle());
             
-
-       
-            
         }
     }
 }
@@ -314,6 +311,17 @@ bool isSetPlayerVelocity;
     CGPoint location = [touch locationInView: [touch view]];
     location = [[CCDirector sharedDirector] convertToGL: location];
     b2Vec2 position = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    
+    CCParticleSystem *ps = [CCParticleExplosion node];
+        [self addChild:ps z:12];
+        ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+        ps.position = location;
+        ps.blendAdditive = YES;
+        ps.life = 0.25f;
+        ps.lifeVar = 0.25f;
+        ps.totalParticles = 120.0f;
+        ps.autoRemoveOnFinish = YES;
+    
     if(isCollectCircle)
     {
         for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
@@ -328,6 +336,31 @@ bool isSetPlayerVelocity;
                     circle.position = ccp(location.x, location.y);
                     [self addChild:circle z:2 tag:CIRCLE_TAG];
                     */
+                    CCSprite* circle= [CCSprite spriteWithSpriteFrameName:@"TreasureBoom_11.png"];
+                    circle.position = ccp(location.x, location.y);
+                    [self addChild:circle z:2 tag:CIRCLE_TAG];
+                    
+                    
+                                        CCFadeOut *fade = [CCFadeOut actionWithDuration:1];  //this will make it fade
+                                        CCCallFuncN *remove = [CCCallFuncN actionWithTarget:self selector:@selector(removeSprite:)];
+                                        CCSequence *seq = [CCSequence actions: fade, remove, nil];
+                                        [circle runAction:seq];
+                    
+                    
+//                                        NSMutableArray *collectAnimFrames = [NSMutableArray array];
+//                                        for(int i = 1; i <= 3; ++i){
+//                                                [collectAnimFrames addObject:
+//                                                                           [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+//                                                                                                       [NSString stringWithFormat:@"TreasureBoom_1%d.png", i]]];
+//                                            }
+//                                        CCAnimation *collectAnimation = [CCAnimation animationWithSpriteFrames:collectAnimFrames delay:0.25f];
+//                                        CCFiniteTimeAction *collectAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: collectAnimation] times:1];
+//                                        id actHide = [CCHide action];
+//                                        id seq = [CCSequence actions:collectAction, actHide,nil];
+//                    
+//                                        [circle runAction:seq];
+                    
+                    
                     
                     GameObject* treasureObj = (__bridge GameObject *)treasureData;
                     self.score += treasureObj.score;
@@ -365,6 +398,41 @@ bool isSetPlayerVelocity;
             }
         }
     }
+}
+
+-(void) ccTouchesMoved:(UITouch *)touches withEvent:(UIEvent *)event
+{
+    //    CGPoint touchLocation = [touch locationInView: [touch view]];
+    //    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+    //    touchLocation = [self convertToNodeSpace:touchLocation];
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView: [touch view]];
+    location = [[CCDirector sharedDirector] convertToGL: location];
+    b2Vec2 position = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    
+    CCParticleSystem *ps = [CCParticleExplosion node];
+    [self addChild:ps z:12];
+    ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+    ps.position = location;
+    ps.blendAdditive = YES;
+    ps.life = 0.25f;
+    ps.lifeVar = 0.25f;
+    ps.totalParticles = 120.0f;
+    ps.autoRemoveOnFinish = YES;
+}
+
+-(void) ccTouchesEnded:(UITouch *)touches withEvent:(UIEvent *)event {
+    //    CGPoint touchLocation = [touch locationInView: [touch view]];
+    //    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+    //    touchLocation = [self convertToNodeSpace:touchLocation];
+    
+    //endLocation = touchLocation;
+}
+
+-(void) removeSprite:(id)sender
+{
+    [self removeChild:sender cleanup:YES];
 }
 
 -(void) collectTreasure
@@ -1000,6 +1068,9 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Character.plist"];
     allBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"Character.png"];
     [self addChild:allBatchNode z:10];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Treasure.plist"];
+    treasureBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"Treasure.png"];
+    [self addChild:treasureBatchNode z:10];
 }
 
 - (void)update:(ccTime)dt {

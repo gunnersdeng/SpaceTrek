@@ -36,9 +36,11 @@
     HUDLayer *hudLayer;
     
     CCSpriteBatchNode* allBatchNode;
-    CCSpriteBatchNode* ExlosionBatchNode;
+    CCSpriteBatchNode* treasureBatchNode;
+    
     
     ContactListener *contactListener;
+    
     
     int treasureSpeedMultiplier;
     int numOfAffordCollsionTEMP;
