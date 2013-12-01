@@ -62,6 +62,10 @@
     
     std::vector<b2Body*> collectedTreasure;
     
+    int distanceLevel, milestoneStatus;
+    
+    CCLabelTTF *milestoneLable;
+    
 @public
     bool collision;
     int getLevel;

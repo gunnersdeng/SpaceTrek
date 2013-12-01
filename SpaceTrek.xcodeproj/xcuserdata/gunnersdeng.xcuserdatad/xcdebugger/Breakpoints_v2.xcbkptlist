@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpaceTrek/GameLayer.mm"
-            timestampString = "406782404.323793"
+            timestampString = "407628041.801205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "351"
-            endingLineNumber = "351"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "-ccTouchesBegan:withEvent:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,12 +58,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpaceTrek/GameLayer.mm"
-            timestampString = "406782404.323793"
+            timestampString = "407628041.801205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "793"
-            endingLineNumber = "793"
-            landmarkName = "-addStone"
+            startingLineNumber = "795"
+            endingLineNumber = "795"
+            landmarkName = "-addRowTreasure:index:location:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceTrek/PauseLayer.mm"
+            timestampString = "407628942.321965"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-restartButtonSelected"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

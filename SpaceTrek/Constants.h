@@ -9,7 +9,7 @@
 #ifndef SpaceTrek_Constants_h
 #define SpaceTrek_Constants_h
 
-#define MAX_DISTANCE 2000.0
+#define MAX_DISTANCE 5000.0
 
 #define sqr(x) ((x)*(x))
 #define PTM_RATIO 32

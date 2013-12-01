@@ -41,6 +41,8 @@ double teleport_bottom_y;
     if(self){
         getLevel = 3;
         during_invincible = false;
+        distanceLevel = 1;
+        milestoneStatus = 0;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
@@ -928,8 +930,28 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
     }
     
+    if (milestoneStatus == 1){
+        milestoneLable.opacity += 2;
+        if ( milestoneLable.opacity>=253){
+            milestoneStatus = 2;
+        }
+    }
+    if ( milestoneStatus ==2 ){
+        milestoneLable.opacity -= 2;
+        if ( milestoneLable.opacity<=0 ){
+            milestoneStatus = 0;
+        }
+    }
+    
     if(gamePart1){
         distance += dt*100*treasureSpeedMultiplier;
+        score += dt*100*treasureSpeedMultiplier;
+        
+        if ( distance/1000>=distanceLevel ){
+            distanceLevel++;
+            [self popMilestone:distanceLevel];
+        }
+        
         [hudLayer updatePointer: distance];
         if ( distance >= MAX_DISTANCE ){
             [self unschedule:@selector(gameLogic:)];
@@ -1027,7 +1049,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         }
     }
 
-    [hudLayer updateDistanceCounter:distance];
+    [hudLayer updateDistanceCounter:score/10];
     [self updateShip];
 }
 
@@ -1236,6 +1258,35 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     [[SimpleAudioEngine sharedEngine] stopEffect:firstBackgroundMusic];
     [[SimpleAudioEngine sharedEngine] stopEffect:secondBackgroundMusic];
 	[super dealloc];
+}
+
+-(void) popMilestone:(int)distanceLevel
+{
+    if ( milestoneStatus!=0 ){
+        milestoneStatus = 0;
+        [self unschedule:@selector(endMilestone:)];
+        [self removeChildByTag:distanceLevel-1+100];
+    }
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    milestoneLable = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d Miles", (distanceLevel-1)*1000] fontName:@"Chalkduster" fontSize:100];
+    milestoneLable.rotation = 90;
+    milestoneLable.opacity = 0;
+    milestoneLable.tag = distanceLevel+100;
+    [milestoneLable setColor:ccWHITE];
+    [milestoneLable setAnchorPoint:ccp(0.5f,1)];
+    [milestoneLable setPosition:ccp(winSize.width/4*3, winSize.height/2)];
+    [self addChild:milestoneLable];
+    
+    [self schedule:@selector(endMilestone:) interval:6];
+    milestoneStatus = 1;
+}
+
+-(void) endMilestone:(ccTime)dt
+{
+    milestoneStatus = 0;
+    [self unschedule:@selector(endMilestone:)];
+    [self removeChildByTag:distanceLevel+100];
 }
 
 @end

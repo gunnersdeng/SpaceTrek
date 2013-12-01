@@ -69,6 +69,10 @@
     
     int star1Opa;
     CCSprite* star1;
+    
+    int distanceLevel, milestoneStatus;
+    
+    CCLabelTTF *milestoneLable;
 }
 
 -(void) playerBack;

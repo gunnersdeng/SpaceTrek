@@ -67,6 +67,9 @@
     
     std::vector<b2Body*> blackholeVector;
     
+    int distanceLevel, milestoneStatus;
+    
+    CCLabelTTF *milestoneLable;
 @public
     bool collision;
     int getLevel;
