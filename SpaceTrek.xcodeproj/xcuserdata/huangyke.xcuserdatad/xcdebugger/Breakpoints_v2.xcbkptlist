@@ -45,7 +45,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1080"
             endingLineNumber = "1080"
-            landmarkName = "-update:"
+            landmarkName = "-initBatchNode"
             landmarkType = "5">
             <Locations>
                <Location
@@ -105,8 +105,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "573"
             endingLineNumber = "573"
-            landmarkName = "GetRandomGaussian( int lowerbound, int upperbound )"
-            landmarkType = "7">
+            landmarkName = "-gameStoneLogic:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

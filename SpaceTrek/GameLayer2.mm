@@ -562,6 +562,72 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
     
 }
 
+-(void)addRowTreasure:(int)num index:(int)treasureIndex location:(int)loc
+{
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    
+    for(int i=0; i<num; i++)
+    {
+        GameObject *treasure;
+        treasure = [[GameObject alloc] init];
+        treasure = [GameObject spriteWithFile: [NSString stringWithFormat:@"treasure_type_%d.png", treasureIndex] ];
+        if ( treasureIndex == 1 ){
+            treasure.scale = 2;
+            [treasure setScore:10];
+        }else
+            if ( treasureIndex == 8 ){
+                treasure.scale = 0.5;
+                [treasure setScore:-10];
+            }else{
+                treasure.scale = 1.5;
+                [treasure setScore:10];
+            }
+        treasure.tag = TREASURE_TAG;
+        [treasure setType:gameObjectTreasure1];
+        
+        if(loc>0)
+            treasure.position = ccp(winSize.width - treasure.contentSize.width/2, loc-treasure.contentSize.height*(i+1));
+        else
+            treasure.position = ccp(winSize.width - treasure.contentSize.width/2, loc+treasure.contentSize.height*(i+1));
+        
+        [self addChild:treasure];
+        
+        b2BodyDef treasureBodyDef;
+        treasureBodyDef.type = b2_dynamicBody;
+        treasureBodyDef.position.Set(treasure.position.x/PTM_RATIO, treasure.position.y/PTM_RATIO);
+        treasureBodyDef.userData = treasure;
+        
+        
+        
+        
+        treasureBodyDef.userData = (__bridge_retained void*) treasure;
+        
+        b2Body* treasureBody = world->CreateBody(&treasureBodyDef);
+        
+        b2Vec2 force = b2Vec2(-TRAVEL_SPEED*treasureSpeedMultiplier, 0);
+        treasureBody->SetLinearVelocity(force);
+        
+        b2CircleShape circle;
+        circle.m_radius = treasure.contentSize.width/2/PTM_RATIO;
+        
+        b2FixtureDef treasureShapeDef;
+        treasureShapeDef.shape = &circle;
+        treasureShapeDef.density = 3.0f;
+        treasureShapeDef.friction = 0.0f;
+        treasureShapeDef.restitution = 1.0f;
+        treasureShapeDef.filter.categoryBits = 0x2;
+        treasureShapeDef.filter.maskBits = 0xFFFF-0x2;
+        
+        treasureBody->CreateFixture(&treasureShapeDef);
+        
+    }
+    
+    
+    
+}
+
 -(void)addStone
 {
     GameObject *stone;
@@ -783,7 +849,80 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
             
             [player setType:gameObjectCollector];
         }
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+        switch (distance) {
+            case 800:
+                [self addRowTreasure:3 index:2 location:winSize.height];
+                [self addRowTreasure:5 index:2 location:0];
+                break;
+            case 1200:
+                [self addRowTreasure:5 index:2 location:winSize.height];
+                [self addRowTreasure:6 index:2 location:0];
+                break;
+            case 2000:
+                [self addRowTreasure:2 index:2 location:winSize.height];
+                [self addRowTreasure:2 index:2 location:0];
+                break;
+            case 2100:
+                [self addRowTreasure:4 index:2 location:winSize.height];
+                [self addRowTreasure:4 index:2 location:0];
+                break;
+            case 2200:
+                [self addRowTreasure:6 index:2 location:winSize.height];
+                [self addRowTreasure:6 index:2 location:0];
+                break;
+            case 2300:
+                [self addRowTreasure:8 index:2 location:winSize.height];
+                [self addRowTreasure:8 index:2 location:0];
+                break;
+            case 3000:
+                [self addRowTreasure:15 index:2 location:winSize.height];
+                [self addRowTreasure:15 index:2 location:0];
+                break;
+            case 1500:
+                [self addRowTreasure:5 index:1 location:winSize.height];
+                [self addRowTreasure:0 index:1 location:0];
+                break;
+            case 2600:
+                [self addRowTreasure:0 index:1 location:winSize.height];
+                [self addRowTreasure:8 index:1 location:0];
+                break;
+            case 1800:
+                [self addRowTreasure:3 index:1 location:winSize.height];
+                [self addRowTreasure:5 index:1 location:0];
+                break;
+            case 2900:
+                [self addRowTreasure:7 index:3 location:winSize.height];
+                [self addRowTreasure:0 index:3 location:0];
+                break;
+            case 3300:
+                [self addRowTreasure:2 index:3 location:winSize.height];
+                [self addRowTreasure:5 index:3 location:0];
+                break;
+            case 2800:
+                [self addRowTreasure:4 index:3 location:winSize.height];
+                [self addRowTreasure:4 index:3 location:0];
+                break;
+            case 3900:
+                [self addRowTreasure:3 index:5 location:winSize.height];
+                [self addRowTreasure:0 index:5 location:0];
+                break;
+            case 4900:
+                [self addRowTreasure:2 index:5 location:winSize.height];
+                [self addRowTreasure:6 index:5 location:0];
+                break;
+            case 5300:
+                [self addRowTreasure:7 index:5 location:winSize.height];
+                [self addRowTreasure:3 index:5 location:0];
+                break;
+                
+            default:
+                break;
+        }
+
     }
+    
     /*
     if(distance == 1000)
         [hudLayer setShadow:1];
