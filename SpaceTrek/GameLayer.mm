@@ -1118,97 +1118,96 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
             
             [player setType:gameObjectCollector];
         }
+        
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+        switch (distance) {
+            case 1300:
+                [self addRowTreasure:2 index:2 location:winSize.height];
+                [self addRowTreasure:3 index:2 location:0];
+                break;
+            case 1900:
+                [self addRowTreasure:4 index:2 location:winSize.height];
+                [self addRowTreasure:0 index:2 location:0];
+                break;
+            case 2500:
+                [self addRowTreasure:0 index:2 location:winSize.height];
+                [self addRowTreasure:5 index:2 location:0];
+                break;
+            case 3500:
+                [self addRowTreasure:3 index:2 location:winSize.height];
+                [self addRowTreasure:4 index:2 location:0];
+                break;
+            case 3800:
+                [self addRowTreasure:4 index:2 location:winSize.height];
+                [self addRowTreasure:3 index:2 location:0];
+                break;
+            case 4200:
+                [self addRowTreasure:2 index:2 location:winSize.height];
+                [self addRowTreasure:5 index:2 location:0];
+                break;
+            case 4900:
+                [self addRowTreasure:5 index:2 location:winSize.height];
+                [self addRowTreasure:4 index:2 location:0];
+                break;
+            case 1000:
+                [self addRowTreasure:4 index:1 location:winSize.height];
+                [self addRowTreasure:2 index:1 location:0];
+                break;
+            case 1500:
+                [self addRowTreasure:2 index:1 location:winSize.height];
+                [self addRowTreasure:0 index:1 location:0];
+                break;
+            case 3000:
+                [self addRowTreasure:3 index:1 location:winSize.height];
+                [self addRowTreasure:5 index:1 location:0];
+                break;
+            case 1800:
+                [self addRowTreasure:4 index:3 location:winSize.height];
+                [self addRowTreasure:2 index:3 location:0];
+                break;
+            case 2900:
+                [self addRowTreasure:2 index:3 location:winSize.height];
+                [self addRowTreasure:2 index:3 location:0];
+                break;
+            case 3300:
+                [self addRowTreasure:4 index:3 location:winSize.height];
+                [self addRowTreasure:0 index:3 location:0];
+                break;
+            case 3100:
+                [self addRowTreasure:7 index:5 location:winSize.height];
+                [self addRowTreasure:7 index:5 location:0];
+                break;
+            case 3700:
+                [self addRowTreasure:0 index:5 location:winSize.height];
+                [self addRowTreasure:6 index:5 location:0];
+                break;
+            case 4300:
+                [self addRowTreasure:5 index:5 location:winSize.height];
+                [self addRowTreasure:3 index:5 location:0];
+                break;
+            case 4500:
+                [self addRowTreasure:2 index:5 location:winSize.height];
+                [self addRowTreasure:4 index:5 location:0];
+                break;
+            case 2800:
+                [self addRowTreasure:3 index:7 location:winSize.height];
+                [self addRowTreasure:2 index:7 location:0];
+                break;
+            case 3900:
+                [self addRowTreasure:2 index:7 location:winSize.height];
+                [self addRowTreasure:0 index:7 location:0];
+                break;
+            case 5300:
+                [self addRowTreasure:2 index:7 location:winSize.height];
+                [self addRowTreasure:5 index:7 location:0];
+                break;
+            default:
+                break;
+        }
     }
 
     
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    
-    
-    
-    switch (distance) {
-        case 1300:
-            [self addRowTreasure:2 index:2 location:winSize.height];
-            [self addRowTreasure:3 index:2 location:0];
-            break;
-        case 1900:
-            [self addRowTreasure:4 index:2 location:winSize.height];
-            [self addRowTreasure:0 index:2 location:0];
-            break;
-        case 2500:
-            [self addRowTreasure:0 index:2 location:winSize.height];
-            [self addRowTreasure:5 index:2 location:0];
-            break;
-        case 3500:
-            [self addRowTreasure:3 index:2 location:winSize.height];
-            [self addRowTreasure:4 index:2 location:0];
-            break;
-        case 3800:
-            [self addRowTreasure:4 index:2 location:winSize.height];
-            [self addRowTreasure:3 index:2 location:0];
-            break;
-        case 4200:
-            [self addRowTreasure:2 index:2 location:winSize.height];
-            [self addRowTreasure:5 index:2 location:0];
-            break;
-        case 4900:
-            [self addRowTreasure:5 index:2 location:winSize.height];
-            [self addRowTreasure:4 index:2 location:0];
-            break;
-        case 1000:
-            [self addRowTreasure:4 index:2 location:winSize.height];
-            [self addRowTreasure:2 index:2 location:0];
-            break;
-        case 1500:
-            [self addRowTreasure:2 index:2 location:winSize.height];
-            [self addRowTreasure:0 index:2 location:0];
-            break;
-        case 3000:
-            [self addRowTreasure:3 index:2 location:winSize.height];
-            [self addRowTreasure:5 index:2 location:0];
-            break;
-        case 1800:
-            [self addRowTreasure:4 index:2 location:winSize.height];
-            [self addRowTreasure:2 index:2 location:0];
-            break;
-        case 2900:
-            [self addRowTreasure:2 index:2 location:winSize.height];
-            [self addRowTreasure:2 index:2 location:0];
-            break;
-        case 3300:
-            [self addRowTreasure:4 index:2 location:winSize.height];
-            [self addRowTreasure:0 index:2 location:0];
-            break;
-        case 3100:
-            [self addRowTreasure:7 index:2 location:winSize.height];
-            [self addRowTreasure:7 index:2 location:0];
-            break;
-        case 3700:
-            [self addRowTreasure:0 index:2 location:winSize.height];
-            [self addRowTreasure:6 index:2 location:0];
-            break;
-        case 4300:
-            [self addRowTreasure:5 index:2 location:winSize.height];
-            [self addRowTreasure:3 index:2 location:0];
-            break;
-        case 4500:
-            [self addRowTreasure:2 index:2 location:winSize.height];
-            [self addRowTreasure:4 index:2 location:0];
-            break;
-        case 2800:
-            [self addRowTreasure:3 index:2 location:winSize.height];
-            [self addRowTreasure:2 index:2 location:0];
-            break;
-        case 3900:
-            [self addRowTreasure:2 index:2 location:winSize.height];
-            [self addRowTreasure:0 index:2 location:0];
-            break;
-        case 5300:
-            [self addRowTreasure:2 index:2 location:winSize.height];
-            [self addRowTreasure:5 index:2 location:0];
-            break;
-        default:
-            break;
-    }
     
     /*
     if(distance==1300 || distance==1900 || distance==2500 || distance==3500 || distance==3800 || distance==4200 || distance==4900)
