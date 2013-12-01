@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75324A7F184AC964007C47F4 /* tinystar.png in Resources */ = {isa = PBXBuildFile; fileRef = 75324A7E184AC964007C47F4 /* tinystar.png */; };
 		757BA84B1814A559006645AA /* loadingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 757BA84A1814A559006645AA /* loadingBackground.png */; };
 		757BA84F1814A7D4006645AA /* LaunchSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 757BA84D1814A7D4006645AA /* LaunchSong.mp3 */; };
 		757BA8531814B26C006645AA /* CollectTreasure.wav in Resources */ = {isa = PBXBuildFile; fileRef = 757BA8521814B26C006645AA /* CollectTreasure.wav */; };
@@ -307,6 +308,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		75324A7E184AC964007C47F4 /* tinystar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinystar.png; sourceTree = "<group>"; };
 		757BA84A1814A559006645AA /* loadingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingBackground.png; sourceTree = "<group>"; };
 		757BA84D1814A7D4006645AA /* LaunchSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LaunchSong.mp3; sourceTree = "<group>"; };
 		757BA8521814B26C006645AA /* CollectTreasure.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CollectTreasure.wav; sourceTree = "<group>"; };
@@ -1556,6 +1558,7 @@
 		F17B975817FCD5C500BD6670 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				75324A7E184AC964007C47F4 /* tinystar.png */,
 				F19BCA10184AB65100B047C2 /* background-shadow-0.png */,
 				F19BCA11184AB65100B047C2 /* background-shadow-1.png */,
 				F19BCA12184AB65100B047C2 /* background-shadow-2.png */,
@@ -1781,6 +1784,7 @@
 				F17B952A17FCBB7B00BD6670 /* iTunesArtwork in Resources */,
 				F19BCA01184A74CF00B047C2 /* Treasure.png in Resources */,
 				CFCBC570183C29B0009F220F /* Character.plist in Resources */,
+				75324A7F184AC964007C47F4 /* tinystar.png in Resources */,
 				F17B968317FCBB7F00BD6670 /* ChangeLog in Resources */,
 				F14E4E7B18130ED0005D8190 /* Restart.png in Resources */,
 				F17B974317FCBB8000BD6670 /* blocks.png in Resources */,

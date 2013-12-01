@@ -66,6 +66,9 @@
 @public
     bool collision;
     int getLevel;
+    
+    int star1Opa;
+    CCSprite* star1;
 }
 
 -(void) playerBack;
