@@ -56,48 +56,41 @@ BOOL mainSelected;
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         //bg
-        CCSprite *bg = [CCSprite spriteWithFile:@"background-v1.png"];
+        CCSprite *bg = [CCSprite spriteWithFile:@"finished.png"];
         bg.anchorPoint = ccp(0, 0);
 
-        bg.opacity = 80;
         [self addChild:bg z:-1];
         
         // Create a label for display purposes
-        CCLabelTTF *label = [CCLabelTTF labelWithString:@"Congratulations!" fontName:@"arial" fontSize:60];
-        label.rotation = 90;
-        label.color = ccWHITE;
-		label.position = CGPointMake(winSize.width/5*4,winSize.height/2);
-		[self addChild:label z:0];
-        
-        
         NSString *scoreStr = [NSString stringWithFormat:@"Score:%2d", scoreNum];
         
-        labelScore = [CCLabelTTF labelWithString:scoreStr fontName:@"arial" fontSize:40];
+        labelScore = [CCLabelTTF labelWithString:scoreStr fontName:@"Chalkduster" fontSize:40];
         labelScore.color = ccWHITE;
-		labelScore.position = CGPointMake(winSize.width/5*4 - 200,winSize.height/2);
+		labelScore.position = CGPointMake(winSize.width/5*4 - 300,winSize.height/2);
         labelScore.rotation = 90;
 		[self addChild:labelScore z:0];
         
         NSString *disStr = [NSString stringWithFormat:@"Distance:%2d", distanceNum];
         
-        labelDistance = [CCLabelTTF labelWithString:disStr fontName:@"arial" fontSize:40];
+        labelDistance = [CCLabelTTF labelWithString:disStr fontName:@"Chalkduster" fontSize:40];
         labelDistance.color = ccWHITE;
-		labelDistance.position = CGPointMake(winSize.width/5*4 - 300,winSize.height/2);
+		labelDistance.position = CGPointMake(winSize.width/5*4 - 400,winSize.height/2);
         labelDistance.rotation = 90;
 		[self addChild:labelDistance z:0];
         
         // Create Replay Button
-        buttonRestart = [CCMenuItemImage itemWithNormalImage:@"Restart.png" selectedImage:@"Restart.png" target:self selector:@selector(buttonRestartAction:)];
-        
+        buttonRestart = [CCMenuItemImage itemWithNormalImage:@"replay_metal.png" selectedImage:@"replay_metal.png" target:self selector:@selector(buttonRestartAction:)];
+//        buttonRestart.rotation = 90;
         
         // Create Mainmenu Button
-        buttonMenu = [CCMenuItemImage itemWithNormalImage:@"MENU.png" selectedImage:@"MENU.png" target:self selector:@selector(buttonMenuAction:)];
-        
+        buttonMenu = [CCMenuItemImage itemWithNormalImage:@"menu_metal.png" selectedImage:@"menu_metal.png" target:self selector:@selector(buttonMenuAction:)];
+        buttonMenu.rotation = 90;
         
         CCMenu *Menu = [CCMenu menuWithItems:buttonMenu, buttonRestart, nil];
         Menu.position=ccp(winSize.width/4, winSize.height/2);
         
-        [Menu alignItemsHorizontallyWithPadding:5.0f];
+//        [Menu alignItemsHorizontallyWithPadding:5.0f];
+        [Menu alignItemsVerticallyWithPadding:35.0f];
         [self addChild:Menu];
         [self schedule:@selector(update:) interval:0.01f];
         
