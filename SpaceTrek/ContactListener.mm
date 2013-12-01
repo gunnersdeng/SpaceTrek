@@ -107,6 +107,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
 
 void ContactListener::EndContact(b2Contact *contact)
 {
+    /*
     b2Body *bodyA = contact->GetFixtureA()->GetBody();
     b2Body *bodyB = contact->GetFixtureB()->GetBody();
     if (bodyA->GetUserData() != NULL && bodyB->GetUserData() != NULL)
@@ -134,6 +135,7 @@ void ContactListener::EndContact(b2Contact *contact)
         }
        
     }
+     */
 }
 void ContactListener::PreSolve(b2Contact *contact, const b2Manifold *oldManifold) {
 }

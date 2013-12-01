@@ -430,7 +430,7 @@ bool isSetPlayerVelocity_2;
         CCScene* scene = [[CCDirector sharedDirector] runningScene];
         hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
     }
-    [hudLayer setShadow:0];
+    [hudLayer setShadow:2];
     isPlayerMoveBack_2 = true;
     isStationMoveBack_2 = true;
     gamePart1 = false;
@@ -847,7 +847,7 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
     {
         if(!gamePart1)
             return false;
-        [hudLayer setShadow:4];
+        [hudLayer setShadow:5];
         [self schedule:@selector(endLight:) interval:15];
     }
     return true;
@@ -964,7 +964,7 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
 }
 -(void) endLight:(ccTime)dt
 {
-    [hudLayer setShadow:0];
+    [hudLayer setShadow:2];
 }
 - (void) dealloc
 {

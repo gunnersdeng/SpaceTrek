@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Box2D.h"
+#import "GameObject.h"
 
 @interface LoadingScene : CCLayer {
     int GameStage;
     int count;
+    int angle;
     CCLabelTTF *loadingLabel;
+    CCSprite *circle;
 }
 
 +( id ) sceneWithTargetScene:(int)gameStage;

@@ -51,6 +51,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContactListener::EndContact(b2Contact*):ContactListener.mm">
+      </ContextState>
+      <ContextState
          contextName = "-[GameLayer treasureMovementLogic:]:GameLayer.mm">
          <PersistentStrings>
             <PersistentString
@@ -62,9 +65,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ContactListener::EndContact(b2Contact*):ContactListener.mm">
-      </ContextState>
-      <ContextState
          contextName = "-[HUDLayer addProperty]:HUDLayer.mm">
          <PersistentStrings>
             <PersistentString
@@ -72,6 +72,14 @@
             </PersistentString>
             <PersistentString
                value = "purcharsedProperty.size()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[GameLayer3 updateShip]:GameLayer3.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "player.position.x">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

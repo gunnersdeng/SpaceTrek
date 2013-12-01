@@ -369,7 +369,8 @@ bool isSetPlayerVelocity;
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+//                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
                     }
                 }
             }
@@ -392,7 +393,8 @@ bool isSetPlayerVelocity;
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+//                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
                     }
                 }
             }
@@ -509,7 +511,8 @@ bool isSetPlayerVelocity;
 -(void)JumpToGameOverScene:(ccTime)delta
 {
     [self unscheduleAllSelectors];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+//    [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
 }
 
 -(void) playerBack

@@ -29,8 +29,8 @@ CCSprite *bg;
         [self preLoadSoundFiles];
         [self initBatchNode];
         
-        // bg = [CCSprite spriteWithSpriteFrameName:@"menu-bg-btm.png"];
-        bg = [CCSprite spriteWithFile:@"background-menu.png"];
+        bg = [CCSprite spriteWithSpriteFrameName:@"menu-bg-btm.png"];
+        //bg = [CCSprite spriteWithFile:@"background-menu.png"];
         bg.anchorPoint = ccp(0, 0);
         [self addChild: bg z:-10];
         
@@ -72,42 +72,48 @@ CCSprite *bg;
     
     CCSprite *star1 = [CCSprite spriteWithSpriteFrameName:@"menu-bg-star1.png"];
     //    CCSprite *star1 = [CCSprite spriteWithFile:@"menu-bg-star1.png"];
-    star1.position = ccp(623,634);
+    star1.position = ccp(623,200);
     [self addChild:star1 z:-1];
     
     CCSprite *star2 = [CCSprite spriteWithSpriteFrameName:@"menu-bg-star2-1.png"];
     //    CCSprite *star1 = [CCSprite spriteWithFile:@"menu-bg-star2.png"];
     star2.position = ccp(815,365);
-    [self addChild:star2 z:-1];
+    [self addChild:star2 z:2];
     
     CCSprite *star3 = [CCSprite spriteWithSpriteFrameName:@"menu-bg-star3-1.png"];
     //    CCSprite *star1 = [CCSprite spriteWithFile:@"menu-bg-star3.png"];
-    star3.position = ccp(138,472);
-    [self addChild:star3 z:-1];
+    star3.position = ccp(138,650);
+    [self addChild:star3 z:2];
     
     CCSprite *planet1 = [CCSprite spriteWithSpriteFrameName:@"menu-bg-planet-1.png"];
-    planet1.position = ccp(230,660);
+    planet1.position = ccp(880,110);
     [self addChild:planet1 z:-1];
     
     CCSprite *planet2 = [CCSprite spriteWithSpriteFrameName:@"menu-bg-planet2-1.png"];
-    planet2.position = ccp(820,760);
+    planet2.position = ccp(820,660);
     [self addChild:planet2 z:-1];
     
     CCSprite *title = [CCSprite spriteWithSpriteFrameName:@"menu-bg-title.png"];
-    title.position = ccp(820,768/2);
+    title.position = ccp(790,768/2);
     [self addChild:title z:1];
+    title.scale = 0.95;
     
     CCSprite *alien = [CCSprite spriteWithSpriteFrameName:@"menu-bg-body-1.png"];
-    alien.position = ccp(768/2,1024/2);
-    [self addChild:alien z:1];
+    alien.position = ccp(500,200);
+    [self addChild:alien z:-1];
+    id rotateleft = [CCRotateBy actionWithDuration:2.0 angle:40];
+    id rotateright = [CCRotateBy actionWithDuration:2.0 angle:-40];
+    id seq = [CCSequence actions:rotateleft, rotateright, nil];
+    [alien runAction:[CCRepeatForever actionWithAction:seq]];
     
     CCSprite *buttonpanel = [CCSprite spriteWithSpriteFrameName:@"menu-bg-buttonpanel.png"];
     buttonpanel.position = ccp(768/5*2,1024/5*2);
     [self addChild:buttonpanel z:-1];
+    buttonpanel.scale = 0.86;
     
     CCSprite *bread = [CCSprite spriteWithSpriteFrameName:@"menu-bg-bread-3.png"];
-    bread.position = ccp(100, 100);
-    [self addChild:bread z:1];
+    bread.position = ccp(550, 600);
+    [self addChild:bread z:-2];
     
     
     

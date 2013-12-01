@@ -27,7 +27,10 @@ int hudLevel;
         shadow0= [CCSprite spriteWithFile:@"background-shadow-0.png"];
         shadow1= [CCSprite spriteWithFile:@"background-shadow-1.png"];
         shadow2= [CCSprite spriteWithFile:@"background-shadow-2.png"];
-        shadow4= [CCSprite spriteWithFile:@"background-shadow-4.png"];
+        
+        light0= [CCSprite spriteWithFile:@"background-shadow-3.png"];
+        light1= [CCSprite spriteWithFile:@"background-shadow-4.png"];
+        light2= [CCSprite spriteWithFile:@"background-shadow-5.png"];
         
         hudLevel = state;
         CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -59,7 +62,7 @@ int hudLevel;
                 shadow = NULL;
             break;
             case GAME_STATE_TWO:
-                shadow= [CCSprite spriteWithFile:@"background-shadow-0.png"];
+                shadow= [CCSprite spriteWithFile:@"background-shadow-2.png"];
                 [shadow setAnchorPoint: ccp(0,0.5)];
                 [shadow setPosition: ccp(0, winSize.height/2)];
                 [self addChild:shadow z:1 tag:SHADOW_TAG];

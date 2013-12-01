@@ -445,6 +445,7 @@ double teleport_bottom_y;
     isStationMoveBack_3 = true;
     gamePart1 = false;
     teleport = false;
+    [self removeTeleport];
 }
 -(void) treasureBack
 {
@@ -874,7 +875,27 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         }
         else if(distance == 500)
         {
-            [self addTeleport:winSize.width/5*2 TOPY:winSize.height/3*2 BOTTOMX:winSize.width/5 BOTTOMY:winSize.height/3];
+            [self addTeleport:winSize.width/5*2 TOPY:winSize.height/5*4 BOTTOMX:winSize.width/5 BOTTOMY:winSize.height/5];
+        }
+        else if(distance == 800)
+        {
+            [self removeTeleport];
+        }
+        else if(distance == 900)
+        {
+            [self addTeleport:winSize.width/5*2 TOPY:winSize.height/5*3 BOTTOMX:winSize.width/5 BOTTOMY:winSize.height/10];
+        }
+        else if(distance == 1200)
+        {
+            [self removeTeleport];
+        }
+        else if(distance == 1300)
+        {
+            [self addTeleport:winSize.width/5*2 TOPY:winSize.height/5 BOTTOMX:winSize.width/5 BOTTOMY:winSize.height/5*3];
+        }
+        else if(distance == 1700)
+        {
+            [self removeTeleport];
         }
     }
 
@@ -886,24 +907,27 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
 {
     teleport = true;
 
-    CCSprite* blackhole_red = [CCSprite spriteWithFile:@"blackhole_red.png"];
+    CCSprite* blackhole_red = [CCSprite spriteWithFile:@"gate.png"];
+    blackhole_red.rotation = 90;
     [blackhole_red setAnchorPoint:ccp(0.0, 0.0)];
     blackhole_red.position = ccp(bottom_x, bottom_y);
     teleport_bottom_x = bottom_x;
     teleport_bottom_y = bottom_y;
-    [self addChild:blackhole_red z:1 tag:BLACKHOLE_RED_TAG];
+    [self addChild:blackhole_red z:0 tag:BLACKHOLE_RED_TAG_TOP];
     
-    CCSprite* blackhole_red_top = [CCSprite spriteWithFile:@"blackhole_red.png"];
+    CCSprite* blackhole_red_top = [CCSprite spriteWithFile:@"gate.png"];
+    blackhole_red_top.rotation = 90;
     [blackhole_red_top setAnchorPoint:ccp(0.0, 0.0)];
     blackhole_red_top.position = ccp(top_x, top_y);
     teleport_top_x = top_x;
     teleport_top_y = top_y;
-    [self addChild:blackhole_red_top z:1 tag:BLACKHOLE_RED_TAG];
+    [self addChild:blackhole_red_top z:0 tag:BLACKHOLE_RED_TAG_BOTTOM];
 }
 
 -(void) removeTeleport
 {
-    [self removeChildByTag:BLACKHOLE_RED_TAG];
+    [self removeChildByTag:BLACKHOLE_RED_TAG_TOP];
+    [self removeChildByTag:BLACKHOLE_RED_TAG_BOTTOM];
 }
 
 -(bool) propertyListener: (int)propertyTag

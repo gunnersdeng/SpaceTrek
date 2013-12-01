@@ -27,6 +27,10 @@
     CCSprite * shadow2;
     CCSprite * shadow4;
     
+    CCSprite * light0;
+    CCSprite * light1;
+    CCSprite * light2;
+    
     
     bool isShowingPausedMenu;
 }
