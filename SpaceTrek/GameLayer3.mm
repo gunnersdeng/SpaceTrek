@@ -110,6 +110,12 @@ double teleport_bottom_y;
     return self;
 }
 
+-(int)Level
+{
+    return getLevel;
+}
+
+
 - (void)preLoadSoundFiles
 {
     //[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"PlayMode_Music_New.mp3"];
@@ -329,13 +335,13 @@ double teleport_bottom_y;
                      */
                     
                     GameObject* treasureObj = (__bridge GameObject *)treasureData;
-                    self.score += treasureObj.score;
+                    self.score += treasureObj.score*10;
+                    [hudLayer updateDistanceCounter:score/10];
                     treasureData.tag = TREASURE_COLLECT_TAG;
                     
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-//                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
                         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
 
                     }
@@ -354,13 +360,13 @@ double teleport_bottom_y;
                     CCLOG(@"here 0");
                     
                     GameObject* treasureObj = (__bridge GameObject *)treasureData;
-                    self.score += treasureObj.score;
+                    self.score += treasureObj.score*10;
+                    [hudLayer updateDistanceCounter:score/10];
                     treasureData.tag = TREASURE_COLLECT_TAG;
                     
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-//                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
                         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
 
                     }
@@ -444,7 +450,6 @@ double teleport_bottom_y;
 -(void)JumpToGameOverScene:(ccTime)delta
 {
     [self unscheduleAllSelectors];
-//    [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
 }
 
@@ -979,6 +984,9 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         
         
         switch (distance) {
+            case 100:
+                [self addBlackhole];
+                break;
             case 1100:
                 [self addRowTreasure:5 index:2 location:winSize.height];
                 [self addRowTreasure:8 index:2 location:0];
@@ -992,6 +1000,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
                 [self addRowTreasure:12 index:2 location:0];
                 break;
             case 2000:
+                [self addBlackhole];
                 [self addRowTreasure:12 index:2 location:winSize.height];
                 [self addRowTreasure:0 index:2 location:0];
                 break;

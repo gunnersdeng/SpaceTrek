@@ -63,9 +63,12 @@
     std::vector<b2Body*> collectedTreasure;
     
     bool hitStop;
+    
+    int getLevel;
+    
 @public
     bool collision;
-    int getLevel;
+//    int getLevel;
     
     int star1Opa;
     CCSprite* star1;
@@ -81,7 +84,7 @@
 - (void) dealloc;
 -(void)setPlayerVelocity;
 -(void) setVolecity : (int)judge;
-
+-(int)Level;
 
 @property  (nonatomic, readwrite) b2World* world;
 @property  (nonatomic, readwrite) int distance;

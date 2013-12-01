@@ -101,6 +101,11 @@ bool isSetPlayerVelocity_2;
     return self;
 }
 
+-(int)Level
+{
+    return getLevel;
+}
+
 - (void)preLoadSoundFiles
 {
     //[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"PlayMode_Music_New.mp3"];
@@ -314,13 +319,13 @@ bool isSetPlayerVelocity_2;
                      */
                     
                     GameObject* treasureObj = (__bridge GameObject *)treasureData;
-                    self.score += treasureObj.score;
+                    self.score += treasureObj.score*10;
+                    [hudLayer updateDistanceCounter:score/10];
                     treasureData.tag = TREASURE_COLLECT_TAG;
                     
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-//                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
                         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
 
                     }
@@ -339,13 +344,13 @@ bool isSetPlayerVelocity_2;
                     CCLOG(@"here 0");
                     
                     GameObject* treasureObj = (__bridge GameObject *)treasureData;
-                    self.score += treasureObj.score;
+                    self.score += treasureObj.score*10;
+                    [hudLayer updateDistanceCounter:score/10];
                     treasureData.tag = TREASURE_COLLECT_TAG;
                     
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-//                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
                         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
 
                     }
@@ -429,7 +434,6 @@ bool isSetPlayerVelocity_2;
 -(void)JumpToGameOverScene:(ccTime)delta
 {
     [self unscheduleAllSelectors];
-//    [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
 
 }

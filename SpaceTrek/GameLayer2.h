@@ -66,9 +66,11 @@
     
     CCLabelTTF *milestoneLable;
     
+    int getLevel;
+    
 @public
     bool collision;
-    int getLevel;
+//    int getLevel;
 }
 
 -(void) playerBack;
@@ -76,6 +78,7 @@
 -(bool) propertyListener: (int)propertyTag;
 - (void) dealloc;
 -(void)setPlayerVelocity;
+-(int)Level;
 
 @property  (nonatomic, readwrite) b2World* world;
 @property  (nonatomic, readwrite) int distance;

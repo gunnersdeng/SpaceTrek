@@ -76,12 +76,12 @@ int hudLevel;
         
         
         
-        pauseButton = [CCMenuItemImage itemWithNormalImage:@"Button-Pause-icon-modified.png" selectedImage:@"Button-Pause-icon-modified.png" target:self selector:@selector(pauseButtonSelectedCur)];
-        pauseButton.scale = 0.8;
+        pauseButton = [CCMenuItemImage itemWithNormalImage:@"pause_metal.png" selectedImage:@"pause_metal.png" target:self selector:@selector(pauseButtonSelectedCur)];
+        pauseButton.scale = 0.6;
         pauseButton.rotation = 90;
         
         pauseMenu = [CCMenu menuWithItems:pauseButton, nil];
-        pauseMenu.position=ccp(980, 700);
+        pauseMenu.position=ccp(960, 700);
         
         [pauseMenu alignItemsVerticallyWithPadding:10.0f];
         [self addChild:pauseMenu z:2];
@@ -251,7 +251,8 @@ int hudLevel;
         GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
         
         isShowingPausedMenu = true;
-        PauseLayer *pauzy = [[PauseLayer alloc] initWithLevel: (int)(layer->getLevel)];
+        int level = [layer Level];
+        PauseLayer *pauzy = [[PauseLayer alloc] initWithLevel: level];
         [self addChild:pauzy z:10 tag:PAUSE_LAYER_TAG];
         [[CCDirector sharedDirector] pause];
         

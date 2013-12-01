@@ -32,9 +32,9 @@ BOOL mainSelected;
 
 +(CCScene *) sceneWithLevel:(int)level Score:(int)score Distance:(int)distance{
     stageLevel = level;
-    scoreNum = score;
+    scoreNum = score/10;
     
-    gold += score;
+    gold += score/10;
     
     distanceNum = distance;
     
