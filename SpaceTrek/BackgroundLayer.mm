@@ -13,45 +13,72 @@
 
 CCSprite *bgTop;
 CCSprite *bgBottom;
+CCSprite *bgBottom1;
+CCSprite *bgBottom2;
 NSMutableArray * bgTops;
 CGSize winSize;
 
 int backgroundLevel = 1;
+float backSpeed = 1.0f;
 
 
 - (id) initWithLevel:(int)level {
     self = [super init];
     if (self) {
-        
-//        self.tag=BG_LAYER_TAG;
-        
+                
         backgroundLevel = level;
         
         [self initBackground];
         
-//        if(level == 2)
-//            [self initMoon];
-        
-//        [self schedule: @selector(tick:)];
+
+        if(backgroundLevel == 2 || backgroundLevel==3)
+            [self schedule: @selector(tick:)];
     }
     return self;
 }
 
 -(void)initBackground
 {
-    
+    winSize = [[CCDirector sharedDirector] winSize];
     switch (backgroundLevel) {
         case GAME_STATE_ONE:
 //            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
             bgBottom = [CCSprite spriteWithFile:@"background-v1.png"];
+            bgBottom.anchorPoint = ccp(0, 0);
+            bgBottom.position = ccp(0, 0);
+            
+            bgBottom.flipX = true;
+            [self addChild:bgBottom z:-1];
             break;
         case GAME_STATE_TWO:
 //            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
-            bgBottom = [CCSprite spriteWithFile:@"level2-background.png"];
+            bgBottom1 = [CCSprite spriteWithFile:@"level2-background.png"];
+            bgBottom2 = [CCSprite spriteWithFile:@"level2-background.png"];
+            
+            bgBottom1.anchorPoint = ccp(0,0);
+            bgBottom1.position = ccp(0,0);
+            [self addChild:bgBottom1 z:-3];
+            
+            bgBottom2.anchorPoint = ccp(0,0);
+            bgBottom2.position = ccp(winSize.width, 0);
+            bgBottom2.flipX = true;
+            [self addChild:bgBottom2 z:-3];
+
             break;
         case GAME_STATE_THREE:
 //            bgTop = [CCSprite spriteWithFile:@"space-background-upperlayer.png"];
-            bgBottom = [CCSprite spriteWithFile:@"level3-background.png"];
+            bgBottom1 = [CCSprite spriteWithFile:@"level3-background.png"];
+            bgBottom2 = [CCSprite spriteWithFile:@"level3-background.png"];
+            
+            bgBottom1.anchorPoint = ccp(0,0);
+            bgBottom1.position = ccp(0,0);
+            [self addChild:bgBottom1 z:-3];
+            
+            bgBottom2.anchorPoint = ccp(0,0);
+            bgBottom2.position = ccp(winSize.width, 0);
+            bgBottom2.flipX = true;
+            [self addChild:bgBottom2 z:-3];
+
             break;
             
         default:
@@ -77,11 +104,15 @@ int backgroundLevel = 1;
     
     
     
+    
+    
+    /*
     bgBottom.anchorPoint = ccp(0, 0);
     bgBottom.position = ccp(0, 0);
     
     bgBottom.flipX = true;
     [self addChild:bgBottom z:-1];
+     */
 }
 
 - (void)updateMap:(ccTime)dt {
@@ -111,6 +142,67 @@ int backgroundLevel = 1;
     [self unschedule:@selector(updateMap:)];
     [self stopAllActions];
     
+}
+
+
+
+
+-(void)scrollBackground:(ccTime)dt
+{
+    CGPoint pos1, pos2;
+    
+    pos1 = bgBottom1.position;
+    pos2 = bgBottom2.position;
+    pos1.x -= backSpeed;
+    pos2.x -= backSpeed;
+    if(pos1.x <=-(winSize.width) )
+    {
+        pos1.x = pos2.x + winSize.width;
+    }
+    if(pos2.x <=-(winSize.width) )
+    {
+        pos2.x = pos1.x + winSize.width;
+    }
+    bgBottom1.position = pos1;
+    bgBottom2.position = pos2;
+    
+}
+
+-(void)tick:(ccTime)dt
+{
+    [self scrollBackground:dt];
+}
+
+-(void)scrollBackBackground:(ccTime)dt
+{
+    CGPoint pos1, pos2;
+    
+    pos1 = bgBottom1.position;
+    pos2 = bgBottom2.position;
+    pos1.x += backSpeed;
+    pos2.x += backSpeed;
+    if(pos1.x >= winSize.width)
+    {
+        pos1.x = pos2.x - winSize.width;
+    }
+    if(pos2.x >= winSize.width)
+    {
+        pos2.x = pos1.x - winSize.width;
+    }
+    bgBottom1.position = pos1;
+    bgBottom2.position = pos2;
+    
+}
+
+-(void)tickBack:(ccTime)dt
+{
+    [self scrollBackBackground:dt];
+}
+
+-(void)changeBack
+{
+    [self unschedule:@selector(tick:)];
+    [self schedule: @selector(tickBack:)];
 }
 
 @end

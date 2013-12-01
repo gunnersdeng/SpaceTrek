@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "GameScene.h"
 #import "HUDLayer.h"
+#import "BackgroundLayer.h"
 #import "GameOverScene.h"
 
 @implementation GameLayer3
@@ -100,6 +101,7 @@ double teleport_bottom_y;
         [self schedule:@selector(blackholeLogic:)];
         
         hudLayer = nil;
+        backgroundLayer = nil;
         [self schedule:@selector(update:)];
         
     }
@@ -331,7 +333,9 @@ double teleport_bottom_y;
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
+//                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
+                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+
                     }
                 }
             }
@@ -354,7 +358,9 @@ double teleport_bottom_y;
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
+//                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
+                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+
                     }
                 }
             }
@@ -436,11 +442,17 @@ double teleport_bottom_y;
 -(void)JumpToGameOverScene:(ccTime)delta
 {
     [self unscheduleAllSelectors];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
+//    [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
 }
 
 -(void) playerBack
 {
+    if ( backgroundLayer==nil ){
+        CCScene* scene = [[CCDirector sharedDirector] runningScene];
+        backgroundLayer = (BackgroundLayer*)[scene getChildByTag:BACKGROUND_LAYER_TAG];
+    }
+    [backgroundLayer changeBack];
     isPlayerMoveBack_3 = true;
     isStationMoveBack_3 = true;
     gamePart1 = false;

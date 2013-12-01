@@ -17,7 +17,16 @@
 #import "HelpScene.h"
 CCSprite *bg;
 
+BOOL playSelected;
+BOOL helpSelected;
+BOOL storeSelected;
+
+CCMenuItemSprite *playButton;
+CCMenuItemSprite *helpButton;
+CCMenuItemSprite *storeButton;
+
 @implementation MainMenuLayer
+
 
 
 - (id) init {
@@ -25,6 +34,10 @@ CCSprite *bg;
     if (self) {
         
 //        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+        playSelected = false;
+        helpSelected = false;
+        storeSelected = false;
         
         [self preLoadSoundFiles];
         [self initBatchNode];
@@ -37,11 +50,11 @@ CCSprite *bg;
         [self addBackgroundElmt];
         
         
-        CCMenuItemSprite *playButton = [CCMenuItemImage itemWithNormalImage:@"PLAY.png" selectedImage:@"PLAY.png" target:self selector:@selector(buttonPlayAction:)];
+        playButton = [CCMenuItemImage itemWithNormalImage:@"PLAY.png" selectedImage:@"PLAY.png" target:self selector:@selector(buttonPlayAction:)];
         
-        CCMenuItemSprite *helpButton = [CCMenuItemImage itemWithNormalImage:@"HELP.png" selectedImage:@"HELP.png" target:self selector:@selector(buttonHelpAction:)];
+        helpButton = [CCMenuItemImage itemWithNormalImage:@"HELP.png" selectedImage:@"HELP.png" target:self selector:@selector(buttonHelpAction:)];
         
-        CCMenuItemSprite *storeButton = [CCMenuItemImage itemWithNormalImage:@"STORE.png" selectedImage:@"STORE.png" target:self selector:@selector(buttonStoreAction)];
+        storeButton = [CCMenuItemImage itemWithNormalImage:@"STORE.png" selectedImage:@"STORE.png" target:self selector:@selector(buttonStoreAction)];
         
         
         CCMenu *Menu = [CCMenu menuWithItems:storeButton,helpButton,playButton, nil];
@@ -50,7 +63,7 @@ CCSprite *bg;
         [Menu alignItemsHorizontallyWithPadding:15];
         
         [self addChild:Menu z:1];
-        
+        [self schedule:@selector(update:) interval:0.01f];
         /*
         //fake
         storeBackground = [CCMenuItemImage itemWithNormalImage:@"storeBackground.png" selectedImage:@"storeBackground.png" target:self selector:@selector(storeMenuAction)];
@@ -156,6 +169,7 @@ CCSprite *bg;
 }
 
 -(void) buttonPlayAction:(id)sender {
+    playSelected = true;
 //    [[CCDirector sharedDirector] replaceScene:[LoadingScene sceneWithTargetScene:GAME_STATE_ONE]];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[LevelScrollScene scene]]];
 
@@ -163,11 +177,13 @@ CCSprite *bg;
 
 -(void) buttonHelpAction:(id)sender
 {
+    helpSelected = true;
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[HelpScene scene]]];
 }
 
 -(void) buttonStoreAction
 {
+    storeSelected = true;
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[StoreScene scene]]];
 }
 
@@ -175,6 +191,27 @@ CCSprite *bg;
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"menu_bg_elmt.plist"];
     CCSpriteBatchNode *allBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"menu_bg_elmt.png"];
     [self addChild:allBatchNode z:10];
+}
+
+- (void)update:(ccTime) dt
+{
+    if(playSelected) {
+        if(playButton.scale <= 1.2) {
+            playButton.scale += 0.01;
+        }
+    }
+    
+    if(helpSelected) {
+        if(helpButton.scale <= 1.2) {
+            helpButton.scale += 0.01;
+        }
+    }
+    
+    if(storeSelected) {
+        if(storeButton.scale <= 1.2) {
+            storeButton.scale += 0.01;
+        }
+    }
 }
 
 

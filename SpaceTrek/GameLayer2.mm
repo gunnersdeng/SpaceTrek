@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "GameScene.h"
 #import "HUDLayer.h"
+#import "BackgroundLayer.h"
 #import "GameOverScene.h"
 
 @implementation GameLayer2
@@ -91,6 +92,7 @@ bool isSetPlayerVelocity_2;
         [self schedule:@selector(treasureMovementLogic:)];
         
         hudLayer = nil;
+        backgroundLayer = nil;
         [self schedule:@selector(update:)];
         
     }
@@ -316,7 +318,9 @@ bool isSetPlayerVelocity_2;
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
+//                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
+                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+
                     }
                 }
             }
@@ -339,7 +343,9 @@ bool isSetPlayerVelocity_2;
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
+//                        [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
+                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+
                     }
                 }
             }
@@ -421,7 +427,9 @@ bool isSetPlayerVelocity_2;
 -(void)JumpToGameOverScene:(ccTime)delta
 {
     [self unscheduleAllSelectors];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
+//    [[CCDirector sharedDirector] replaceScene:[CCTransitionProgressRadialCCW transitionWithDuration:1.0 scene:[GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+
 }
 
 -(void) playerBack
@@ -430,6 +438,11 @@ bool isSetPlayerVelocity_2;
         CCScene* scene = [[CCDirector sharedDirector] runningScene];
         hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
     }
+    if ( backgroundLayer==nil ){
+        CCScene* scene = [[CCDirector sharedDirector] runningScene];
+        backgroundLayer = (BackgroundLayer*)[scene getChildByTag:BACKGROUND_LAYER_TAG];
+    }
+    [backgroundLayer changeBack];
     [hudLayer setShadow:2];
     isPlayerMoveBack_2 = true;
     isStationMoveBack_2 = true;

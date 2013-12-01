@@ -15,4 +15,5 @@
 
 - (id) initWithLevel:(int)level;
 -(void) reverseMap;
+-(void)changeBack;
 @end

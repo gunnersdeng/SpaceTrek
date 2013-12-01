@@ -92,13 +92,14 @@ bool isSetPlayerVelocity;
         [self schedule:@selector(update:)];
         
 //        [self addObstacle];
+        
         star1Opa = 0;
         star1 = [CCSprite spriteWithFile: [NSString stringWithFormat:@"tinystar.png"]];
         star1.anchorPoint = ccp(0.5f, 0.5f);
         [star1 setPosition:ccp(winSize.width/3, winSize.height/2)];
         star1.scale = 2;
         [self addChild:star1 z:-1];
-
+        
     }
     return self;
 }
@@ -1090,7 +1091,8 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     star1Opa++;
     star1.opacity = 120+(star1Opa/5)%(255-120);
-        
+
+    
     if(gamePart1){
         if ( !hitStop )
             distance += dt*100*treasureSpeedMultiplier;

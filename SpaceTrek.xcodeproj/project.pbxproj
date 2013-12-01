@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		75324A7F184AC964007C47F4 /* tinystar.png in Resources */ = {isa = PBXBuildFile; fileRef = 75324A7E184AC964007C47F4 /* tinystar.png */; };
 		757BA84B1814A559006645AA /* loadingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 757BA84A1814A559006645AA /* loadingBackground.png */; };
 		757BA84F1814A7D4006645AA /* LaunchSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 757BA84D1814A7D4006645AA /* LaunchSong.mp3 */; };
 		757BA8531814B26C006645AA /* CollectTreasure.wav in Resources */ = {isa = PBXBuildFile; fileRef = 757BA8521814B26C006645AA /* CollectTreasure.wav */; };
@@ -291,6 +290,7 @@
 		F19BCA1B184AB65100B047C2 /* background-shadow-5.png in Resources */ = {isa = PBXBuildFile; fileRef = F19BCA15184AB65100B047C2 /* background-shadow-5.png */; };
 		F19BCA1F184AC49100B047C2 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = F19BCA1D184AC49100B047C2 /* loading.png */; };
 		F19BCA20184AC49100B047C2 /* LoadingCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = F19BCA1E184AC49100B047C2 /* LoadingCircle.png */; };
+		F19BCA22184B04F800B047C2 /* tinystar.png in Resources */ = {isa = PBXBuildFile; fileRef = F19BCA21184B04F700B047C2 /* tinystar.png */; };
 		F1CA5DEE1813DD2700A6BE77 /* GameOverScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */; };
 		F1CA5DF11813DEA900A6BE77 /* GameOverLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */; };
 		F1CC4156182AC5760026C4E2 /* treasure_type_1.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CC4155182AC5760026C4E2 /* treasure_type_1.png */; };
@@ -308,7 +308,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		75324A7E184AC964007C47F4 /* tinystar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinystar.png; sourceTree = "<group>"; };
 		757BA84A1814A559006645AA /* loadingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingBackground.png; sourceTree = "<group>"; };
 		757BA84D1814A7D4006645AA /* LaunchSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LaunchSong.mp3; sourceTree = "<group>"; };
 		757BA8521814B26C006645AA /* CollectTreasure.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CollectTreasure.wav; sourceTree = "<group>"; };
@@ -808,6 +807,7 @@
 		F19BCA15184AB65100B047C2 /* background-shadow-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-shadow-5.png"; sourceTree = "<group>"; };
 		F19BCA1D184AC49100B047C2 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		F19BCA1E184AC49100B047C2 /* LoadingCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingCircle.png; sourceTree = "<group>"; };
+		F19BCA21184B04F700B047C2 /* tinystar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinystar.png; sourceTree = "<group>"; };
 		F1CA5DEC1813DD2700A6BE77 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = GameOverScene.mm; sourceTree = "<group>"; };
 		F1CA5DEF1813DEA900A6BE77 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
@@ -1558,7 +1558,6 @@
 		F17B975817FCD5C500BD6670 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				75324A7E184AC964007C47F4 /* tinystar.png */,
 				F19BCA10184AB65100B047C2 /* background-shadow-0.png */,
 				F19BCA11184AB65100B047C2 /* background-shadow-1.png */,
 				F19BCA12184AB65100B047C2 /* background-shadow-2.png */,
@@ -1610,6 +1609,7 @@
 		F17B976617FCEC8800BD6670 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				F19BCA21184B04F700B047C2 /* tinystar.png */,
 				F19BC9FC184A74CF00B047C2 /* stars.png */,
 				F19BC9FD184A74CF00B047C2 /* Treasure.plist */,
 				F19BC9FE184A74CF00B047C2 /* Treasure.png */,
@@ -1784,7 +1784,7 @@
 				F17B952A17FCBB7B00BD6670 /* iTunesArtwork in Resources */,
 				F19BCA01184A74CF00B047C2 /* Treasure.png in Resources */,
 				CFCBC570183C29B0009F220F /* Character.plist in Resources */,
-				75324A7F184AC964007C47F4 /* tinystar.png in Resources */,
+				F19BCA22184B04F800B047C2 /* tinystar.png in Resources */,
 				F17B968317FCBB7F00BD6670 /* ChangeLog in Resources */,
 				F14E4E7B18130ED0005D8190 /* Restart.png in Resources */,
 				F17B974317FCBB8000BD6670 /* blocks.png in Resources */,

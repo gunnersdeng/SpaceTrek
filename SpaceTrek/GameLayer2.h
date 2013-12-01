@@ -16,6 +16,7 @@
 #import <vector>
 
 @class HUDLayer;
+@class BackgroundLayer;
 @interface GameLayer2 : CCLayer {
     
     int score;
@@ -34,6 +35,7 @@
     NSMutableArray * _treasures;
     
     HUDLayer *hudLayer;
+    BackgroundLayer *backgroundLayer;
     
     CCSpriteBatchNode* allBatchNode;
     CCSpriteBatchNode* ExlosionBatchNode;
