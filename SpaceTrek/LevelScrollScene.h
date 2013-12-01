@@ -10,7 +10,9 @@
 #import "cocos2d.h"
 
 @interface LevelScrollScene : CCLayer {
-    
+    CCMenu *Menu1, *Menu2, *Menu3;
+    CCMenuItem *button1, *button2, *button3;
+    bool button1Selected, button2Selected, button3Selected;
 }
 
 +(CCScene *) scene;
