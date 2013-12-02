@@ -31,8 +31,12 @@
     CCSprite * light1;
     CCSprite * light2;
     
+    int distanceLevel, milestoneStatus;
+    
+    CCLabelTTF *milestoneLable;
     
     bool isShowingPausedMenu;
+    int dl;
 }
 - (id) initWithLevel:(int)level;
 -(void) updateDistanceCounter:(int)amount;

@@ -24,6 +24,8 @@ int hudLevel;
 {
 	if ((self = [super init]))
 	{
+        milestoneStatus = 0;
+        
         shadow0= [CCSprite spriteWithFile:@"background-shadow-0.png"];
         shadow1= [CCSprite spriteWithFile:@"background-shadow-1.png"];
         shadow2= [CCSprite spriteWithFile:@"background-shadow-2.png"];
@@ -268,6 +270,35 @@ int hudLevel;
 -(void) updatePointer:(int)amount
 {
     pointer.rotation = -((amount/MAX_DISTANCE)*180-90);
+}
+
+-(void) addMilestone:(int)distanceLevel
+{
+    if ( milestoneStatus!=0 ){
+        milestoneStatus = 0;
+        [self unschedule:@selector(endMilestone:)];
+        [self removeChildByTag:distanceLevel-1+100];
+    }
+    dl = distanceLevel;
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    milestoneLable = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d Miles", (distanceLevel-1)*1000] fontName:@"Chalkduster" fontSize:100];
+    milestoneLable.rotation = 90;
+    milestoneLable.opacity = 255;
+    milestoneLable.tag = distanceLevel+100;
+    [milestoneLable setColor:ccWHITE];
+    [milestoneLable setAnchorPoint:ccp(0.5f,1)];
+    [milestoneLable setPosition:ccp(winSize.width/4*3, winSize.height/2)];
+    [self addChild:milestoneLable z:100];
+    
+    
+    milestoneStatus = 1;
+}
+
+-(void) endMilestone
+{
+    milestoneStatus = 0;
+    [self removeChildByTag:dl+100];
 }
 
 @end

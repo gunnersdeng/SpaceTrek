@@ -49,6 +49,8 @@ CCParticleSystemQuad *particleMagnet_3;
         distanceLevel = 1;
         milestoneStatus = 0;
         
+        spaceshipState = 0;
+        
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         milestoneLable = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%1000 Miles"] fontName:@"Chalkduster" fontSize:100];
         
@@ -1000,17 +1002,23 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         
         if(beforeExplode_3)
         {
+            int current;
             if(newY>player.position.y+5)
             {
-                [player fly:1];
+                current = 1;
             }
             else if(newY<player.position.y-5)
             {
-                [player fly:-1];
+                current = -1;
             }
             else
             {
-                [player fly:0];
+                current = 0;
+            }
+            
+            if ( current != spaceshipState ){
+                [player fly:current];
+                spaceshipState = current;
             }
         }
         

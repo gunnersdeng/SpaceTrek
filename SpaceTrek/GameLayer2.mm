@@ -47,6 +47,8 @@ CCParticleSystemQuad *particleMagnet_2;
         distanceLevel = 1;
         milestoneStatus = 0;
         
+        spaceshipState = 0;
+        
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         collectedTreasure.clear();
@@ -909,17 +911,23 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
         
         if(beforeExplode_2)
         {
+            int current;
             if(newY>player.position.y+5)
             {
-                [player fly:1];
+                current = 1;
             }
             else if(newY<player.position.y-5)
             {
-                [player fly:-1];
+                current = -1;
             }
             else
             {
-                [player fly:0];
+                current = 0;
+            }
+            
+            if ( current != spaceshipState ){
+                [player fly:current];
+                spaceshipState = current;
             }
         }
 
@@ -1293,31 +1301,15 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
 
 -(void) popMilestone:(int)distanceLevel
 {
-    if ( milestoneStatus!=0 ){
-        milestoneStatus = 0;
-        [self unschedule:@selector(endMilestone:)];
-        [self removeChildByTag:distanceLevel-1+100];
-    }
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    
-    milestoneLable = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d Miles", (distanceLevel-1)*1000] fontName:@"Chalkduster" fontSize:100];
-    milestoneLable.rotation = 90;
-    milestoneLable.opacity = 255;
-    milestoneLable.tag = distanceLevel+100;
-    [milestoneLable setColor:ccWHITE];
-    [milestoneLable setAnchorPoint:ccp(0.5f,1)];
-    [milestoneLable setPosition:ccp(winSize.width/4*3, winSize.height/2)];
-    [self addChild:milestoneLable];
-    
+    [hudLayer addMilestone:distanceLevel];
     [self schedule:@selector(endMilestone:) interval:5];
-    milestoneStatus = 1;
 }
 
 -(void) endMilestone:(ccTime)dt
 {
     milestoneStatus = 0;
     [self unschedule:@selector(endMilestone:)];
-    [self removeChildByTag:distanceLevel+100];
+    [hudLayer endMilestone];
 }
 
 -(void)crash
