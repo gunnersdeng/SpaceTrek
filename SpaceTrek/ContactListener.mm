@@ -60,6 +60,13 @@ void ContactListener::BeginContact(b2Contact *contact) {
                     player.numOfAffordCollsion--;
                     [[SimpleAudioEngine sharedEngine]playEffect:@"CollectTreasure.wav"];
                     player->playerBody->SetLinearVelocity(b2Vec2(0.0f,0.0f));
+                    
+                    //add collision particle effect
+                    CCParticleSystemQuad *particle = [CCParticleSystemQuad particleWithFile:@"collisionTreasure.plist"];
+                    particle.positionType = kCCPositionTypeFree;
+                    particle.position = player.position;
+                    [layer addChild:particle z:1];
+                    
                     if ( player.numOfAffordCollsion == 1 )
                         [player shield1];
                     if ( player.numOfAffordCollsion == 0 )

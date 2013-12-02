@@ -28,6 +28,8 @@ bool isCollect_2;
 bool isbullet_2;
 bool isCollectCircle_2;
 bool isSetPlayerVelocity_2;
+CCParticleSystemQuad *particle_2;
+CCParticleSystemQuad *particleMagnet_2;
 
 -(id) init{
     self = [super init];
@@ -39,6 +41,7 @@ bool isSetPlayerVelocity_2;
          */
         getLevel = 2;
         during_invincible = false;
+        during_magnet = false;
         distanceLevel = 1;
         milestoneStatus = 0;
         
@@ -303,12 +306,14 @@ bool isSetPlayerVelocity_2;
     CGPoint location = [touch locationInView: [touch view]];
     location = [[CCDirector sharedDirector] convertToGL: location];
     b2Vec2 position = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    
+    
     if(isCollectCircle_2)
     {
         for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
             if (b->GetUserData() != NULL) {
                 CCSprite *treasureData = (CCSprite *)b->GetUserData();
-                if(treasureData.tag!=SPACESTATION_TAG && (sqrt(sqr(b->GetPosition().x-position.x)+sqr(b->GetPosition().y-position.y))<4)&&isCollect_2)
+                if(treasureData.tag!=SPACESTATION_TAG && (sqrt(sqr(b->GetPosition().x-position.x)+sqr(b->GetPosition().y-position.y))<2)&&isCollect_2)
                 {
                     CCLOG(@"here 0");
                     
@@ -317,6 +322,20 @@ bool isSetPlayerVelocity_2;
                      circle.position = ccp(location.x, location.y);
                      [self addChild:circle z:2 tag:CIRCLE_TAG];
                      */
+                    
+                    CCParticleSystem *ps = [CCParticleExplosion node];
+                    [self addChild:ps z:12];
+                    ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+                    
+                    CGPoint position = ccp(b->GetPosition().x*PTM_RATIO, b->GetPosition().y*PTM_RATIO);
+                    
+                    ps.position = position;
+                    ps.blendAdditive = YES;
+                    ps.life = 0.25f;
+                    ps.lifeVar = 0.25f;
+                    ps.totalParticles = 120.0f;
+                    ps.autoRemoveOnFinish = YES;
+                    
                     
                     GameObject* treasureObj = (__bridge GameObject *)treasureData;
                     self.score += treasureObj.score*10;
@@ -343,6 +362,17 @@ bool isSetPlayerVelocity_2;
                 {
                     CCLOG(@"here 0");
                     
+                    
+                    CCParticleSystem *ps = [CCParticleExplosion node];
+                    [self addChild:ps z:12];
+                    ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+                    ps.position = location;
+                    ps.blendAdditive = YES;
+                    ps.life = 0.25f;
+                    ps.lifeVar = 0.25f;
+                    ps.totalParticles = 120.0f;
+                    ps.autoRemoveOnFinish = YES;
+                    
                     GameObject* treasureObj = (__bridge GameObject *)treasureData;
                     self.score += treasureObj.score*10;
                     [hudLayer updateDistanceCounter:score/10];
@@ -359,6 +389,42 @@ bool isSetPlayerVelocity_2;
         }
     }
 }
+
+-(void) ccTouchesMoved:(UITouch *)touches withEvent:(UIEvent *)event
+{
+    //    CGPoint touchLocation = [touch locationInView: [touch view]];
+    //    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+    //    touchLocation = [self convertToNodeSpace:touchLocation];
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView: [touch view]];
+    location = [[CCDirector sharedDirector] convertToGL: location];
+    b2Vec2 position = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    
+    CCParticleSystem *ps = [CCParticleExplosion node];
+    [self addChild:ps z:12];
+    ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+    ps.position = location;
+    ps.blendAdditive = YES;
+    ps.life = 0.25f;
+    ps.lifeVar = 0.25f;
+    ps.totalParticles = 120.0f;
+    ps.autoRemoveOnFinish = YES;
+}
+
+-(void) ccTouchesEnded:(UITouch *)touches withEvent:(UIEvent *)event {
+    //    CGPoint touchLocation = [touch locationInView: [touch view]];
+    //    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+    //    touchLocation = [self convertToNodeSpace:touchLocation];
+    
+    //endLocation = touchLocation;
+}
+
+-(void) removeSprite:(id)sender
+{
+    [self removeChild:sender cleanup:YES];
+}
+
 
 -(void) collectTreasure
 {
@@ -810,6 +876,18 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
         b2Vec2 position1(player.position.x/PTM_RATIO, newY/PTM_RATIO);
         player->playerBody->SetTransform(position1, 0.0);
         [hudLayer setShadowPosition:player.position.x yy:newY];
+        
+        if(during_invincible){
+            //CGPoint location = ccp(player.position.x+player.contentSize.height/2, player.position.y);
+            particle_2.positionType = kCCPositionTypeFree;
+            particle_2.position = player.position;
+        }
+        if(during_magnet)
+        {
+            particleMagnet_2.positionType = kCCPositionTypeFree;
+            particleMagnet_2.position = player.position;
+        }
+
     }
 }
 
@@ -824,25 +902,16 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Character.plist"];
     allBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"Character.png"];
     [self addChild:allBatchNode z:10];
+    
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Treasure.plist"];
+    treasureBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"Treasure.png"];
+    [self addChild:treasureBatchNode z:10];
 }
 
 - (void)update:(ccTime)dt {
     if ( hudLayer==nil ){
         CCScene* scene = [[CCDirector sharedDirector] runningScene];
         hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
-    }
-    
-    if (milestoneStatus == 1){
-        milestoneLable.opacity += 2;
-        if ( milestoneLable.opacity>=253){
-            milestoneStatus = 2;
-        }
-    }
-    if ( milestoneStatus ==2 ){
-        milestoneLable.opacity -= 2;
-        if ( milestoneLable.opacity<=0 ){
-            milestoneStatus = 0;
-        }
     }
     
     if(gamePart1){
@@ -993,6 +1062,12 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
         }
         during_invincible = true;
         [player invincible];
+        
+        particle_2 = [CCParticleSystemQuad particleWithFile:@"protection.plist"];
+        particle_2.positionType = kCCPositionTypeFree;
+        particle_2.position = player.position;
+        [self addChild:particle_2 z:1];
+        
         [_scheduler resumeTarget:self];
         [self schedule:@selector(gameLogic:) interval:(1.0f/treasureSpeedMultiplier/2.0f)];
         [self schedule:@selector(endInvincible:) interval:15];
@@ -1002,6 +1077,12 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
         if ( !gamePart2 ){
             return false;
         }
+        during_magnet = true;
+        particleMagnet_2 = [CCParticleSystemQuad particleWithFile:@"magnet.plist"];
+        particleMagnet_2.positionType = kCCPositionTypeFree;
+        particleMagnet_2.position = player.position;
+        [self addChild:particleMagnet_2 z:1];
+
         [self schedule:@selector(SetUpMagnet:)];
         [self schedule:@selector(endMagnet:) interval:15];
         [player magnetAction];
@@ -1062,6 +1143,7 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
 
 -(void) endMagnet:(ccTime)dt
 {
+    during_magnet = false;
     [self unschedule:@selector(SetUpMagnet:)];
 }
 
@@ -1162,14 +1244,14 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
     
     milestoneLable = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d Miles", (distanceLevel-1)*1000] fontName:@"Chalkduster" fontSize:100];
     milestoneLable.rotation = 90;
-    milestoneLable.opacity = 0;
+    milestoneLable.opacity = 255;
     milestoneLable.tag = distanceLevel+100;
     [milestoneLable setColor:ccWHITE];
     [milestoneLable setAnchorPoint:ccp(0.5f,1)];
     [milestoneLable setPosition:ccp(winSize.width/4*3, winSize.height/2)];
     [self addChild:milestoneLable];
     
-    [self schedule:@selector(endMilestone:) interval:6];
+    [self schedule:@selector(endMilestone:) interval:5];
     milestoneStatus = 1;
 }
 

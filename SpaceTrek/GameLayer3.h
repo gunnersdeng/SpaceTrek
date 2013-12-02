@@ -41,7 +41,7 @@
     BackgroundLayer *backgroundLayer;
     
     CCSpriteBatchNode* allBatchNode;
-    CCSpriteBatchNode* ExlosionBatchNode;
+    CCSpriteBatchNode* treasureBatchNode;
     
     ContactListener *contactListener;
     
@@ -58,7 +58,7 @@
     
     SimpleAudioEngine * backgroundAmbience;
     
-    bool gamePart1, gamePart2, during_invincible;
+    bool gamePart1, gamePart2, during_invincible, during_magnet;
     
     ALuint firstBackgroundMusic;
     ALuint secondBackgroundMusic;
@@ -91,7 +91,7 @@
 @property (nonatomic, readwrite) CCSpriteBatchNode* allBatchNode;
 @property  (nonatomic, readwrite) ALuint firstBackgroundMusic;
 @property  (nonatomic, readwrite) ALuint secondBackgroundMusic;
-@property (nonatomic, readwrite) CCSpriteBatchNode *ExlosionBatchNode;
+@property (nonatomic, readwrite) CCSpriteBatchNode *treasureBatchNode;
 
 
 @end

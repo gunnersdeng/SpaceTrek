@@ -265,5 +265,9 @@
     playerBody->SetLinearVelocity(impulse);
 }
 
+-(void) changePlayer
+{
+    
+}
 
 @end

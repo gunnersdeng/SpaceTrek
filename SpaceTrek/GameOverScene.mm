@@ -38,6 +38,10 @@ BOOL mainSelected;
     
     distanceNum = distance;
     
+    currentScoreNum = 0;
+    currentDistanceNum = 0;
+    
+    
     // 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
     

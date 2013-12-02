@@ -27,6 +27,8 @@ bool isCollect;
 bool isbullet;
 bool isCollectCircle;
 bool isSetPlayerVelocity;
+CCParticleSystemQuad *particle;
+CCParticleSystemQuad *particleMagnet;
 
 -(id) init{
     self = [super init];
@@ -34,6 +36,7 @@ bool isSetPlayerVelocity;
         
         getLevel = 1;
         during_invincible = false;
+        during_magnet = false;
         hitStop = false;
         distanceLevel = 1;
         milestoneStatus = 0;
@@ -327,30 +330,37 @@ bool isSetPlayerVelocity;
     location = [[CCDirector sharedDirector] convertToGL: location];
     b2Vec2 position = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
     
-    CCParticleSystem *ps = [CCParticleExplosion node];
-        [self addChild:ps z:12];
-        ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
-        ps.position = location;
-        ps.blendAdditive = YES;
-        ps.life = 0.25f;
-        ps.lifeVar = 0.25f;
-        ps.totalParticles = 120.0f;
-        ps.autoRemoveOnFinish = YES;
+   
     
     if(isCollectCircle)
     {
         for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
             if (b->GetUserData() != NULL) {
                 CCSprite *treasureData = (CCSprite *)b->GetUserData();
-                if(treasureData.tag!=SPACESTATION_TAG && (sqrt(sqr(b->GetPosition().x-position.x)+sqr(b->GetPosition().y-position.y))<4)&&isCollect)
+                if(treasureData.tag!=SPACESTATION_TAG && (sqrt(sqr(b->GetPosition().x-position.x)+sqr(b->GetPosition().y-position.y))<2)&&isCollect)
                 {
                     CCLOG(@"here 0");
+                    
+                    
+                    CCParticleSystem *ps = [CCParticleExplosion node];
+                    [self addChild:ps z:12];
+                    ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+                    
+                    CGPoint position = ccp(b->GetPosition().x*PTM_RATIO, b->GetPosition().y*PTM_RATIO);
+                    
+                    ps.position = position;
+                    ps.blendAdditive = YES;
+                    ps.life = 0.25f;
+                    ps.lifeVar = 0.25f;
+                    ps.totalParticles = 120.0f;
+                    ps.autoRemoveOnFinish = YES;
                     
                     /* Draw a circle by plist, one second disappear
                     CCSprite* circle= [CCSprite spriteWithFile:@"StatusBar.png"];
                     circle.position = ccp(location.x, location.y);
                     [self addChild:circle z:2 tag:CIRCLE_TAG];
                     */
+                    /*
                     CCSprite* circle= [CCSprite spriteWithSpriteFrameName:@"TreasureBoom_11.png"];
                     circle.position = ccp(location.x, location.y);
                     [self addChild:circle z:2 tag:CIRCLE_TAG];
@@ -360,7 +370,7 @@ bool isSetPlayerVelocity;
                     CCCallFuncN *remove = [CCCallFuncN actionWithTarget:self selector:@selector(removeSprite:)];
                     CCSequence *seq = [CCSequence actions: fade, remove, nil];
                     [circle runAction:seq];
-                    
+                    */
                     
 //                                        NSMutableArray *collectAnimFrames = [NSMutableArray array];
 //                                        for(int i = 1; i <= 3; ++i){
@@ -394,6 +404,19 @@ bool isSetPlayerVelocity;
     }
     else
     {
+        
+        
+        CCParticleSystem *ps = [CCParticleExplosion node];
+        [self addChild:ps z:12];
+        ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+        ps.position = location;
+        ps.blendAdditive = YES;
+        ps.life = 0.25f;
+        ps.lifeVar = 0.25f;
+        ps.totalParticles = 120.0f;
+        ps.autoRemoveOnFinish = YES;
+        
+        
         for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
             if (b->GetUserData() != NULL) {
                 b2Fixture *f = b->GetFixtureList();
@@ -1026,9 +1049,23 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     else
     {
         b2Vec2 position1(player.position.x/PTM_RATIO, newY/PTM_RATIO);
+    
+        
+        
         player->playerBody->SetTransform(position1, 0.0);
         
         [hudLayer setShadowPosition:player.position.x yy:newY];
+        
+        if(during_invincible){
+            //CGPoint location = ccp(player.position.x+player.contentSize.height/2, player.position.y);
+            particle.positionType = kCCPositionTypeFree;
+            particle.position = player.position;
+        }
+        if(during_magnet)
+        {
+            particleMagnet.positionType = kCCPositionTypeFree;
+            particleMagnet.position = player.position;
+        }
     }
 }
 
@@ -1097,20 +1134,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
         CCScene* scene = [[CCDirector sharedDirector] runningScene];
         hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
     }
-    
-    if (milestoneStatus == 1){
-        milestoneLable.opacity += 2;
-        if ( milestoneLable.opacity>=253){
-            milestoneStatus = 2;
-        }
-    }
-    if ( milestoneStatus ==2 ){
-        milestoneLable.opacity -= 2;
-        if ( milestoneLable.opacity<=0 ){
-            milestoneStatus = 0;
-        }
-    }
-    
+
     star1Opa++;
     star1.opacity = 120+(star1Opa/5)%(255-120);
 
@@ -1299,6 +1323,12 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
         }
         during_invincible = true;
         [player invincible];
+        
+        particle = [CCParticleSystemQuad particleWithFile:@"protection.plist"];
+        particle.positionType = kCCPositionTypeFree;
+        particle.position = player.position;
+        [self addChild:particle z:1];
+        
         [_scheduler resumeTarget:self];
         [self schedule:@selector(gameLogic:) interval:(1.0f/treasureSpeedMultiplier/2.0f)];
         [self schedule:@selector(endInvincible:) interval:15];
@@ -1308,6 +1338,12 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
         if ( !gamePart2 ){
             return false;
         }
+        during_magnet = true;
+        particleMagnet = [CCParticleSystemQuad particleWithFile:@"magnet.plist"];
+        particleMagnet.positionType = kCCPositionTypeFree;
+        particleMagnet.position = player.position;
+        [self addChild:particleMagnet z:1];
+        
         [self schedule:@selector(SetUpMagnet:)];
         [self schedule:@selector(endMagnet:) interval:15];
         [player magnetAction];
@@ -1329,6 +1365,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     }
     return true;
 }
+
 
 -(void) SetUpMagnet:(ccTime)dt
 {
@@ -1361,6 +1398,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
 
 -(void) endMagnet:(ccTime)dt
 {
+    during_magnet = false;
     [self unschedule:@selector(SetUpMagnet:)];
 }
 
@@ -1458,14 +1496,14 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
     milestoneLable = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d Miles", (distanceLevel-1)*1000] fontName:@"Chalkduster" fontSize:100];
     milestoneLable.rotation = 90;
-    milestoneLable.opacity = 0;
+    milestoneLable.opacity = 255;
     milestoneLable.tag = distanceLevel+100;
     [milestoneLable setColor:ccWHITE];
     [milestoneLable setAnchorPoint:ccp(0.5f,1)];
     [milestoneLable setPosition:ccp(winSize.width/4*3, winSize.height/2)];
     [self addChild:milestoneLable];
     
-    [self schedule:@selector(endMilestone:) interval:6];
+    [self schedule:@selector(endMilestone:) interval:5];
     milestoneStatus = 1;
 }
 

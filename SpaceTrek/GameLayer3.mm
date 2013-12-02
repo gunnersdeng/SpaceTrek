@@ -35,16 +35,20 @@ double teleport_top_x;
 double teleport_top_y;
 double teleport_bottom_x;
 double teleport_bottom_y;
+CCParticleSystemQuad *particle_3;
+CCParticleSystemQuad *particleMagnet_3;
 
 -(id) init{
     self = [super init];
     if(self){
         getLevel = 3;
         during_invincible = false;
+        during_magnet = false;
         distanceLevel = 1;
         milestoneStatus = 0;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
+        milestoneLable = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%1000 Miles"] fontName:@"Chalkduster" fontSize:100];
         
         collectedTreasure.clear();
         blackholeVector.clear();
@@ -319,14 +323,31 @@ double teleport_bottom_y;
     CGPoint location = [touch locationInView: [touch view]];
     location = [[CCDirector sharedDirector] convertToGL: location];
     b2Vec2 position = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+
+    
     if(isCollectCircle_3)
     {
         for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
             if (b->GetUserData() != NULL) {
                 CCSprite *treasureData = (CCSprite *)b->GetUserData();
-                if(treasureData.tag!=SPACESTATION_TAG && (sqrt(sqr(b->GetPosition().x-position.x)+sqr(b->GetPosition().y-position.y))<4)&&isCollect_3)
+                if(treasureData.tag!=SPACESTATION_TAG && (sqrt(sqr(b->GetPosition().x-position.x)+sqr(b->GetPosition().y-position.y))<2)&&isCollect_3)
                 {
                     CCLOG(@"here 0");
+                    
+                    
+                    CCParticleSystem *ps = [CCParticleExplosion node];
+                    [self addChild:ps z:12];
+                    ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+                    
+                    CGPoint position = ccp(b->GetPosition().x*PTM_RATIO, b->GetPosition().y*PTM_RATIO);
+                    
+                    ps.position = position;
+                    ps.blendAdditive = YES;
+                    ps.life = 0.25f;
+                    ps.lifeVar = 0.25f;
+                    ps.totalParticles = 120.0f;
+                    ps.autoRemoveOnFinish = YES;
+
                     
                     /* Draw a circle by plist, one second disappear
                      CCSprite* circle= [CCSprite spriteWithFile:@"StatusBar.png"];
@@ -359,6 +380,17 @@ double teleport_bottom_y;
                 {
                     CCLOG(@"here 0");
                     
+                    
+                    CCParticleSystem *ps = [CCParticleExplosion node];
+                    [self addChild:ps z:12];
+                    ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+                    ps.position = location;
+                    ps.blendAdditive = YES;
+                    ps.life = 0.25f;
+                    ps.lifeVar = 0.25f;
+                    ps.totalParticles = 120.0f;
+                    ps.autoRemoveOnFinish = YES;
+                    
                     GameObject* treasureObj = (__bridge GameObject *)treasureData;
                     self.score += treasureObj.score*10;
                     [hudLayer updateDistanceCounter:score/10];
@@ -374,6 +406,41 @@ double teleport_bottom_y;
             }
         }
     }
+}
+
+-(void) ccTouchesMoved:(UITouch *)touches withEvent:(UIEvent *)event
+{
+    //    CGPoint touchLocation = [touch locationInView: [touch view]];
+    //    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+    //    touchLocation = [self convertToNodeSpace:touchLocation];
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView: [touch view]];
+    location = [[CCDirector sharedDirector] convertToGL: location];
+    b2Vec2 position = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    
+    CCParticleSystem *ps = [CCParticleExplosion node];
+    [self addChild:ps z:12];
+    ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+    ps.position = location;
+    ps.blendAdditive = YES;
+    ps.life = 0.25f;
+    ps.lifeVar = 0.25f;
+    ps.totalParticles = 120.0f;
+    ps.autoRemoveOnFinish = YES;
+}
+
+-(void) ccTouchesEnded:(UITouch *)touches withEvent:(UIEvent *)event {
+    //    CGPoint touchLocation = [touch locationInView: [touch view]];
+    //    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+    //    touchLocation = [self convertToNodeSpace:touchLocation];
+    
+    //endLocation = touchLocation;
+}
+
+-(void) removeSprite:(id)sender
+{
+    [self removeChild:sender cleanup:YES];
 }
 
 -(void) collectTreasure
@@ -912,6 +979,17 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         else
             position1 = b2Vec2(player.position.x/PTM_RATIO, newY/PTM_RATIO);
         player->playerBody->SetTransform(position1, 0.0);
+        
+        if(during_invincible){
+            //CGPoint location = ccp(player.position.x+player.contentSize.height/2, player.position.y);
+            particle_3.positionType = kCCPositionTypeFree;
+            particle_3.position = player.position;
+        }
+        if(during_magnet)
+        {
+            particleMagnet_3.positionType = kCCPositionTypeFree;
+            particleMagnet_3.position = player.position;
+        }
     }
 }
 
@@ -926,6 +1004,10 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Character.plist"];
     allBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"Character.png"];
     [self addChild:allBatchNode z:10];
+    
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Treasure.plist"];
+    treasureBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"Treasure.png"];
+    [self addChild:treasureBatchNode z:10];
 }
 
 - (void)update:(ccTime)dt {
@@ -935,18 +1017,6 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
     }
     
-    if (milestoneStatus == 1){
-        milestoneLable.opacity += 2;
-        if ( milestoneLable.opacity>=253){
-            milestoneStatus = 2;
-        }
-    }
-    if ( milestoneStatus ==2 ){
-        milestoneLable.opacity -= 2;
-        if ( milestoneLable.opacity<=0 ){
-            milestoneStatus = 0;
-        }
-    }
     
     if(gamePart1){
         distance += dt*100*treasureSpeedMultiplier;
@@ -981,6 +1051,8 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
+        if(distance>=900)
+            [self removeTeleport];
         
         switch (distance) {
             case 100:
@@ -1003,7 +1075,6 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
                 [self addBlackhole];
                 [self addRowTreasure:12 index:2 location:winSize.height];
                 [self addRowTreasure:0 index:2 location:0];
-                [self removeTeleport];
                 break;
             case 2500:
                 [self addRowTreasure:15 index:2 location:winSize.height];
@@ -1037,7 +1108,6 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
             case 3300:
                 [self addRowTreasure:4 index:6 location:winSize.height];
                 [self addRowTreasure:0 index:6 location:0];
-                [self removeTeleport];
                 break;
             case 3100:
                 [self addRowTreasure:7 index:7 location:winSize.height];
@@ -1058,9 +1128,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
             case 500:
                 [self addTeleport:winSize.width/5*2 TOPY:winSize.height/5*4 BOTTOMX:winSize.width/5 BOTTOMY:winSize.height/5];
                 break;
-            case 900:
-                [self removeTeleport];
-                break;
+
             default:
                 break;
         }
@@ -1131,6 +1199,12 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         }
         during_invincible = true;
         [player invincible];
+        
+        particle_3 = [CCParticleSystemQuad particleWithFile:@"protection.plist"];
+        particle_3.positionType = kCCPositionTypeFree;
+        particle_3.position = player.position;
+        [self addChild:particle_3 z:1];
+        
         [_scheduler resumeTarget:self];
         [self schedule:@selector(gameLogic:) interval:(1.0f/treasureSpeedMultiplier/2.0f)];
         [self schedule:@selector(endInvincible:) interval:15];
@@ -1140,6 +1214,12 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         if ( !gamePart2 ){
             return false;
         }
+        during_magnet = true;
+        particleMagnet_3 = [CCParticleSystemQuad particleWithFile:@"magnet.plist"];
+        particleMagnet_3.positionType = kCCPositionTypeFree;
+        particleMagnet_3.position = player.position;
+        [self addChild:particleMagnet_3 z:1];
+
         [self schedule:@selector(SetUpMagnet:)];
         [self schedule:@selector(endMagnet:) interval:15];
         [player magnetAction];
@@ -1192,6 +1272,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
 
 -(void) endMagnet:(ccTime)dt
 {
+    during_magnet = false;
     [self unschedule:@selector(SetUpMagnet:)];
 }
 
@@ -1282,28 +1363,47 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     if ( milestoneStatus!=0 ){
         milestoneStatus = 0;
         [self unschedule:@selector(endMilestone:)];
-        [self removeChildByTag:distanceLevel-1+100];
+        [self removeChildByTag:distanceLevel-1+100 cleanup:false];
     }
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     milestoneLable = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d Miles", (distanceLevel-1)*1000] fontName:@"Chalkduster" fontSize:100];
     milestoneLable.rotation = 90;
-    milestoneLable.opacity = 0;
+    milestoneLable.opacity = 255;
     milestoneLable.tag = distanceLevel+100;
     [milestoneLable setColor:ccWHITE];
     [milestoneLable setAnchorPoint:ccp(0.5f,1)];
     [milestoneLable setPosition:ccp(winSize.width/4*3, winSize.height/2)];
     [self addChild:milestoneLable];
     
-    [self schedule:@selector(endMilestone:) interval:6];
-    milestoneStatus = 1;
+     milestoneStatus = 1;
+    
+    [self schedule:@selector(endMilestone:) interval:5];
+   
 }
+
+//-(void)milestone:(ccTime)dt
+//{
+//    if (milestoneStatus == 1){
+//        milestoneLable.opacity += 2;
+//        if ( milestoneLable.opacity>=253){
+//            milestoneStatus = 2;
+//        }
+//    }
+//    if ( milestoneStatus ==2 ){
+//        milestoneLable.opacity -= 2;
+//        if ( milestoneLable.opacity<=0 ){
+//            milestoneStatus = 0;
+//        }
+//    }
+//    
+//}
 
 -(void) endMilestone:(ccTime)dt
 {
     milestoneStatus = 0;
     [self unschedule:@selector(endMilestone:)];
-    [self removeChildByTag:distanceLevel+100];
+    [self removeChildByTag:distanceLevel+100 cleanup:false];
 }
 
 @end
