@@ -130,12 +130,22 @@ CCParticleSystemQuad *particleMagnet_3;
     //[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"PlayMode_Music_back.mp3"];
     //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"PlayMode_Music_New.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayMode_Music_back.mp3"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayMode_Music_New.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"level3Background.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"CrashSong.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"LaunchSong.mp3"];
+    
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"trigger.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"treasureCrash.wav"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collectobstacle.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"collecttreasure.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"magnet.mp3"];
+
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     
-    firstBackgroundMusic = [[SimpleAudioEngine sharedEngine]playEffect:@"PlayMode_Music_New.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"level3Background.mp3"];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"level3Background.mp3"];
+
+    //firstBackgroundMusic = [[SimpleAudioEngine sharedEngine]playEffect:@"level3Background.mp3"];
     [[SimpleAudioEngine sharedEngine]playEffect:@"LaunchSong.mp3"];
 }
 
@@ -143,8 +153,8 @@ CCParticleSystemQuad *particleMagnet_3;
 {
     //[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"PlayMode_Music_back.mp3"];
     //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"PlayMode_Music_back.mp3"];
-    [[SimpleAudioEngine sharedEngine] stopEffect:firstBackgroundMusic];
-    secondBackgroundMusic = [[SimpleAudioEngine sharedEngine] playEffect:@"PlayMode_Music_back.mp3"];
+    //[[SimpleAudioEngine sharedEngine] stopEffect:firstBackgroundMusic];
+    //secondBackgroundMusic = [[SimpleAudioEngine sharedEngine] playEffect:@"PlayMode_Music_back.mp3"];
     //backgroundAmbience.backgroundMusicVolume = 1.0f;
 }
 
@@ -240,8 +250,10 @@ CCParticleSystemQuad *particleMagnet_3;
                 //world->DestroyBody(b);
                 if ( treasureData.visible ){
                     treasureData.visible = false;
-                    collectedTreasure.push_back(b);
-                    [[SimpleAudioEngine sharedEngine]playEffect:@"CollectTreasure.wav"];
+                    if ( !gamePart1 ){
+                        collectedTreasure.push_back(b);
+                        [[SimpleAudioEngine sharedEngine]playEffect:@"CollectTreasure.wav"];
+                    }
                     if( gamePart1 && isSetPlayerVelocity_3)
                     {
                         [self setPlayerVelocity];
@@ -319,6 +331,7 @@ CCParticleSystemQuad *particleMagnet_3;
     if(isbullet_3)
     {
         if ( gamePart1 ){
+            [[SimpleAudioEngine sharedEngine]playEffect:@"trigger.mp3"];
             [self addBullet];
         }
         return;
@@ -1240,7 +1253,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         
         [_scheduler resumeTarget:self];
         [self schedule:@selector(gameLogic:) interval:(1.0f/treasureSpeedMultiplier/2.0f)];
-        [self schedule:@selector(endInvincible:) interval:15];
+        [self schedule:@selector(endInvincible:) interval:10];
     }
     else if (propertyTag == TREASURE_PROPERTY_TYPE_3_TAG)
     {
@@ -1386,8 +1399,8 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
 }
 - (void) dealloc
 {
-    [[SimpleAudioEngine sharedEngine] stopEffect:firstBackgroundMusic];
-    [[SimpleAudioEngine sharedEngine] stopEffect:secondBackgroundMusic];
+    //[[SimpleAudioEngine sharedEngine] stopEffect:firstBackgroundMusic];
+    //[[SimpleAudioEngine sharedEngine] stopEffect:secondBackgroundMusic];
 	[super dealloc];
 }
 

@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		756008EF184D14E40046EB9F /* level1Background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008E1184D14E40046EB9F /* level1Background.mp3 */; };
+		756008F0184D14E40046EB9F /* level2Background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008E2184D14E40046EB9F /* level2Background.mp3 */; };
+		756008F1184D14E40046EB9F /* level3Background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008E3184D14E40046EB9F /* level3Background.mp3 */; };
+		756008F2184D14E40046EB9F /* trigger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008E4184D14E40046EB9F /* trigger.mp3 */; };
+		756008F3184D14E40046EB9F /* treasureCrash.wav in Resources */ = {isa = PBXBuildFile; fileRef = 756008E5184D14E40046EB9F /* treasureCrash.wav */; };
+		756008F4184D14E40046EB9F /* collectobstacle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008E6184D14E40046EB9F /* collectobstacle.mp3 */; };
+		756008F5184D14E40046EB9F /* collecttreasure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008E7184D14E40046EB9F /* collecttreasure.mp3 */; };
+		756008F6184D14E40046EB9F /* 收集treasure1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008E8184D14E40046EB9F /* 收集treasure1.mp3 */; };
+		756008F7184D14E40046EB9F /* 收集treasure2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008E9184D14E40046EB9F /* 收集treasure2.mp3 */; };
+		756008F8184D14E40046EB9F /* 收集treasure3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008EA184D14E40046EB9F /* 收集treasure3.mp3 */; };
+		756008F9184D14E40046EB9F /* 收集treasure4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008EB184D14E40046EB9F /* 收集treasure4.mp3 */; };
+		756008FA184D14E40046EB9F /* 收集treasure5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008EC184D14E40046EB9F /* 收集treasure5.mp3 */; };
+		756008FB184D14E40046EB9F /* 收集treasure6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008ED184D14E40046EB9F /* 收集treasure6.mp3 */; };
+		756008FC184D14E40046EB9F /* magnet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 756008EE184D14E40046EB9F /* magnet.mp3 */; };
 		757BA84B1814A559006645AA /* loadingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 757BA84A1814A559006645AA /* loadingBackground.png */; };
 		757BA84F1814A7D4006645AA /* LaunchSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 757BA84D1814A7D4006645AA /* LaunchSong.mp3 */; };
 		757BA8531814B26C006645AA /* CollectTreasure.wav in Resources */ = {isa = PBXBuildFile; fileRef = 757BA8521814B26C006645AA /* CollectTreasure.wav */; };
@@ -321,6 +335,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		756008E1184D14E40046EB9F /* level1Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = level1Background.mp3; sourceTree = "<group>"; };
+		756008E2184D14E40046EB9F /* level2Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = level2Background.mp3; sourceTree = "<group>"; };
+		756008E3184D14E40046EB9F /* level3Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = level3Background.mp3; sourceTree = "<group>"; };
+		756008E4184D14E40046EB9F /* trigger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trigger.mp3; sourceTree = "<group>"; };
+		756008E5184D14E40046EB9F /* treasureCrash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = treasureCrash.wav; sourceTree = "<group>"; };
+		756008E6184D14E40046EB9F /* collectobstacle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = collectobstacle.mp3; sourceTree = "<group>"; };
+		756008E7184D14E40046EB9F /* collecttreasure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = collecttreasure.mp3; sourceTree = "<group>"; };
+		756008E8184D14E40046EB9F /* 收集treasure1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "收集treasure1.mp3"; sourceTree = "<group>"; };
+		756008E9184D14E40046EB9F /* 收集treasure2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "收集treasure2.mp3"; sourceTree = "<group>"; };
+		756008EA184D14E40046EB9F /* 收集treasure3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "收集treasure3.mp3"; sourceTree = "<group>"; };
+		756008EB184D14E40046EB9F /* 收集treasure4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "收集treasure4.mp3"; sourceTree = "<group>"; };
+		756008EC184D14E40046EB9F /* 收集treasure5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "收集treasure5.mp3"; sourceTree = "<group>"; };
+		756008ED184D14E40046EB9F /* 收集treasure6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "收集treasure6.mp3"; sourceTree = "<group>"; };
+		756008EE184D14E40046EB9F /* magnet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = magnet.mp3; sourceTree = "<group>"; };
 		757BA84A1814A559006645AA /* loadingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingBackground.png; sourceTree = "<group>"; };
 		757BA84D1814A7D4006645AA /* LaunchSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LaunchSong.mp3; sourceTree = "<group>"; };
 		757BA8521814B26C006645AA /* CollectTreasure.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CollectTreasure.wav; sourceTree = "<group>"; };
@@ -875,9 +903,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		756008E0184D14830046EB9F /* new */ = {
+			isa = PBXGroup;
+			children = (
+				756008E1184D14E40046EB9F /* level1Background.mp3 */,
+				756008E2184D14E40046EB9F /* level2Background.mp3 */,
+				756008E3184D14E40046EB9F /* level3Background.mp3 */,
+				756008E4184D14E40046EB9F /* trigger.mp3 */,
+				756008E5184D14E40046EB9F /* treasureCrash.wav */,
+				756008E6184D14E40046EB9F /* collectobstacle.mp3 */,
+				756008E7184D14E40046EB9F /* collecttreasure.mp3 */,
+				756008E8184D14E40046EB9F /* 收集treasure1.mp3 */,
+				756008E9184D14E40046EB9F /* 收集treasure2.mp3 */,
+				756008EA184D14E40046EB9F /* 收集treasure3.mp3 */,
+				756008EB184D14E40046EB9F /* 收集treasure4.mp3 */,
+				756008EC184D14E40046EB9F /* 收集treasure5.mp3 */,
+				756008ED184D14E40046EB9F /* 收集treasure6.mp3 */,
+				756008EE184D14E40046EB9F /* magnet.mp3 */,
+			);
+			name = new;
+			sourceTree = "<group>";
+		};
 		75E284701802218B0003E344 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				756008E0184D14830046EB9F /* new */,
 				757BA8541814B869006645AA /* CrashSong.mp3 */,
 				757BA8521814B26C006645AA /* CollectTreasure.wav */,
 				757BA84D1814A7D4006645AA /* LaunchSong.mp3 */,
@@ -1779,22 +1829,28 @@
 				F19BC9FA184A74B700B047C2 /* menu_bg_elmt.plist in Resources */,
 				75E9EFE4182009DA006A633D /* treasure_type_3.png in Resources */,
 				75E2847B180239780003E344 /* pauseButton.png in Resources */,
+				756008F9184D14E40046EB9F /* 收集treasure4.mp3 in Resources */,
 				F1336D1D184BF99300B72046 /* help_Background.png in Resources */,
+				756008F7184D14E40046EB9F /* 收集treasure2.mp3 in Resources */,
 				F1D9FE0E1820CA1900A27113 /* TOOLBAR_SHIELD_2TIMES.png in Resources */,
+				756008F8184D14E40046EB9F /* 收集treasure3.mp3 in Resources */,
 				F19BCA17184AB65100B047C2 /* background-shadow-1.png in Resources */,
 				F19BCA16184AB65100B047C2 /* background-shadow-0.png in Resources */,
 				F17B951517FCBB7A00BD6670 /* Default.png in Resources */,
 				F1336D2A184C295200B72046 /* protection.plist in Resources */,
 				F17B951717FCBB7A00BD6670 /* Default@2x.png in Resources */,
+				756008FC184D14E40046EB9F /* magnet.mp3 in Resources */,
 				75EFB44018330566006B290A /* level3-background.png in Resources */,
 				F17B951917FCBB7A00BD6670 /* Default-568h@2x.png in Resources */,
 				F1F5F1241821B2D60084BB33 /* Stone_type_3.png in Resources */,
 				75BB0DAB1805C6060076765A /* background-menu.png in Resources */,
+				756008F0184D14E40046EB9F /* level2Background.mp3 in Resources */,
 				F19BCA19184AB65100B047C2 /* background-shadow-3.png in Resources */,
 				F167E0021833520100D80B7E /* background-shadow.png in Resources */,
 				F1D9FE101820D27500A27113 /* TOOLBAR_Magnet.png in Resources */,
 				F17B951B17FCBB7A00BD6670 /* Default-Landscape~ipad.png in Resources */,
 				F1001239183D9181002EE1C6 /* StatusBar.png in Resources */,
+				756008F4184D14E40046EB9F /* collectobstacle.mp3 in Resources */,
 				75EFB41E1832D9DC006B290A /* TOOLBAR_empty.png in Resources */,
 				75954A2018023E0600597B3D /* GameSceneSound.mp3 in Resources */,
 				75CD3306183C48D8000D3D52 /* STORE_Invincible15s.png in Resources */,
@@ -1807,6 +1863,7 @@
 				75CD330C183C48F6000D3D52 /* STORE_Toucharea.png in Resources */,
 				F10D14A21833F844006A15C5 /* fireball_2.png in Resources */,
 				F14E4E7A18130ED0005D8190 /* MENU.png in Resources */,
+				756008FB184D14E40046EB9F /* 收集treasure6.mp3 in Resources */,
 				F1336D1B184BEFF700B72046 /* finished.png in Resources */,
 				F1336D16184BEFBE00B72046 /* menu_metal.png in Resources */,
 				757BA84F1814A7D4006645AA /* LaunchSong.mp3 in Resources */,
@@ -1836,6 +1893,7 @@
 				757BA8531814B26C006645AA /* CollectTreasure.wav in Resources */,
 				F17B952717FCBB7A00BD6670 /* Icon@2x.png in Resources */,
 				F17B952A17FCBB7B00BD6670 /* iTunesArtwork in Resources */,
+				756008F2184D14E40046EB9F /* trigger.mp3 in Resources */,
 				F19BCA01184A74CF00B047C2 /* Treasure.png in Resources */,
 				F19BCA22184B04F800B047C2 /* tinystar.png in Resources */,
 				F1336D17184BEFBE00B72046 /* pause_metal.png in Resources */,
@@ -1847,11 +1905,13 @@
 				F17B975D17FCD70300BD6670 /* button_play_sel.png in Resources */,
 				F19BCA1F184AC49100B047C2 /* loading.png in Resources */,
 				F1336D26184C295200B72046 /* collisionTreasure.plist in Resources */,
+				756008EF184D14E40046EB9F /* level1Background.mp3 in Resources */,
 				F19BCA03184A9C5C00B047C2 /* gate.png in Resources */,
 				75E9EFE7182009DA006A633D /* treasure_type_7.png in Resources */,
 				75E2846F180220B00003E344 /* fire.png in Resources */,
 				F17B976517FCDCFC00BD6670 /* level-1-background-optional.jpg in Resources */,
 				F1336D39184C80B400B72046 /* spaceship-shield-1.png in Resources */,
+				756008F3184D14E40046EB9F /* treasureCrash.wav in Resources */,
 				75FBF9C21813258C0096B82A /* StatusBar_2.png in Resources */,
 				F17B976817FCEC9900BD6670 /* ship-level-1.png in Resources */,
 				F19BCA1B184AB65100B047C2 /* background-shadow-5.png in Resources */,
@@ -1860,6 +1920,7 @@
 				F1336D3A184C80B400B72046 /* spaceship-shield-2.png in Resources */,
 				F1336D25184C295200B72046 /* bloom.plist in Resources */,
 				75EFB43E18330530006B290A /* background-chooseLevel.png in Resources */,
+				756008F1184D14E40046EB9F /* level3Background.mp3 in Resources */,
 				75E9EFE6182009DA006A633D /* treasure_type_6.png in Resources */,
 				75E2846418021E250003E344 /* spaceship-level-2-2.png in Resources */,
 				F1336D27184C295200B72046 /* eject.plist in Resources */,
@@ -1875,6 +1936,7 @@
 				75BB0DB71805D1FC0076765A /* HELP.png in Resources */,
 				75EFB4421833056D006B290A /* level2-background.png in Resources */,
 				75E2846B18021F370003E344 /* treasure_type_2.png in Resources */,
+				756008FA184D14E40046EB9F /* 收集treasure5.mp3 in Resources */,
 				75E28479180239770003E344 /* btn_transparent.png in Resources */,
 				F1CC4156182AC5760026C4E2 /* treasure_type_1.png in Resources */,
 				75CD3310183C4A5F000D3D52 /* TOOLBAR_Toucharea.png in Resources */,
@@ -1895,6 +1957,8 @@
 				F14E4E7C18130ED0005D8190 /* RESUME.png in Resources */,
 				75D9DECA181451AA00CC87E7 /* PlayMode_Music_back.mp3 in Resources */,
 				F1F5F1231821B2D60084BB33 /* Stone_type_2.png in Resources */,
+				756008F5184D14E40046EB9F /* collecttreasure.mp3 in Resources */,
+				756008F6184D14E40046EB9F /* 收集treasure1.mp3 in Resources */,
 				F14122BD1803AB4800C1B8AD /* Button-Pause-icon-modified.png in Resources */,
 				75CD3304183C48CE000D3D52 /* STORE_Bullet.png in Resources */,
 			);

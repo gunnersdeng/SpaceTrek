@@ -35,6 +35,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
             GameObject* obstacleSprite =(spriteA.tag==TREASURE_TAG)?spriteA:spriteB;
             obstacleSprite.tag = TREASURE_DESTROY_BYBULLET_TAG;
             bulletSprite.tag = BULLET_DESTROY_TAG;
+            [[SimpleAudioEngine sharedEngine]playEffect:@"treasureCrash.wav"];
             return;
         }
         
@@ -58,7 +59,7 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 {
                     treasuerSprite.tag = TREASURE_DESTROY_TAG;
                     player.numOfAffordCollsion--;
-                    [[SimpleAudioEngine sharedEngine]playEffect:@"CollectTreasure.wav"];
+                    [[SimpleAudioEngine sharedEngine]playEffect:@"treasureCrash.wav"];
                     player->playerBody->SetLinearVelocity(b2Vec2(0.0f,0.0f));
                     
                     //add collision particle effect
