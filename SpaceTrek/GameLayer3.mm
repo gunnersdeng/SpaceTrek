@@ -1057,7 +1057,11 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
     }
     
-    
+    if ( backgroundLayer==nil ){
+        CCScene* scene = [[CCDirector sharedDirector] runningScene];
+        backgroundLayer = (BackgroundLayer*)[scene getChildByTag:BACKGROUND_LAYER_TAG];
+    }
+
     if(gamePart1){
         distance += dt*100*treasureSpeedMultiplier;
         score += dt*100*treasureSpeedMultiplier;
@@ -1253,6 +1257,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         
         [_scheduler resumeTarget:self];
         [self schedule:@selector(gameLogic:) interval:(1.0f/treasureSpeedMultiplier/2.0f)];
+        [backgroundLayer speedupBackground];
         [self schedule:@selector(endInvincible:) interval:10];
     }
     else if (propertyTag == TREASURE_PROPERTY_TYPE_3_TAG)
@@ -1342,6 +1347,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         }
     }
     treasureSpeedMultiplier = 1;
+    [backgroundLayer backSpeedBackground];
     [_scheduler resumeTarget:self];
     [self schedule:@selector(gameLogic:) interval:1.0];
 }

@@ -1184,7 +1184,8 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
         CCScene* scene = [[CCDirector sharedDirector] runningScene];
         hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
     }
-
+    
+       
     star1Opa++;
     star1.opacity = 120+(star1Opa/5)%(255-120);
 
@@ -1378,6 +1379,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
                 }
             }
         }
+        
         during_invincible = true;
 //        [player invincible];
         

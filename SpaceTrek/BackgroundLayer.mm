@@ -194,6 +194,16 @@ float backSpeed = 1.0f;
     
 }
 
+-(void)speedupBackground
+{
+    backSpeed = 5.0f;
+}
+
+-(void)backSpeedBackground
+{
+    backSpeed = 1.0f;
+}
+
 -(void)tickBack:(ccTime)dt
 {
     [self scrollBackBackground:dt];
