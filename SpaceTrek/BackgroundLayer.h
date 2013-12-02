@@ -16,4 +16,6 @@
 - (id) initWithLevel:(int)level;
 -(void) reverseMap;
 -(void)changeBack;
+-(void)speedupBackground;
+-(void)backSpeedBackground;
 @end
