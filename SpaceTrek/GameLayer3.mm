@@ -334,7 +334,7 @@ CCParticleSystemQuad *particleMagnet_3;
         for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
             if (b->GetUserData() != NULL) {
                 CCSprite *treasureData = (CCSprite *)b->GetUserData();
-                if(treasureData.tag!=SPACESTATION_TAG && (sqrt(sqr(b->GetPosition().x-position.x)+sqr(b->GetPosition().y-position.y))<2)&&isCollect_3)
+                if(treasureData.tag!=SPACESTATION_TAG && (sqrt(sqr(b->GetPosition().x-position.x)+sqr(b->GetPosition().y-position.y))<3)&&isCollect_3)
                 {
                     CCLOG(@"here 0");
                     
