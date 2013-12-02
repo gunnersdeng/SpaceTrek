@@ -92,7 +92,7 @@ BOOL mainSelected;
 //        [Menu alignItemsHorizontallyWithPadding:5.0f];
         [Menu alignItemsVerticallyWithPadding:35.0f];
         [self addChild:Menu];
-        [self schedule:@selector(update:) interval:0.01f];
+        [self schedule:@selector(update:) interval:0.005f];
         
     }
     return self;
@@ -127,7 +127,7 @@ BOOL mainSelected;
         
         
         if(currentDistanceNum < distanceNum) {
-            currentDistanceNum++;
+            currentDistanceNum+=10;
             NSString *disStr = [NSString stringWithFormat:@"Distance:%2d", currentDistanceNum];
             [labelDistance setString:disStr];
         }

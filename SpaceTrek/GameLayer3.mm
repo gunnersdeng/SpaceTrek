@@ -342,7 +342,7 @@ double teleport_bottom_y;
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
 
                     }
                 }
@@ -367,7 +367,7 @@ double teleport_bottom_y;
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
 
                     }
                 }
@@ -450,7 +450,7 @@ double teleport_bottom_y;
 -(void)JumpToGameOverScene:(ccTime)delta
 {
     [self unscheduleAllSelectors];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_THREE Score:self.score Distance:distance]]];
 }
 
 -(void) playerBack
@@ -982,7 +982,6 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         
-        
         switch (distance) {
             case 100:
                 [self addBlackhole];
@@ -998,11 +997,13 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
             case 1500:
                 [self addRowTreasure:0 index:2 location:winSize.height];
                 [self addRowTreasure:12 index:2 location:0];
+                [self addTeleport:winSize.width/5*2 TOPY:winSize.height/5*3 BOTTOMX:winSize.width/5 BOTTOMY:winSize.height/10];
                 break;
             case 2000:
                 [self addBlackhole];
                 [self addRowTreasure:12 index:2 location:winSize.height];
                 [self addRowTreasure:0 index:2 location:0];
+                [self removeTeleport];
                 break;
             case 2500:
                 [self addRowTreasure:15 index:2 location:winSize.height];
@@ -1031,10 +1032,12 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
             case 2700:
                 [self addRowTreasure:3 index:6 location:winSize.height];
                 [self addRowTreasure:2 index:6 location:0];
+                [self addTeleport:winSize.width/5*2 TOPY:winSize.height/5 BOTTOMX:winSize.width/5 BOTTOMY:winSize.height/5*3];
                 break;
             case 3300:
                 [self addRowTreasure:4 index:6 location:winSize.height];
                 [self addRowTreasure:0 index:6 location:0];
+                [self removeTeleport];
                 break;
             case 3100:
                 [self addRowTreasure:7 index:7 location:winSize.height];
@@ -1052,7 +1055,12 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
                 [self addRowTreasure:2 index:7 location:winSize.height];
                 [self addRowTreasure:3 index:7 location:0];
                 break;
-            
+            case 500:
+                [self addTeleport:winSize.width/5*2 TOPY:winSize.height/5*4 BOTTOMX:winSize.width/5 BOTTOMY:winSize.height/5];
+                break;
+            case 900:
+                [self removeTeleport];
+                break;
             default:
                 break;
         }

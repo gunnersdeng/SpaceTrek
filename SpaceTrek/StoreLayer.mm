@@ -24,7 +24,7 @@ bool firstTime;
     {        
         if(!firstTime){
             firstTime = true;
-            gold = 3000;
+            gold = 300000;
         }
         
         

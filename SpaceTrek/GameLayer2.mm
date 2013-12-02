@@ -326,7 +326,7 @@ bool isSetPlayerVelocity_2;
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
 
                     }
                 }
@@ -351,7 +351,7 @@ bool isSetPlayerVelocity_2;
                     treasureNumber--;
                     if ( treasureNumber==0 ){
                         [self unscheduleAllSelectors];
-                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+                        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
 
                     }
                 }
@@ -434,7 +434,7 @@ bool isSetPlayerVelocity_2;
 -(void)JumpToGameOverScene:(ccTime)delta
 {
     [self unscheduleAllSelectors];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:self.score Distance:distance]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_TWO Score:self.score Distance:distance]]];
 
 }
 

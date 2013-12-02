@@ -51,6 +51,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[HUDLayer pauseButtonSelectedCur]:HUDLayer.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "layer-&gt;getLevel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContactListener::EndContact(b2Contact*):ContactListener.mm">
       </ContextState>
       <ContextState
