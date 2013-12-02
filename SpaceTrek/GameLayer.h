@@ -39,6 +39,8 @@
     CCSpriteBatchNode* treasureBatchNode;
     
     
+    CCSprite* shield_1;
+    
     ContactListener *contactListener;
     
     
@@ -85,6 +87,8 @@
 -(void)setPlayerVelocity;
 -(void) setVolecity : (int)judge;
 -(int)Level;
+-(void)crash;
+-(void)changeShield:(int)status;
 
 @property  (nonatomic, readwrite) b2World* world;
 @property  (nonatomic, readwrite) int distance;

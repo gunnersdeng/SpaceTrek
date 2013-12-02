@@ -28,6 +28,8 @@ bool isCollect_2;
 bool isbullet_2;
 bool isCollectCircle_2;
 bool isSetPlayerVelocity_2;
+bool during_shield_2;
+bool beforeExplode_2;
 CCParticleSystemQuad *particle_2;
 CCParticleSystemQuad *particleMagnet_2;
 
@@ -60,6 +62,8 @@ CCParticleSystemQuad *particleMagnet_2;
         isbullet_2 = false;
         isCollectCircle_2 = false;
         isSetPlayerVelocity_2 = false;
+        during_shield_2 = false;
+        beforeExplode_2 = true;
         self.tag = GAME_LAYER_TAG;
         
         
@@ -80,7 +84,7 @@ CCParticleSystemQuad *particleMagnet_2;
         
         _treasures = [[NSMutableArray alloc] init];
         
-        player = [Player spriteWithSpriteFrameName:@"spaceship1.png"];
+        player = [Player spriteWithSpriteFrameName:@"spaceship_1_1.png"];
         [player setType:(gameObjectPlayer)];
         [player initAnimation:allBatchNode];
         
@@ -519,6 +523,7 @@ CCParticleSystemQuad *particleMagnet_2;
     isPlayerMoveBack_2 = true;
     isStationMoveBack_2 = true;
     gamePart1 = false;
+    beforeExplode_2 = false;
 }
 -(void) treasureBack
 {
@@ -874,6 +879,25 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
     else
     {
         b2Vec2 position1(player.position.x/PTM_RATIO, newY/PTM_RATIO);
+        
+        if(beforeExplode_2)
+        {
+            if(newY>player.position.y+5)
+            {
+                [player fly:1];
+            }
+            else if(newY<player.position.y-5)
+            {
+                [player fly:-1];
+            }
+            else
+            {
+                [player fly:0];
+            }
+        }
+
+        
+        
         player->playerBody->SetTransform(position1, 0.0);
         [hudLayer setShadowPosition:player.position.x yy:newY];
         
@@ -887,7 +911,10 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
             particleMagnet_2.positionType = kCCPositionTypeFree;
             particleMagnet_2.position = player.position;
         }
-
+        if(during_shield_2)
+        {
+            [shield_1 setPosition:ccp(player.position.x, player.position.y)];
+        }
     }
 }
 
@@ -1037,7 +1064,11 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
         }
         player.numOfAffordCollsion += 2;
         numOfAffordCollsionTEMP += 2;
-        [player shield2];
+        shield_1 = [CCSprite spriteWithFile: [NSString stringWithFormat:@"spaceship-shield-2.png"]];
+        [shield_1 setPosition:ccp(player.position.x, player.position.y)];
+        [self addChild:shield_1 z:10];
+        during_shield_2 = true;
+//        [player shield2];
     }
     else if (propertyTag == TREASURE_PROPERTY_TYPE_2_TAG)
     {
@@ -1061,7 +1092,7 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
             }
         }
         during_invincible = true;
-        [player invincible];
+//        [player invincible];
         
         particle_2 = [CCParticleSystemQuad particleWithFile:@"protection.plist"];
         particle_2.positionType = kCCPositionTypeFree;
@@ -1260,5 +1291,28 @@ int GetRandomGaussian_2( int lowerbound, int upperbound ){
     milestoneStatus = 0;
     [self unschedule:@selector(endMilestone:)];
     [self removeChildByTag:distanceLevel+100];
+}
+
+-(void)crash
+{
+    CCParticleSystemQuad * crashParticle = [CCParticleSystemQuad particleWithFile:@"bloom.plist"];
+    crashParticle.positionType = kCCPositionTypeFree;
+    crashParticle.position = player.position;
+    [self addChild:crashParticle z:10];
+}
+
+-(void)changeShield:(int)status
+{
+    if(status==0)
+    {
+        during_shield_2 = false;
+        [shield_1 setTexture:[[CCTextureCache sharedTextureCache] addImage:@"spaceship-shield-1.png"]];
+        during_shield_2 = true;
+    }
+    if(status == 1)
+    {
+        during_shield_2 = false;
+        [self removeChild:shield_1 cleanup:YES];
+    }
 }
 @end

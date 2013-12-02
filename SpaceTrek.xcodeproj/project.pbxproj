@@ -76,8 +76,10 @@
 		F1336D28184C295200B72046 /* magnet.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1336D22184C295200B72046 /* magnet.plist */; };
 		F1336D29184C295200B72046 /* protection_1.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1336D23184C295200B72046 /* protection_1.plist */; };
 		F1336D2A184C295200B72046 /* protection.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1336D24184C295200B72046 /* protection.plist */; };
-		F1336D2D184C2B5F00B72046 /* Character.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1336D2B184C2B5F00B72046 /* Character.plist */; };
-		F1336D2E184C2B5F00B72046 /* Character.png in Resources */ = {isa = PBXBuildFile; fileRef = F1336D2C184C2B5F00B72046 /* Character.png */; };
+		F1336D35184C772000B72046 /* Character.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1336D33184C772000B72046 /* Character.plist */; };
+		F1336D36184C772000B72046 /* Character.png in Resources */ = {isa = PBXBuildFile; fileRef = F1336D34184C772000B72046 /* Character.png */; };
+		F1336D39184C80B400B72046 /* spaceship-shield-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F1336D37184C80B400B72046 /* spaceship-shield-1.png */; };
+		F1336D3A184C80B400B72046 /* spaceship-shield-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F1336D38184C80B400B72046 /* spaceship-shield-2.png */; };
 		F13405FC18433146009588E6 /* blackhole_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F13405FB18433146009588E6 /* blackhole_red.png */; };
 		F13405FE18433C88009588E6 /* STORE_flashlight.png in Resources */ = {isa = PBXBuildFile; fileRef = F13405FD18433C88009588E6 /* STORE_flashlight.png */; };
 		F134060018433C97009588E6 /* TOOLBAR_flashlight.png in Resources */ = {isa = PBXBuildFile; fileRef = F13405FF18433C97009588E6 /* TOOLBAR_flashlight.png */; };
@@ -394,8 +396,10 @@
 		F1336D22184C295200B72046 /* magnet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = magnet.plist; sourceTree = "<group>"; };
 		F1336D23184C295200B72046 /* protection_1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = protection_1.plist; sourceTree = "<group>"; };
 		F1336D24184C295200B72046 /* protection.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = protection.plist; sourceTree = "<group>"; };
-		F1336D2B184C2B5F00B72046 /* Character.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Character.plist; sourceTree = "<group>"; };
-		F1336D2C184C2B5F00B72046 /* Character.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Character.png; sourceTree = "<group>"; };
+		F1336D33184C772000B72046 /* Character.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Character.plist; sourceTree = "<group>"; };
+		F1336D34184C772000B72046 /* Character.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Character.png; sourceTree = "<group>"; };
+		F1336D37184C80B400B72046 /* spaceship-shield-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spaceship-shield-1.png"; sourceTree = "<group>"; };
+		F1336D38184C80B400B72046 /* spaceship-shield-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spaceship-shield-2.png"; sourceTree = "<group>"; };
 		F13405FB18433146009588E6 /* blackhole_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackhole_red.png; sourceTree = "<group>"; };
 		F13405FD18433C88009588E6 /* STORE_flashlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STORE_flashlight.png; sourceTree = "<group>"; };
 		F13405FF18433C97009588E6 /* TOOLBAR_flashlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TOOLBAR_flashlight.png; sourceTree = "<group>"; };
@@ -1650,8 +1654,10 @@
 		F17B976617FCEC8800BD6670 /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				F1336D2B184C2B5F00B72046 /* Character.plist */,
-				F1336D2C184C2B5F00B72046 /* Character.png */,
+				F1336D37184C80B400B72046 /* spaceship-shield-1.png */,
+				F1336D38184C80B400B72046 /* spaceship-shield-2.png */,
+				F1336D33184C772000B72046 /* Character.plist */,
+				F1336D34184C772000B72046 /* Character.png */,
 				F19BCA21184B04F700B047C2 /* tinystar.png */,
 				F19BC9FC184A74CF00B047C2 /* stars.png */,
 				F19BC9FD184A74CF00B047C2 /* Treasure.plist */,
@@ -1806,7 +1812,7 @@
 				757BA84F1814A7D4006645AA /* LaunchSong.mp3 in Resources */,
 				F10D14A11833F844006A15C5 /* fireball_1.png in Resources */,
 				F19BC9FB184A74B700B047C2 /* menu_bg_elmt.png in Resources */,
-				F1336D2D184C2B5F00B72046 /* Character.plist in Resources */,
+				F1336D35184C772000B72046 /* Character.plist in Resources */,
 				75CD330A183C48EA000D3D52 /* STORE_SHIELD_2TIMES.png in Resources */,
 				F19BCA00184A74CF00B047C2 /* Treasure.plist in Resources */,
 				757BA84B1814A559006645AA /* loadingBackground.png in Resources */,
@@ -1814,7 +1820,7 @@
 				F17B952317FCBB7A00BD6670 /* Icon-Small@2x.png in Resources */,
 				F1001238183D9181002EE1C6 /* pointer.png in Resources */,
 				75BB0DB81805D1FC0076765A /* PLAY.png in Resources */,
-				F1336D2E184C2B5F00B72046 /* Character.png in Resources */,
+				F1336D36184C772000B72046 /* Character.png in Resources */,
 				F17B952517FCBB7A00BD6670 /* Icon.png in Resources */,
 				F1336D29184C295200B72046 /* protection_1.plist in Resources */,
 				F1F5F1261821B2D60084BB33 /* Stone_type_5.png in Resources */,
@@ -1845,11 +1851,13 @@
 				75E9EFE7182009DA006A633D /* treasure_type_7.png in Resources */,
 				75E2846F180220B00003E344 /* fire.png in Resources */,
 				F17B976517FCDCFC00BD6670 /* level-1-background-optional.jpg in Resources */,
+				F1336D39184C80B400B72046 /* spaceship-shield-1.png in Resources */,
 				75FBF9C21813258C0096B82A /* StatusBar_2.png in Resources */,
 				F17B976817FCEC9900BD6670 /* ship-level-1.png in Resources */,
 				F19BCA1B184AB65100B047C2 /* background-shadow-5.png in Resources */,
 				75BB0DAD1805C82C0076765A /* PlayMode_Music_New.mp3 in Resources */,
 				F10D14A31833F844006A15C5 /* fireball_3.png in Resources */,
+				F1336D3A184C80B400B72046 /* spaceship-shield-2.png in Resources */,
 				F1336D25184C295200B72046 /* bloom.plist in Resources */,
 				75EFB43E18330530006B290A /* background-chooseLevel.png in Resources */,
 				75E9EFE6182009DA006A633D /* treasure_type_6.png in Resources */,

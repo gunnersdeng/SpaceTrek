@@ -68,9 +68,9 @@ void ContactListener::BeginContact(b2Contact *contact) {
                     [layer addChild:particle z:1];
                     
                     if ( player.numOfAffordCollsion == 1 )
-                        [player shield1];
+                        [layer changeShield:0];
                     if ( player.numOfAffordCollsion == 0 )
-                        [player noshield];
+                        [layer changeShield:1];
                 }
                 else
                 {

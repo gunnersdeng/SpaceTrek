@@ -31,6 +31,8 @@ bool isCollectCircle_3;
 bool isSetPlayerVelocity_3;
 bool teleport;
 bool topLine;
+bool during_shield_3;
+bool beforeExplode_3;
 double teleport_top_x;
 double teleport_top_y;
 double teleport_bottom_x;
@@ -66,6 +68,8 @@ CCParticleSystemQuad *particleMagnet_3;
         isSetPlayerVelocity_3 = false;
         teleport = false;
         topLine = false;
+        during_shield_3 = false;
+        beforeExplode_3 = true;
         self.tag = GAME_LAYER_TAG;
         
         
@@ -85,7 +89,7 @@ CCParticleSystemQuad *particleMagnet_3;
         
         _treasures = [[NSMutableArray alloc] init];
         
-        player = [Player spriteWithSpriteFrameName:@"spaceship1.png"];
+        player = [Player spriteWithSpriteFrameName:@"spaceship_1_1.png"];
         [player setType:(gameObjectPlayer)];
         [player initAnimation:allBatchNode];
         
@@ -531,6 +535,7 @@ CCParticleSystemQuad *particleMagnet_3;
     isStationMoveBack_3 = true;
     gamePart1 = false;
     teleport = false;
+    beforeExplode_3 = false;
     [self removeTeleport];
 }
 -(void) treasureBack
@@ -978,6 +983,24 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         }
         else
             position1 = b2Vec2(player.position.x/PTM_RATIO, newY/PTM_RATIO);
+        
+        
+        if(beforeExplode_3)
+        {
+            if(newY>player.position.y+5)
+            {
+                [player fly:1];
+            }
+            else if(newY<player.position.y-5)
+            {
+                [player fly:-1];
+            }
+            else
+            {
+                [player fly:0];
+            }
+        }
+        
         player->playerBody->SetTransform(position1, 0.0);
         
         if(during_invincible){
@@ -989,6 +1012,10 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         {
             particleMagnet_3.positionType = kCCPositionTypeFree;
             particleMagnet_3.position = player.position;
+        }
+        if(during_shield_3)
+        {
+            [shield_1 setPosition:ccp(player.position.x, player.position.y)];
         }
     }
 }
@@ -1051,7 +1078,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
-        if(distance>=900)
+        if((distance>=900&&distance<=950) || (distance>=2000&&distance<=2050) || (distance>=3300&&distance<=3350))
             [self removeTeleport];
         
         switch (distance) {
@@ -1174,7 +1201,13 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         }
         player.numOfAffordCollsion += 2;
         numOfAffordCollsionTEMP += 2;
-        [player shield2];
+        
+        shield_1 = [CCSprite spriteWithFile: [NSString stringWithFormat:@"spaceship-shield-2.png"]];
+        [shield_1 setPosition:ccp(player.position.x, player.position.y)];
+        [self addChild:shield_1 z:10];
+        during_shield_3 = true;
+        
+//        [player shield2];
     }
     else if (propertyTag == TREASURE_PROPERTY_TYPE_2_TAG)
     {
@@ -1198,7 +1231,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
             }
         }
         during_invincible = true;
-        [player invincible];
+//        [player invincible];
         
         particle_3 = [CCParticleSystemQuad particleWithFile:@"protection.plist"];
         particle_3.positionType = kCCPositionTypeFree;
@@ -1404,6 +1437,29 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     milestoneStatus = 0;
     [self unschedule:@selector(endMilestone:)];
     [self removeChildByTag:distanceLevel+100 cleanup:false];
+}
+
+-(void)crash
+{
+    CCParticleSystemQuad * crashParticle = [CCParticleSystemQuad particleWithFile:@"bloom.plist"];
+    crashParticle.positionType = kCCPositionTypeFree;
+    crashParticle.position = player.position;
+    [self addChild:crashParticle z:10];
+}
+
+-(void)changeShield:(int)status
+{
+    if(status==0)
+    {
+        during_shield_3 = false;
+        [shield_1 setTexture:[[CCTextureCache sharedTextureCache] addImage:@"spaceship-shield-1.png"]];
+        during_shield_3 = true;
+    }
+    if(status == 1)
+    {
+        during_shield_3 = false;
+        [self removeChild:shield_1 cleanup:YES];
+    }
 }
 
 @end

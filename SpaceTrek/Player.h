@@ -47,6 +47,7 @@
 -(void) shield1;
 -(void) shield2;
 -(void) noshield;
+-(void) fly:(int) flyType;
 
 +(Player*) getPlayer;
 -(b2Body*) getBody;

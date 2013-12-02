@@ -43,6 +43,8 @@
     CCSpriteBatchNode* allBatchNode;
     CCSpriteBatchNode* treasureBatchNode;
     
+    CCSprite* shield_1;
+    
     ContactListener *contactListener;
     
     int treasureSpeedMultiplier;
@@ -84,6 +86,8 @@
 - (void) dealloc;
 -(void)setPlayerVelocity;
 -(int)Level;
+-(void)crash;
+-(void)changeShield:(int)status;
 
 @property  (nonatomic, readwrite) b2World* world;
 @property  (nonatomic, readwrite) int distance;

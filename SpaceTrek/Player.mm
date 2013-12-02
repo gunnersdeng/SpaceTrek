@@ -32,10 +32,10 @@
 -(void) initAnimation:(CCSpriteBatchNode *)batchNode{
     NSMutableArray *runAnimFrames = [NSMutableArray array];
     
-    for(int i = 1; i <= 2; ++i){
+    for(int i = 1; i <= 4; ++i){
         [runAnimFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"spaceship%d.png", i]]];
+          [NSString stringWithFormat:@"spaceship_1_%d.png", i]]];
     }
     
     playerRunAnimation = [CCAnimation animationWithSpriteFrames:runAnimFrames delay:0.09f];
@@ -86,7 +86,13 @@
 -(void) crashTransformAction
 {
     [self stopAllActions];
-    NSMutableArray *crashAnimFrames = [NSMutableArray array];
+    
+    
+    
+    CCScene* scene = [[CCDirector sharedDirector] runningScene];
+    GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
+    [layer crash];
+    /* NSMutableArray *crashAnimFrames = [NSMutableArray array];
     for(int i = 1; i <= 6; ++i){
         [crashAnimFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
@@ -94,6 +100,7 @@
     }
     crashAnimation = [CCAnimation animationWithSpriteFrames:crashAnimFrames delay:0.09f];
     crashAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: crashAnimation] times:1];
+    */
     
     
     NSMutableArray *spacemanAnimFrames = [NSMutableArray array];
@@ -106,22 +113,13 @@
     spacemanAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: spacemanAnimation] times:200];
     
     
-   /* NSMutableArray *exlosionAnimFrames = [NSMutableArray array];
-    for(int i = 1; i <= 2; ++i){
-        [exlosionAnimFrames addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"exlosion_bg%d.png", i]]];
-    }
-    exlosionAnimation = [CCAnimation animationWithSpriteFrames:exlosionAnimFrames delay:0.09f];
-    exlosionAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: exlosionAnimation] times:1];*/
-    
     id actionMoveDone = [CCCallFuncN actionWithTarget:self
                                              selector:@selector(crashTransformActionFinished:)];
     CCSequence *seq = nil;
     seq = [CCSequence actions:crashAction,spacemanAction,nil];
-
+    [self runAction:[CCSequence actions:actionMoveDone, spacemanAction, nil]];
     //[self runAction:[CCSequence actions:seq, actionMoveDone, nil]];
-    [self runAction:[CCSequence actions:actionMoveDone, seq, nil]];
+//    [self runAction:[CCSequence actions:actionMoveDone, seq, nil]];
 }
 
 -(void) magnetAction
@@ -188,6 +186,41 @@
     //id seq = [CCSequence actions:magnet1Action,magnet2Action,nil];
     
     [self runAction:[CCSequence actions:invincibleAction, playerRunAction, nil]];
+}
+
+-(void) fly:(int) flyType
+{
+    [self stopAllActions];
+    NSMutableArray *runAnimFrames;
+    
+    if(flyType == -1){
+        runAnimFrames = [NSMutableArray array];
+        for(int i = 1; i <= 2; ++i){
+            [runAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"spaceship_2_%d.png", i]]];
+        }
+    }
+    else if(flyType == 0){
+        runAnimFrames = [NSMutableArray array];
+        for(int i = 1; i <= 4; ++i){
+            [runAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"spaceship_1_%d.png", i]]];
+        }
+    }
+    else{
+        runAnimFrames = [NSMutableArray array];
+        for(int i = 1; i <= 2; ++i){
+            [runAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"spaceship_3_%d.png", i]]];
+        }
+    }
+    playerRunAnimation = [CCAnimation animationWithSpriteFrames:runAnimFrames delay:0.09f];
+    playerRunAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: playerRunAnimation] times:2000];
+    
+    [self runAction:playerRunAction];
 }
 
 -(void) noshield

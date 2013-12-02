@@ -27,6 +27,8 @@ bool isCollect;
 bool isbullet;
 bool isCollectCircle;
 bool isSetPlayerVelocity;
+bool beforeExplode;
+bool during_shield;
 CCParticleSystemQuad *particle;
 CCParticleSystemQuad *particleMagnet;
 
@@ -37,6 +39,7 @@ CCParticleSystemQuad *particleMagnet;
         getLevel = 1;
         during_invincible = false;
         during_magnet = false;
+        during_shield = false;
         hitStop = false;
         distanceLevel = 1;
         milestoneStatus = 0;
@@ -56,6 +59,8 @@ CCParticleSystemQuad *particleMagnet;
         isbullet = false;
         isCollectCircle = false;
         isSetPlayerVelocity = false;
+        beforeExplode = true;
+        
         self.tag = GAME_LAYER_TAG;
         
         
@@ -77,7 +82,7 @@ CCParticleSystemQuad *particleMagnet;
         
         _treasures = [[NSMutableArray alloc] init];
         
-        player = [Player spriteWithSpriteFrameName:@"spaceship1.png"];
+        player = [Player spriteWithSpriteFrameName:@"spaceship_1_1.png"];
         [player setType:(gameObjectPlayer)];
         [player initAnimation:allBatchNode];
 
@@ -559,7 +564,7 @@ CCParticleSystemQuad *particleMagnet;
     isPlayerMoveBack = true;
     isStationMoveBack = true;
     gamePart1 = false;
-
+    beforeExplode = false;
 }
 -(void) treasureBack
 {
@@ -1050,7 +1055,21 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     {
         b2Vec2 position1(player.position.x/PTM_RATIO, newY/PTM_RATIO);
     
-        
+        if(beforeExplode)
+        {
+            if(newY>player.position.y+5)
+            {
+                [player fly:1];
+            }
+            else if(newY<player.position.y-5)
+            {
+                [player fly:-1];
+            }
+            else
+            {
+                [player fly:0];
+            }
+        }
         
         player->playerBody->SetTransform(position1, 0.0);
         
@@ -1065,6 +1084,10 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
         {
             particleMagnet.positionType = kCCPositionTypeFree;
             particleMagnet.position = player.position;
+        }
+        if(during_shield)
+        {
+            [shield_1 setPosition:ccp(player.position.x, player.position.y)];
         }
     }
 }
@@ -1298,13 +1321,20 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
         }
         player.numOfAffordCollsion += 2;
         numOfAffordCollsionTEMP += 2;
-        [player shield2];
+        
+        shield_1 = [CCSprite spriteWithFile: [NSString stringWithFormat:@"spaceship-shield-2.png"]];
+        [shield_1 setPosition:ccp(player.position.x, player.position.y)];
+        [self addChild:shield_1 z:10];
+        during_shield = true;
+//        [player shield2];
     }
     else if (propertyTag == TREASURE_PROPERTY_TYPE_2_TAG)
     {
         if ( !gamePart1 ){
             return false;
         }
+ 
+        
         [self unschedule:@selector(gameLogic:)];
         [_scheduler pauseTarget:self];
         numOfAffordCollsionTEMP = player.numOfAffordCollsion;
@@ -1322,7 +1352,7 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
             }
         }
         during_invincible = true;
-        [player invincible];
+//        [player invincible];
         
         particle = [CCParticleSystemQuad particleWithFile:@"protection.plist"];
         particle.positionType = kCCPositionTypeFree;
@@ -1512,6 +1542,29 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     milestoneStatus = 0;
     [self unschedule:@selector(endMilestone:)];
     [self removeChildByTag:distanceLevel+100];
+}
+
+-(void)crash
+{
+    CCParticleSystemQuad * crashParticle = [CCParticleSystemQuad particleWithFile:@"bloom.plist"];
+    crashParticle.positionType = kCCPositionTypeFree;
+    crashParticle.position = player.position;
+    [self addChild:crashParticle z:10];
+}
+
+-(void)changeShield:(int)status
+{
+    if(status==0)
+    {
+        during_shield = false;
+        [shield_1 setTexture:[[CCTextureCache sharedTextureCache] addImage:@"spaceship-shield-1.png"]];
+        during_shield = true;
+    }
+    if(status == 1)
+    {
+        during_shield = false;
+        [self removeChild:shield_1 cleanup:YES];
+    }
 }
 
 @end
