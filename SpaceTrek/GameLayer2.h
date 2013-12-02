@@ -71,6 +71,8 @@
     
     int getLevel;
     
+    int spaceshipState;
+    
 @public
     bool collision;
 //    int getLevel;

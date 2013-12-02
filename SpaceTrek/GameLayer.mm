@@ -44,6 +44,8 @@ CCParticleSystemQuad *particleMagnet;
         distanceLevel = 1;
         milestoneStatus = 0;
         
+        spaceshipState = 0;
+        
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
         collectedTreasure.clear();
@@ -1084,18 +1086,25 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     
         if(beforeExplode)
         {
+            int current;
             if(newY>player.position.y+5)
             {
-                [player fly:1];
+                current = 1;
             }
             else if(newY<player.position.y-5)
             {
-                [player fly:-1];
+                current = -1;
             }
             else
             {
-                [player fly:0];
+                current = 0;
             }
+            
+            if ( current != spaceshipState ){
+                [player fly:current];
+                spaceshipState = current;
+            }
+
         }
         
         player->playerBody->SetTransform(position1, 0.0);
