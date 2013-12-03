@@ -35,7 +35,6 @@
 		75BB0DB91805D1FC0076765A /* STORE.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BB0DB61805D1FC0076765A /* STORE.png */; };
 		75CD3300183C4435000D3D52 /* blackhole.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CD32FF183C4435000D3D52 /* blackhole.png */; };
 		75CD3304183C48CE000D3D52 /* STORE_Bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CD3303183C48CE000D3D52 /* STORE_Bullet.png */; };
-		75CD3306183C48D8000D3D52 /* STORE_Invincible15s.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CD3305183C48D8000D3D52 /* STORE_Invincible15s.png */; };
 		75CD3308183C48E1000D3D52 /* STORE_Magnet.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CD3307183C48E1000D3D52 /* STORE_Magnet.png */; };
 		75CD330A183C48EA000D3D52 /* STORE_SHIELD_2TIMES.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CD3309183C48EA000D3D52 /* STORE_SHIELD_2TIMES.png */; };
 		75CD330C183C48F6000D3D52 /* STORE_Toucharea.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CD330B183C48F6000D3D52 /* STORE_Toucharea.png */; };
@@ -322,6 +321,9 @@
 		F1C1DB7F184D58D0009F76A0 /* henggechumaPS2.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C1DB7E184D58D0009F76A0 /* henggechumaPS2.png */; };
 		F1C1DB82184D5ED8009F76A0 /* obstacle.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C1DB80184D5ED8009F76A0 /* obstacle.plist */; };
 		F1C1DB83184D5ED8009F76A0 /* obstacle.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C1DB81184D5ED8009F76A0 /* obstacle.png */; };
+		F1C1DB85184D7095009F76A0 /* STORE_Invincible15s.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C1DB84184D7095009F76A0 /* STORE_Invincible15s.png */; };
+		F1C1DB87184DADE5009F76A0 /* treasureCollection.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C1DB86184DADE5009F76A0 /* treasureCollection.plist */; };
+		F1C1DB89184DB5AA009F76A0 /* crashShip.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C1DB88184DB5AA009F76A0 /* crashShip.plist */; };
 		F1CA5DEE1813DD2700A6BE77 /* GameOverScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */; };
 		F1CA5DF11813DEA900A6BE77 /* GameOverLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */; };
 		F1CC4156182AC5760026C4E2 /* treasure_type_1.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CC4155182AC5760026C4E2 /* treasure_type_1.png */; };
@@ -367,7 +369,6 @@
 		75BB0DB61805D1FC0076765A /* STORE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STORE.png; sourceTree = "<group>"; };
 		75CD32FF183C4435000D3D52 /* blackhole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackhole.png; sourceTree = "<group>"; };
 		75CD3303183C48CE000D3D52 /* STORE_Bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STORE_Bullet.png; sourceTree = "<group>"; };
-		75CD3305183C48D8000D3D52 /* STORE_Invincible15s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STORE_Invincible15s.png; sourceTree = "<group>"; };
 		75CD3307183C48E1000D3D52 /* STORE_Magnet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STORE_Magnet.png; sourceTree = "<group>"; };
 		75CD3309183C48EA000D3D52 /* STORE_SHIELD_2TIMES.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STORE_SHIELD_2TIMES.png; sourceTree = "<group>"; };
 		75CD330B183C48F6000D3D52 /* STORE_Toucharea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STORE_Toucharea.png; sourceTree = "<group>"; };
@@ -870,6 +871,9 @@
 		F1C1DB7E184D58D0009F76A0 /* henggechumaPS2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = henggechumaPS2.png; sourceTree = "<group>"; };
 		F1C1DB80184D5ED8009F76A0 /* obstacle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = obstacle.plist; sourceTree = "<group>"; };
 		F1C1DB81184D5ED8009F76A0 /* obstacle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle.png; sourceTree = "<group>"; };
+		F1C1DB84184D7095009F76A0 /* STORE_Invincible15s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STORE_Invincible15s.png; sourceTree = "<group>"; };
+		F1C1DB86184DADE5009F76A0 /* treasureCollection.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = treasureCollection.plist; sourceTree = "<group>"; };
+		F1C1DB88184DB5AA009F76A0 /* crashShip.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = crashShip.plist; sourceTree = "<group>"; };
 		F1CA5DEC1813DD2700A6BE77 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = GameOverScene.mm; sourceTree = "<group>"; };
 		F1CA5DEF1813DEA900A6BE77 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
@@ -969,12 +973,14 @@
 		F1336D1E184C294500B72046 /* Particle */ = {
 			isa = PBXGroup;
 			children = (
+				F1C1DB88184DB5AA009F76A0 /* crashShip.plist */,
 				F1336D1F184C295200B72046 /* bloom.plist */,
 				F1336D20184C295200B72046 /* collisionTreasure.plist */,
 				F1336D21184C295200B72046 /* eject.plist */,
 				F1336D22184C295200B72046 /* magnet.plist */,
 				F1336D23184C295200B72046 /* protection_1.plist */,
 				F1336D24184C295200B72046 /* protection.plist */,
+				F1C1DB86184DADE5009F76A0 /* treasureCollection.plist */,
 			);
 			name = Particle;
 			sourceTree = "<group>";
@@ -1726,7 +1732,7 @@
 				F19BC9FE184A74CF00B047C2 /* Treasure.png */,
 				F13405FD18433C88009588E6 /* STORE_flashlight.png */,
 				75CD3303183C48CE000D3D52 /* STORE_Bullet.png */,
-				75CD3305183C48D8000D3D52 /* STORE_Invincible15s.png */,
+				F1C1DB84184D7095009F76A0 /* STORE_Invincible15s.png */,
 				75CD3307183C48E1000D3D52 /* STORE_Magnet.png */,
 				75CD3309183C48EA000D3D52 /* STORE_SHIELD_2TIMES.png */,
 				75CD330B183C48F6000D3D52 /* STORE_Toucharea.png */,
@@ -1865,7 +1871,6 @@
 				756008F4184D14E40046EB9F /* collectobstacle.mp3 in Resources */,
 				75EFB41E1832D9DC006B290A /* TOOLBAR_empty.png in Resources */,
 				75954A2018023E0600597B3D /* GameSceneSound.mp3 in Resources */,
-				75CD3306183C48D8000D3D52 /* STORE_Invincible15s.png in Resources */,
 				F17B951D17FCBB7A00BD6670 /* Icon-72.png in Resources */,
 				F1336D19184BEFBE00B72046 /* replay_metal.png in Resources */,
 				F17B951F17FCBB7A00BD6670 /* Icon-Small-50.png in Resources */,
@@ -1908,6 +1913,7 @@
 				F17B952717FCBB7A00BD6670 /* Icon@2x.png in Resources */,
 				F17B952A17FCBB7B00BD6670 /* iTunesArtwork in Resources */,
 				756008F2184D14E40046EB9F /* trigger.mp3 in Resources */,
+				F1C1DB89184DB5AA009F76A0 /* crashShip.plist in Resources */,
 				F19BCA01184A74CF00B047C2 /* Treasure.png in Resources */,
 				F19BCA22184B04F800B047C2 /* tinystar.png in Resources */,
 				F1336D17184BEFBE00B72046 /* pause_metal.png in Resources */,
@@ -1925,9 +1931,11 @@
 				75E9EFE7182009DA006A633D /* treasure_type_7.png in Resources */,
 				75E2846F180220B00003E344 /* fire.png in Resources */,
 				F17B976517FCDCFC00BD6670 /* level-1-background-optional.jpg in Resources */,
+				F1C1DB85184D7095009F76A0 /* STORE_Invincible15s.png in Resources */,
 				F1336D39184C80B400B72046 /* spaceship-shield-1.png in Resources */,
 				756008F3184D14E40046EB9F /* treasureCrash.wav in Resources */,
 				75FBF9C21813258C0096B82A /* StatusBar_2.png in Resources */,
+				F1C1DB87184DADE5009F76A0 /* treasureCollection.plist in Resources */,
 				F17B976817FCEC9900BD6670 /* ship-level-1.png in Resources */,
 				F19BCA1B184AB65100B047C2 /* background-shadow-5.png in Resources */,
 				75BB0DAD1805C82C0076765A /* PlayMode_Music_New.mp3 in Resources */,

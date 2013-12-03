@@ -103,8 +103,16 @@ void ContactListener::BeginContact(b2Contact *contact) {
             {
                 CCScene* scene = [[CCDirector sharedDirector] runningScene];
                 GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
-
-                [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:layer.score Distance:layer.distance]]];
+                
+                CCParticleSystemQuad *particle = [CCParticleSystemQuad particleWithFile:@"crashShip.plist"];
+                particle.positionType = kCCPositionTypeFree;
+                particle.position = spriteB.position;
+                [layer addChild:particle z:1];
+                spriteA.visible = false;
+                spriteB.visible = false;
+                
+                
+                [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:5.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:layer.score Distance:layer.distance]]];
             }
         }
         else if(spriteA.type==gameObjectCollector)
@@ -112,15 +120,31 @@ void ContactListener::BeginContact(b2Contact *contact) {
             if(spriteB.type==gameObjectTreasure1)
             {
                 GameObject *treasuerSprite=(spriteA.type==gameObjectCollector)?spriteB:spriteA;
-                /*
+                
                 CCScene* scene = [[CCDirector sharedDirector] runningScene];
                 GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
-                [layer setPlayerVelocity];
-                */
+                CCParticleSystemQuad *particle = [CCParticleSystemQuad particleWithFile:@"treasureCollection.plist"];
+                particle.positionType = kCCPositionTypeFree;
+                particle.position = spriteB.position;
+                [layer addChild:particle z:1];
+                
+                
+                
                 treasuerSprite.tag = TREASURE_DESTROY_TAG;
+            }
+            else if(spriteB.type==gameObjectFallingStone)
+            {
+                CCScene* scene = [[CCDirector sharedDirector] runningScene];
+                GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
+                CCParticleSystemQuad *particle = [CCParticleSystemQuad particleWithFile:@"crashShip.plist"];
+                particle.positionType = kCCPositionTypeFree;
+                particle.position = spriteB.position;
+                [layer addChild:particle z:1];
+                spriteA.visible = false;
+                spriteB.visible = false;
                 
                 
-                
+                [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:5.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:layer.score Distance:layer.distance]]];
             }
         }
     }

@@ -75,7 +75,7 @@
     playerShapeDef.friction = 0.5f;
     playerShapeDef.restitution = 0.0f;
     playerShapeDef.filter.categoryBits =  0x1;
-    playerShapeDef.filter.maskBits =  0xFFFF;
+    playerShapeDef.filter.maskBits =  0x2+0x10;
     
     playerBody->CreateFixture(&playerShapeDef);
     

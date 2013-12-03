@@ -205,124 +205,135 @@ CCParticleSystemQuad *particleMagnet_3;
 	world->Step(dt, velocityIterations, positionIterations);
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
         if (b->GetUserData() != NULL) {
-            CCSprite *treasureData = (CCSprite *)b->GetUserData();
+            CCSprite *treasureDataCCSprite = (__bridge GameObject*)b->GetUserData();
             
-            if(treasureData.tag == PLAYER_TAG)
+            if([treasureDataCCSprite isMemberOfClass:[GameObject class]] || [treasureDataCCSprite isMemberOfClass:[Player class]])
             {
-                b2Vec2 force = b2Vec2(player->playerBody->GetLinearVelocity().x, 10);
-                player->playerBody->SetLinearVelocity(force);
-            }
+                GameObject* treasureData;
+                
+                if([treasureDataCCSprite isMemberOfClass:[Player class]])
+                    treasureData=(Player*)treasureDataCCSprite;
+                else
+                    treasureData=(GameObject*)treasureDataCCSprite;
+
+            
+                if(treasureData.tag == PLAYER_TAG)
+                {
+                    b2Vec2 force = b2Vec2(player->playerBody->GetLinearVelocity().x, 10);
+                    player->playerBody->SetLinearVelocity(force);
+                }
              
             
-            if(treasureData.tag == BULLET_TAG)
-            {
-                if(treasureData.position.x>winSize.width)
+                if(treasureData.tag == BULLET_TAG)
                 {
-                    treasureData.tag = BULLET_DESTROY_TAG;
-                }
-                
-            }
-            if(treasureData.tag == TREASURE_PROPERTY_TYPE_1_TAG)
-            {
-                [self removeChild:treasureData cleanup:YES];
-                world->DestroyBody(b);
-                continue;
-            }
-            if(treasureData.tag == TREASURE_BULLET_TAG)
-            {
-                [self removeChild:treasureData cleanup:YES];
-                world->DestroyBody(b);
-                continue;
-            }
-            if(treasureData.tag == TREASURE_DESTROY_BYBULLET_TAG)
-            {
-                [self removeChild:treasureData cleanup:YES];
-                world->DestroyBody(b);
-                continue;
-            }
-            if(treasureData.tag == BULLET_DESTROY_TAG)
-            {
-                [self removeChild:treasureData cleanup:YES];
-                world->DestroyBody(b);
-                continue;
-            }
-            if(treasureData.tag == TREASURE_DESTROY_TAG)
-            {
-                //[self removeChild:treasureData cleanup:YES];
-                //world->DestroyBody(b);
-                if ( treasureData.visible ){
-                    treasureData.visible = false;
-                    if ( !gamePart1 ){
-                        collectedTreasure.push_back(b);
-                        [[SimpleAudioEngine sharedEngine]playEffect:@"CollectTreasure.wav"];
-                    }
-                    if( gamePart1 && isSetPlayerVelocity_3)
+                    if(treasureData.position.x>winSize.width)
                     {
-                        [self setPlayerVelocity];
+                        treasureData.tag = BULLET_DESTROY_TAG;
                     }
-                    
-                    if ( gamePart2 || gamePart1 ){
-                        player->playerBody->SetLinearVelocity(b2Vec2(0.0f,0.0f));
-                    }
+                
+                }
+                if(treasureData.tag == TREASURE_PROPERTY_TYPE_1_TAG)
+                {
+                    [self removeChild:treasureData cleanup:YES];
+                    world->DestroyBody(b);
                     continue;
                 }
-            }
-            if(treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5)<=10 && !isReach_3)
-            {
-                b2Vec2 force = b2Vec2(0, 0);
-                b->SetLinearVelocity(force);
-                isReach_3 = true;
-                [self schedule:@selector(playerMoveFinished:)];
-                self.isAccelerometerEnabled=YES;
-                self.isTouchEnabled = YES;
-//                [self addBlackhole];
+                if(treasureData.tag == TREASURE_BULLET_TAG)
+                {
+                    [self removeChild:treasureData cleanup:YES];
+                    world->DestroyBody(b);
+                    continue;
+                }
+                if(treasureData.tag == TREASURE_DESTROY_BYBULLET_TAG)
+                {
+                    [self removeChild:treasureData cleanup:YES];
+                    world->DestroyBody(b);
+                    continue;
+                }
+                if(treasureData.tag == BULLET_DESTROY_TAG)
+                {
+                    [self removeChild:treasureData cleanup:YES];
+                    world->DestroyBody(b);
+                    continue;
+                }
+                if(treasureData.tag == TREASURE_DESTROY_TAG)
+                {
+                    //[self removeChild:treasureData cleanup:YES];
+                    //world->DestroyBody(b);
+                    if ( treasureData.visible ){
+                        treasureData.visible = false;
+                        if ( !gamePart1 ){
+                            collectedTreasure.push_back(b);
+                            [[SimpleAudioEngine sharedEngine]playEffect:@"CollectTreasure.wav"];
+                        }
+                        if( gamePart1 && isSetPlayerVelocity_3)
+                        {
+                            [self setPlayerVelocity];
+                        }
+                    
+                        if ( gamePart2 || gamePart1 ){
+                            player->playerBody->SetLinearVelocity(b2Vec2(0.0f,0.0f));
+                        }
+                        continue;
+                    }
+                }
+                if(treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5)<=10 && !isReach_3)
+                {
+                    b2Vec2 force = b2Vec2(0, 0);
+                    b->SetLinearVelocity(force);
+                    isReach_3 = true;
+                    [self schedule:@selector(playerMoveFinished:)];
+                    self.isAccelerometerEnabled=YES;
+                    self.isTouchEnabled = YES;
+//                  [self addBlackhole];
                 
-            }
-            if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-winSize.width/2)<=100 && isStationMoveBack_3)
-            {
-                b2Vec2 force = b2Vec2(0, 0);
-                b->SetLinearVelocity(force);
-                isStationMoveBack_3 = false;
+                }
+                if(treasureData!=NULL && treasureData.tag==SPACESTATION_TAG && fabs(treasureData.position.x-winSize.width/2)<=100 && isStationMoveBack_3)
+                {
+                    b2Vec2 force = b2Vec2(0, 0);
+                    b->SetLinearVelocity(force);
+                    isStationMoveBack_3 = false;
                 
-                isPlayerBacktoStation_3 = true;
-                b2Vec2 forcePlayer = b2Vec2(-TRAVEL_SPEED, 0);
-                player->playerBody->SetLinearVelocity(forcePlayer);
-                gamePart2 = false;
+                    isPlayerBacktoStation_3 = true;
+                    b2Vec2 forcePlayer = b2Vec2(-TRAVEL_SPEED, 0);
+                    player->playerBody->SetLinearVelocity(forcePlayer);
+                    gamePart2 = false;
                 
-            }
-            if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5*4)<=50&&isPlayerCollect_3)
-            {
-                b2Vec2 force = b2Vec2(0, 0);
-                b->SetLinearVelocity(force);
-                [self treasureBack];
-                isPlayerCollect_3=false;
-                isSetPlayerVelocity_3 = false;
+                }
+                if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-winSize.width/5*4)<=50&&isPlayerCollect_3)
+                {
+                    b2Vec2 force = b2Vec2(0, 0);
+                    b->SetLinearVelocity(force);
+                    [self treasureBack];
+                    isPlayerCollect_3=false;
+                    isSetPlayerVelocity_3 = false;
                 
-                gamePart2 = true;
-            }
-            if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-treasureData.contentSize.width)<=10 && isPlayerBacktoStation_3)
-            {
-                b2Vec2 force = b2Vec2(0, 0);
-                b->SetLinearVelocity(force);
-                isPlayerBacktoStation_3 = false;
-                
-                
-                [self collectTreasure];
+                    gamePart2 = true;
+                }
+                if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && fabs(treasureData.position.x-treasureData.contentSize.width)<=10 && isPlayerBacktoStation_3)
+                {
+                    b2Vec2 force = b2Vec2(0, 0);
+                    b->SetLinearVelocity(force);
+                    isPlayerBacktoStation_3 = false;
                 
                 
-            }
-            if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && isSetPlayerVelocity_3)
-            {
-                [self setPlayerVelocity];
-            }
+                    [self collectTreasure];
+                
+                
+                }
+                if(treasureData!=NULL && treasureData.tag==PLAYER_TAG && isSetPlayerVelocity_3)
+                {
+                    [self setPlayerVelocity];
+                }
             
-            treasureData.position = ccp(b->GetPosition().x*PTM_RATIO,
+                treasureData.position = ccp(b->GetPosition().x*PTM_RATIO,
                                         b->GetPosition().y*PTM_RATIO);
-            treasureData.rotation = 0 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+                treasureData.rotation = 0 * CC_RADIANS_TO_DEGREES(b->GetAngle());
             
             
             
             
+            }
         }
     }
 }
@@ -348,15 +359,15 @@ CCParticleSystemQuad *particleMagnet_3;
     {
         for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
             if (b->GetUserData() != NULL) {
-                CCSprite *treasureData = (CCSprite *)b->GetUserData();
+                CCSprite *treasureData = (__bridge CCSprite *)b->GetUserData();
                 if(treasureData.tag!=SPACESTATION_TAG && (sqrt(sqr(b->GetPosition().x-position.x)+sqr(b->GetPosition().y-position.y))<3)&&isCollect_3)
                 {
                     CCLOG(@"here 0");
                     
                     
-                    CCParticleSystem *ps = [CCParticleExplosion node];
-                    [self addChild:ps z:12];
-                    ps.texture = [[CCTextureCache sharedTextureCache] addImage:@"stars.png"];
+                    CCParticleSystemQuad *ps = [CCParticleSystemQuad particleWithFile:@"treasureCollection.plist"];
+                    ps.positionType = kCCPositionTypeFree;
+                    [self addChild:ps z:1];
                     
                     CGPoint position = ccp(b->GetPosition().x*PTM_RATIO, b->GetPosition().y*PTM_RATIO);
                     
@@ -394,7 +405,7 @@ CCParticleSystemQuad *particleMagnet_3;
         for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
             if (b->GetUserData() != NULL) {
                 b2Fixture *f = b->GetFixtureList();
-                CCSprite *treasureData = (CCSprite *)b->GetUserData();
+                CCSprite *treasureData = (__bridge CCSprite *)b->GetUserData();
                 if(treasureData.tag!=SPACESTATION_TAG && f->TestPoint(position)&&isCollect_3)
                 {
                     CCLOG(@"here 0");
@@ -469,7 +480,7 @@ CCParticleSystemQuad *particleMagnet_3;
     
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
         if (b->GetUserData() != NULL) {
-            CCSprite *treasureData = (CCSprite *)b->GetUserData();
+            CCSprite *treasureData = (__bridge CCSprite *)b->GetUserData();
             
             if(treasureData.tag == STONE_TAG)
             {
@@ -487,7 +498,7 @@ CCParticleSystemQuad *particleMagnet_3;
     for (int i=0; i<collectedTreasure.size(); i++)
     {
         b2Body *b = collectedTreasure[i];
-        CCSprite *treasureData = (CCSprite *)b->GetUserData();
+        CCSprite *treasureData = (__bridge CCSprite *)b->GetUserData();
         
         
         b->SetTransform(b2Vec2(playPosition.x, playPosition.y), 0.0);
@@ -512,7 +523,7 @@ CCParticleSystemQuad *particleMagnet_3;
 	world->Step(dt, velocityIterations, positionIterations);
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
         if (b->GetUserData() != NULL) {
-            CCSprite *treasureData = (CCSprite *)b->GetUserData();
+            CCSprite *treasureData = (__bridge CCSprite *)b->GetUserData();
             
             if(treasureData.tag == TREASURE_COLLECT_TAG || treasureData.tag == TREASURE_TAG)
             {
@@ -557,7 +568,7 @@ CCParticleSystemQuad *particleMagnet_3;
 {
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
         if (b->GetUserData() != NULL) {
-            CCSprite *treasureData = (CCSprite *)b->GetUserData();
+            CCSprite *treasureData = (__bridge CCSprite *)b->GetUserData();
             
             if(treasureData.tag==TREASURE_TAG)
             {
@@ -660,7 +671,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     treasureShapeDef.friction = 0.0f;
     treasureShapeDef.restitution = 1.0f;
     treasureShapeDef.filter.categoryBits = 0x2;
-    treasureShapeDef.filter.maskBits = 0xFFFF-0x2;
+    treasureShapeDef.filter.maskBits = 0x1+0x20;
     
     treasureBody->CreateFixture(&treasureShapeDef);
     
@@ -677,7 +688,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     
     blackhole = [GameObject spriteWithFile: [NSString stringWithFormat:@"blackhole.png"]];
     
-//    backhole.tag = TREASURE_TAG;
+    blackhole.tag = BLACKHOLE_TAG;
 //    [treasure setType:gameObjectTreasure1];
     
     int blackholeStartY = GetRandom_3( blackhole.contentSize.height/2, winSize.height - blackhole.contentSize.height/2 );
@@ -711,7 +722,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     blackholeShapeDef.density = 3.0f;
     blackholeShapeDef.friction = 0.0f;
     blackholeShapeDef.restitution = 1.0f;
-    blackholeShapeDef.filter.categoryBits = 0x2;
+    blackholeShapeDef.filter.categoryBits = 0x40;
     blackholeShapeDef.filter.maskBits = 0;
     
     blackholeBody->CreateFixture(&blackholeShapeDef);
@@ -797,7 +808,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         treasureShapeDef.friction = 0.0f;
         treasureShapeDef.restitution = 1.0f;
         treasureShapeDef.filter.categoryBits = 0x2;
-        treasureShapeDef.filter.maskBits = 0xFFFF-0x2;
+        treasureShapeDef.filter.maskBits = 0x1+0x20;
         
         treasureBody->CreateFixture(&treasureShapeDef);
         
@@ -845,7 +856,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     stoneShapeDef.density = 3.0f;
     stoneShapeDef.friction = 0.2f;
     stoneShapeDef.restitution = 1.0f;
-    stoneShapeDef.filter.categoryBits = 0x5;
+    stoneShapeDef.filter.categoryBits = 0x4;
     stoneShapeDef.filter.maskBits = 0x0;
     
     stoneBody->CreateFixture(&stoneShapeDef);
@@ -889,7 +900,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     stoneShapeDef.density = 3.0f;
     stoneShapeDef.friction = 0.2f;
     stoneShapeDef.restitution = 1.0f;
-    stoneShapeDef.filter.categoryBits = 0x5;
+    stoneShapeDef.filter.categoryBits = 0x4;
     stoneShapeDef.filter.maskBits = 0x0;
     
     stoneBody->CreateFixture(&stoneShapeDef);
@@ -940,8 +951,8 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     spaceStationShapeDef.density = 100.0f;
     spaceStationShapeDef.friction = 0.f;
     spaceStationShapeDef.restitution = 0.0f;
-    spaceStationShapeDef.filter.categoryBits = 0x3;
-    spaceStationShapeDef.filter.maskBits = 0xFFFF-0x2-0x1;
+    spaceStationShapeDef.filter.categoryBits = 0x8;
+    spaceStationShapeDef.filter.maskBits = 0x0;
     
     spaceStationBody->CreateFixture(&spaceStationShapeDef);
     
@@ -1019,6 +1030,17 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
             if ( current != spaceshipState ){
                 [player fly:current];
                 spaceshipState = current;
+            }
+        }
+        if(gamePart2)
+        {
+            if(newY>player.position.y+5)
+            {
+                player.rotation = -30;
+            }
+            else if(newY<player.position.y-5)
+            {
+                player.rotation = 30;
             }
         }
         
@@ -1246,7 +1268,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
         treasureSpeedMultiplier = 2;
         for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
             if (b->GetUserData() != NULL) {
-                CCSprite *treasureData = (CCSprite *)b->GetUserData();
+                CCSprite *treasureData = (__bridge CCSprite *)b->GetUserData();
                 
                 if(treasureData.tag==TREASURE_TAG)
                 {
@@ -1306,7 +1328,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
         if (b->GetUserData() != NULL) {
-            CCSprite *treasureData = (CCSprite *)b->GetUserData();
+            CCSprite *treasureData = (__bridge CCSprite *)b->GetUserData();
             
             if(treasureData.tag==TREASURE_TAG)
             {
@@ -1345,7 +1367,7 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     player.numOfAffordCollsion = numOfAffordCollsionTEMP;
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
         if (b->GetUserData() != NULL) {
-            CCSprite *treasureData = (CCSprite *)b->GetUserData();
+            CCSprite *treasureData = (__bridge CCSprite *)b->GetUserData();
             
             if(treasureData.tag==TREASURE_TAG)
             {
@@ -1397,8 +1419,8 @@ int GetRandomGaussian_3( int lowerbound, int upperbound ){
     bulletShapeDef.density = 3.0f;
     bulletShapeDef.friction = 0.2f;
     bulletShapeDef.restitution = 1.0f;
-    bulletShapeDef.filter.categoryBits = 0x6;
-    bulletShapeDef.filter.maskBits = 0xFFFF-0x1-0x5-0x3;
+    bulletShapeDef.filter.categoryBits = 0x20;
+    bulletShapeDef.filter.maskBits = 0x2;
     
     
     bulletBody->CreateFixture(&bulletShapeDef);

@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[GameLayer updateLabel:]:GameLayer.mm">
+      </ContextState>
+      <ContextState
          contextName = "-[HUDLayer setShadow:]:HUDLayer.mm">
          <PersistentStrings>
             <PersistentString
@@ -65,10 +68,16 @@
          contextName = "-[GameLayer treasureMovementLogic:]:GameLayer.mm">
          <PersistentStrings>
             <PersistentString
-               value = "treasureData.tag">
+               value = "sizeof(treasureData)">
             </PersistentString>
             <PersistentString
                value = "player-&gt;playerBody-&gt;GetLinearVelocity()">
+            </PersistentString>
+            <PersistentString
+               value = "sizeof(treasureData.tag)">
+            </PersistentString>
+            <PersistentString
+               value = "treasureData.tag">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

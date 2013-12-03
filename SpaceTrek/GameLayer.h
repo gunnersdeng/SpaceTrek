@@ -72,6 +72,8 @@
     
     int spaceshipState;
     
+    
+    
 @public
     bool collision;
 //    int getLevel;
@@ -81,7 +83,7 @@
     
     int distanceLevel, milestoneStatus;
     
-    CCLabelTTF *milestoneLable;
+    CCLabelTTF *milestoneLable, *fallingStoneCountdownLable;
 }
 
 -(void) playerBack;
