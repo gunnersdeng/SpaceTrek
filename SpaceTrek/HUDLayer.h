@@ -19,7 +19,9 @@
     CCMenuItemImage* property1, *property2, *property3, *property4, *property5, *property6, *propertyNull;
     CCMenu *PropertyMenu;
     CCMenuItemSprite *pauseButton;
+    CCMenuItemSprite *fakePauseButton;
     CCMenu *pauseMenu;
+    CCMenu *fakePauseMenu;
     
     CCSprite * shadow;
     CCSprite * shadow0;
@@ -36,6 +38,7 @@
     CCLabelTTF *milestoneLable;
     
     bool isShowingPausedMenu;
+    bool isFakePause;
     int dl;
 }
 - (id) initWithLevel:(int)level;

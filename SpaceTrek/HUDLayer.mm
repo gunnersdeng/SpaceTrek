@@ -47,6 +47,7 @@ int hudLevel;
         [statusBar addChild:pointer z:5];
         
         isShowingPausedMenu = false;
+        isFakePause = false;
         
         distanceLabel = [CCLabelTTF labelWithString:@"0" fontName:@"arial" fontSize:35];
         distanceLabel.rotation = 90;
@@ -82,11 +83,24 @@ int hudLevel;
         pauseButton.scale = 0.6;
         pauseButton.rotation = 90;
         
+        
+        fakePauseButton = [CCMenuItemImage itemWithNormalImage:@"pauseButton.png" selectedImage:@"pauseButton.png" target:self selector:@selector(fakePause)];
+        fakePauseButton.rotation = 90;
+        fakePauseButton.opacity = 100;
+        
+        
         pauseMenu = [CCMenu menuWithItems:pauseButton, nil];
         pauseMenu.position=ccp(960, 700);
         
         [pauseMenu alignItemsVerticallyWithPadding:10.0f];
         [self addChild:pauseMenu z:2];
+        
+        
+        fakePauseMenu = [CCMenu menuWithItems:fakePauseButton, nil];
+        fakePauseMenu.position=ccp(980, 30);
+        
+        [fakePauseMenu alignItemsVerticallyWithPadding:10.0f];
+        [self addChild:fakePauseMenu z:2];
 
    }
     return self;
@@ -258,6 +272,20 @@ int hudLevel;
         [self addChild:pauzy z:10 tag:PAUSE_LAYER_TAG];
         [[CCDirector sharedDirector] pause];
         
+    }
+}
+
+-(void)fakePause
+{
+    if(!isFakePause)
+    {
+        [[CCDirector sharedDirector] pause];
+        isFakePause = true;
+    }
+    else
+    {
+        [[CCDirector sharedDirector] resume];
+        isFakePause = false;
     }
 }
 

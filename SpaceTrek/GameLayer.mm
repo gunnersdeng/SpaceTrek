@@ -146,6 +146,7 @@ CCParticleSystemQuad *particleMagnet;
     
     //firstBackgroundMusic = [[SimpleAudioEngine sharedEngine]playEffect:@"level1Background.mp3"];
     [[SimpleAudioEngine sharedEngine]playEffect:@"LaunchSong.mp3"];
+
 }
 
 - (void)ChangeGoBackSound
@@ -590,6 +591,7 @@ CCParticleSystemQuad *particleMagnet;
 
 -(void) playerBack
 {
+    [self removeChild:redLine];
     isPlayerMoveBack = true;
     isStationMoveBack = true;
     gamePart1 = false;
@@ -1043,9 +1045,67 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     spaceStationShapeDef.friction = 0.f;
     spaceStationShapeDef.restitution = 0.0f;
     spaceStationShapeDef.filter.categoryBits = 0x3;
-    spaceStationShapeDef.filter.maskBits = 0xFFFF-0x2-0x1;
+    spaceStationShapeDef.filter.maskBits = 0;
     
     spaceStationBody->CreateFixture(&spaceStationShapeDef);
+    
+    
+}
+
+-(void)addFallingStone:(int)x loc:(int)y
+{
+    GameObject *fallingStone;
+    fallingStone = [[GameObject alloc] init];
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    fallingStone = [GameObject spriteWithSpriteFrameName:@"obstacle_1.png"];
+    
+    //    backhole.tag = TREASURE_TAG;
+    [fallingStone setType:gameObjectFallingStone];
+    
+    
+    fallingStone.position = ccp(x,y);
+    fallingStone.scale = 1.5;
+    
+    [self addChild:fallingStone z:-1];
+    
+    NSMutableArray *collectAnimFrames = [NSMutableArray array];
+    for(int i = 1; i <= 15; ++i){
+        [collectAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"obstacle_%d.png", i]]];
+    }
+    CCAnimation *collectAnimation = [CCAnimation animationWithSpriteFrames:collectAnimFrames delay:0.1f];
+    CCFiniteTimeAction *obstacleAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: collectAnimation] times:1000];
+    
+    [fallingStone runAction:obstacleAction];
+    
+    b2BodyDef fallingStoneBodyDef;
+    fallingStoneBodyDef.type = b2_dynamicBody;
+    fallingStoneBodyDef.position.Set(fallingStone.position.x/PTM_RATIO, fallingStone.position.y/PTM_RATIO);
+    fallingStoneBodyDef.userData = fallingStone;
+    
+    
+    
+    
+    fallingStoneBodyDef.userData = (__bridge_retained void*) fallingStone;
+    
+    b2Body* fallingStoneBody = world->CreateBody(&fallingStoneBodyDef);
+    
+    
+    b2Vec2 force = b2Vec2(-TRAVEL_SPEED*5, 0);
+    fallingStoneBody->SetLinearVelocity(force);
+    
+    b2CircleShape circle;
+    circle.m_radius = fallingStone.contentSize.width/2/PTM_RATIO;
+    
+    b2FixtureDef fallingStoneShapeDef;
+    fallingStoneShapeDef.shape = &circle;
+    fallingStoneShapeDef.density = 3.0f;
+    fallingStoneShapeDef.friction = 0.0f;
+    fallingStoneShapeDef.restitution = 1.0f;
+    fallingStoneShapeDef.filter.categoryBits = 0x5;
+    fallingStoneShapeDef.filter.maskBits = 0xFFFF-0x2-0x3-0x4-0x5;
+    
+    fallingStoneBody->CreateFixture(&fallingStoneShapeDef);
     
     
 }
@@ -1183,12 +1243,14 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Character.plist"];
     allBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"Character.png"];
     [self addChild:allBatchNode z:10];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Treasure.plist"];
-    treasureBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"Treasure.png"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"obstacle.plist"];
+    treasureBatchNode=[CCSpriteBatchNode batchNodeWithFile:@"obstacle.png"];
     [self addChild:treasureBatchNode z:10];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"eject.plist"];
 }
 
 - (void)update:(ccTime)dt {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
     if ( hudLayer==nil ){
         CCScene* scene = [[CCDirector sharedDirector] runningScene];
         hudLayer = (HUDLayer*)[scene getChildByTag:HUD_LAYER_TAG];
@@ -1231,6 +1293,23 @@ int GetRandomGaussian( int lowerbound, int upperbound ){
             [self ChangeGoBackSound];
             
             [player setType:gameObjectCollector];
+        }
+        
+        if(distance == 500)
+        {
+            redLine = [CCSprite spriteWithFile: [NSString stringWithFormat:@"henggechumaPS2.png"]];
+//            redLine.rotation = 90;
+            [redLine setAnchorPoint:ccp(0,0.5)];
+            [redLine setPosition:ccp(0, 200)];
+            [self addChild:redLine z:10];
+            
+            
+            
+        }
+        if(distance == 700)
+        {
+            [self removeChild:redLine];
+            [self addFallingStone:winSize.width loc:200];
         }
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];

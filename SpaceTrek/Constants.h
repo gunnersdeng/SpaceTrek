@@ -82,6 +82,7 @@ typedef enum {
     gameObjectProperty1=6,
     gameObjectBullet=7,
     gameObjectObstacle=8,
+    gameObjectFallingStone = 9,
 } GameObjectType;
 
 

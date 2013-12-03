@@ -41,6 +41,8 @@
     
     CCSprite* shield_1;
     
+    CCSprite* redLine;
+    
     ContactListener *contactListener;
     
     

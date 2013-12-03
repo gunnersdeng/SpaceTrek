@@ -12,6 +12,7 @@
 #import "GameObject.h"
 #import "GameLayer.h"
 #import "BackgroundLayer.h"
+#import "GameOverScene.h"
 
 ContactListener::ContactListener() {
 }
@@ -35,6 +36,13 @@ void ContactListener::BeginContact(b2Contact *contact) {
             GameObject* obstacleSprite =(spriteA.tag==TREASURE_TAG)?spriteA:spriteB;
             obstacleSprite.tag = TREASURE_DESTROY_BYBULLET_TAG;
             bulletSprite.tag = BULLET_DESTROY_TAG;
+            
+            CCScene* scene = [[CCDirector sharedDirector] runningScene];
+            GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
+            CCParticleSystemQuad *particle = [CCParticleSystemQuad particleWithFile:@"collisionTreasure.plist"];
+            particle.positionType = kCCPositionTypeFree;
+            particle.position = obstacleSprite.position;
+            [layer addChild:particle z:1];
             [[SimpleAudioEngine sharedEngine]playEffect:@"treasureCrash.wav"];
             return;
         }
@@ -91,7 +99,13 @@ void ContactListener::BeginContact(b2Contact *contact) {
                 GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
                 [layer setVolecity:0];
             }
-            
+            else if(spriteB.type==gameObjectFallingStone)
+            {
+                CCScene* scene = [[CCDirector sharedDirector] runningScene];
+                GameLayer* layer = (GameLayer*)[scene getChildByTag:GAME_LAYER_TAG];
+
+                [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:  [GameOverScene sceneWithLevel:GAME_STATE_ONE Score:layer.score Distance:layer.distance]]];
+            }
         }
         else if(spriteA.type==gameObjectCollector)
         {

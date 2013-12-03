@@ -125,7 +125,7 @@
 -(void) magnetAction
 {
     [self stopAllActions];
-    NSMutableArray *magnet1AnimFrames = [NSMutableArray array];
+    /*NSMutableArray *magnet1AnimFrames = [NSMutableArray array];
     for(int i = 1; i <= 1; ++i){
         [magnet1AnimFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
@@ -133,16 +133,16 @@
     }
     magnet1Animation = [CCAnimation animationWithSpriteFrames:magnet1AnimFrames delay:0.09f];
     magnet1Action = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: magnet1Animation] times:100];
-    
+    */
     
     NSMutableArray *magnet2AnimFrames = [NSMutableArray array];
-    for(int i = 1; i <= 2; ++i){
+    for(int i = 0; i <= 4; ++i){
         [magnet2AnimFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
           [NSString stringWithFormat:@"spaceman_magnet_%d.png", i]]];
     }
     magnet2Animation = [CCAnimation animationWithSpriteFrames:magnet2AnimFrames delay:0.1f];
-    magnet2Action = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: magnet2Animation] times:75];
+    magnet2Action = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: magnet2Animation] times:30];
     
     
     NSMutableArray *spacemanAnimFrames = [NSMutableArray array];
@@ -155,9 +155,10 @@
     spacemanAction = [CCRepeat actionWithAction: [CCAnimate actionWithAnimation: spacemanAnimation] times:2000];
     
     
-    id seq = [CCSequence actions:magnet1Action,magnet2Action,nil];
-    
+    //id seq = [CCSequence actions:magnet1Action,magnet2Action,nil];
     [self runAction:[CCSequence actions:magnet2Action, spacemanAction, nil]];
+    
+    //[self runAction:[CCSequence actions:magnet2Action, spacemanAction, nil]];
 }
 
 -(void) invincible

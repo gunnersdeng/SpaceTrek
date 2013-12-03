@@ -318,6 +318,10 @@
 		F19BCA1F184AC49100B047C2 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = F19BCA1D184AC49100B047C2 /* loading.png */; };
 		F19BCA20184AC49100B047C2 /* LoadingCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = F19BCA1E184AC49100B047C2 /* LoadingCircle.png */; };
 		F19BCA22184B04F800B047C2 /* tinystar.png in Resources */ = {isa = PBXBuildFile; fileRef = F19BCA21184B04F700B047C2 /* tinystar.png */; };
+		F1C1DB7D184D5464009F76A0 /* henggechumaPS.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C1DB7C184D5464009F76A0 /* henggechumaPS.png */; };
+		F1C1DB7F184D58D0009F76A0 /* henggechumaPS2.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C1DB7E184D58D0009F76A0 /* henggechumaPS2.png */; };
+		F1C1DB82184D5ED8009F76A0 /* obstacle.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C1DB80184D5ED8009F76A0 /* obstacle.plist */; };
+		F1C1DB83184D5ED8009F76A0 /* obstacle.png in Resources */ = {isa = PBXBuildFile; fileRef = F1C1DB81184D5ED8009F76A0 /* obstacle.png */; };
 		F1CA5DEE1813DD2700A6BE77 /* GameOverScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */; };
 		F1CA5DF11813DEA900A6BE77 /* GameOverLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA5DF01813DEA900A6BE77 /* GameOverLayer.mm */; };
 		F1CC4156182AC5760026C4E2 /* treasure_type_1.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CC4155182AC5760026C4E2 /* treasure_type_1.png */; };
@@ -862,6 +866,10 @@
 		F19BCA1D184AC49100B047C2 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		F19BCA1E184AC49100B047C2 /* LoadingCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingCircle.png; sourceTree = "<group>"; };
 		F19BCA21184B04F700B047C2 /* tinystar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinystar.png; sourceTree = "<group>"; };
+		F1C1DB7C184D5464009F76A0 /* henggechumaPS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = henggechumaPS.png; sourceTree = "<group>"; };
+		F1C1DB7E184D58D0009F76A0 /* henggechumaPS2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = henggechumaPS2.png; sourceTree = "<group>"; };
+		F1C1DB80184D5ED8009F76A0 /* obstacle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = obstacle.plist; sourceTree = "<group>"; };
+		F1C1DB81184D5ED8009F76A0 /* obstacle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle.png; sourceTree = "<group>"; };
 		F1CA5DEC1813DD2700A6BE77 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		F1CA5DED1813DD2700A6BE77 /* GameOverScene.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = GameOverScene.mm; sourceTree = "<group>"; };
 		F1CA5DEF1813DEA900A6BE77 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
@@ -1648,6 +1656,8 @@
 		F17B975817FCD5C500BD6670 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				F1C1DB7E184D58D0009F76A0 /* henggechumaPS2.png */,
+				F1C1DB7C184D5464009F76A0 /* henggechumaPS.png */,
 				F1336D1C184BF99300B72046 /* help_Background.png */,
 				F1336D1A184BEFF700B72046 /* finished.png */,
 				F19BCA10184AB65100B047C2 /* background-shadow-0.png */,
@@ -1704,6 +1714,8 @@
 		F17B976617FCEC8800BD6670 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				F1C1DB80184D5ED8009F76A0 /* obstacle.plist */,
+				F1C1DB81184D5ED8009F76A0 /* obstacle.png */,
 				F1336D37184C80B400B72046 /* spaceship-shield-1.png */,
 				F1336D38184C80B400B72046 /* spaceship-shield-2.png */,
 				F1336D33184C772000B72046 /* Character.plist */,
@@ -1861,6 +1873,7 @@
 				757BA8571814B9E6006645AA /* runway.png in Resources */,
 				F1CC4159182AF4C70026C4E2 /* treasure_type_8.png in Resources */,
 				75CD330C183C48F6000D3D52 /* STORE_Toucharea.png in Resources */,
+				F1C1DB7D184D5464009F76A0 /* henggechumaPS.png in Resources */,
 				F10D14A21833F844006A15C5 /* fireball_2.png in Resources */,
 				F14E4E7A18130ED0005D8190 /* MENU.png in Resources */,
 				756008FB184D14E40046EB9F /* 收集treasure6.mp3 in Resources */,
@@ -1882,6 +1895,7 @@
 				F1336D29184C295200B72046 /* protection_1.plist in Resources */,
 				F1F5F1261821B2D60084BB33 /* Stone_type_5.png in Resources */,
 				F134060018433C97009588E6 /* TOOLBAR_flashlight.png in Resources */,
+				F1C1DB82184D5ED8009F76A0 /* obstacle.plist in Resources */,
 				757BA8551814B869006645AA /* CrashSong.mp3 in Resources */,
 				F192F3DC18179A18008D4DC0 /* storeBackground.png in Resources */,
 				75E9EFE8182009DA006A633D /* treasure_type_4.png in Resources */,
@@ -1903,6 +1917,7 @@
 				F17B975A17FCD6AB00BD6670 /* version_1_level_1_background(map).png in Resources */,
 				75E2846518021E250003E344 /* spaceship-level-2.png in Resources */,
 				F17B975D17FCD70300BD6670 /* button_play_sel.png in Resources */,
+				F1C1DB83184D5ED8009F76A0 /* obstacle.png in Resources */,
 				F19BCA1F184AC49100B047C2 /* loading.png in Resources */,
 				F1336D26184C295200B72046 /* collisionTreasure.plist in Resources */,
 				756008EF184D14E40046EB9F /* level1Background.mp3 in Resources */,
@@ -1956,6 +1971,7 @@
 				F1801E1818028474002BDAF1 /* btn_pause.png in Resources */,
 				F14E4E7C18130ED0005D8190 /* RESUME.png in Resources */,
 				75D9DECA181451AA00CC87E7 /* PlayMode_Music_back.mp3 in Resources */,
+				F1C1DB7F184D58D0009F76A0 /* henggechumaPS2.png in Resources */,
 				F1F5F1231821B2D60084BB33 /* Stone_type_2.png in Resources */,
 				756008F5184D14E40046EB9F /* collecttreasure.mp3 in Resources */,
 				756008F6184D14E40046EB9F /* 收集treasure1.mp3 in Resources */,
