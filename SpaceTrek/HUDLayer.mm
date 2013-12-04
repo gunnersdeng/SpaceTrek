@@ -87,6 +87,7 @@ int hudLevel;
         fakePauseButton = [CCMenuItemImage itemWithNormalImage:@"pauseButton.png" selectedImage:@"pauseButton.png" target:self selector:@selector(fakePause)];
         fakePauseButton.rotation = 90;
         fakePauseButton.opacity = 100;
+        fakePauseButton.scale = 3;
         
         
         pauseMenu = [CCMenu menuWithItems:pauseButton, nil];
@@ -97,7 +98,7 @@ int hudLevel;
         
         
         fakePauseMenu = [CCMenu menuWithItems:fakePauseButton, nil];
-        fakePauseMenu.position=ccp(980, 30);
+        fakePauseMenu.position=ccp(120, 30);
         
         [fakePauseMenu alignItemsVerticallyWithPadding:10.0f];
         [self addChild:fakePauseMenu z:2];
